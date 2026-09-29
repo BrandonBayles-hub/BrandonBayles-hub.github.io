@@ -1,0 +1,9 @@
+{
+  "version": "summit-vignette-mid-flight-1",
+  "analyticsSectionTitle": "Analytics",
+  "reportsNav": "/api/summit-vignette/analytics-nav",
+  "workspaceReports": "/api/summit-vignette/workspace-reports",
+  "notifications": "/api/summit-vignette/notifications",
+  "mobileAnalyticsHub": "/summit-vignette/oxp/analytics",
+  "note": "OXP Mobile Command Center should render Analytics below Outcomes using reportsNav. Until prototype re-export, use mobileAnalyticsHub inside phone frame."
+}

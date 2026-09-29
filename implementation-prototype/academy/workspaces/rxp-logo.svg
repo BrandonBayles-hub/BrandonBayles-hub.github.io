@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RXP workspace wordmark. Matched set with the OXP + AXP lockups: same
+     viewBox, the exact same X and P letterforms (same font), and a heavy
+     geometric R built from the P letterform plus a leg. Colored in the Homebody
+     admin-portal deep green (#004B37) so RXP reads as part of the same family. -->
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 626.12 216">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #004b37;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M0,0h103.24c50.6,0,85.12,29.83,85.12,73.33s-34.67,73.49-85.12,73.49h-47.51v69.18H0V0ZM100.67,102.41c20.09,0,31.95-10.72,31.95-29.08s-11.78-28.93-31.72-28.93h-45.16v58h44.94Z"/>
+  <path class="cls-1" d="M55.74,146.82h56.26l76,69.18h-56Z"/>
+  <path class="cls-1" d="M359.51,106.11l68.43,109.89h-65.1l-42.6-75.37-41.31,75.37h-60.95l64.72-109.96L221.37,0h64.8l36.7,72.28L362.76,0h60.95l-64.2,106.11Z"/>
+  <path class="cls-1" d="M437.77,0h103.24c50.6,0,85.12,29.83,85.12,73.33s-34.67,73.49-85.12,73.49h-47.51v69.18h-55.74V0ZM538.44,102.41c20.09,0,31.95-10.72,31.95-29.08s-11.78-28.93-31.72-28.93h-45.16v58h44.94Z"/>
+</svg>
