@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-      <meta name="ui-build" content="2026-09-18-freeze" />
+      <meta name="ui-build" content="2026-09-30-live" />
     <title>A2P Campaign Status</title>
     <style>
       :root {
@@ -253,7 +253,7 @@
       // Bumped whenever this page's markup or script changes. Compared against the
       // published ui-version.json so a browser running a cached copy of this file
       // can tell the reader instead of silently showing an old layout.
-      const UI_BUILD = "2026-09-18-freeze";
+      const UI_BUILD = "2026-09-30-live";
 
       async function checkForStaleShell() {
         try {
@@ -277,6 +277,15 @@
       }
 
       const clockText = (value) => value.toLocaleTimeString("en-US", { timeZone: "UTC", hour: "numeric", minute: "2-digit", second: "2-digit", timeZoneName: "short" });
+
+      // A stale scan should be obvious at a glance; the absolute UTC stamp alone was not.
+      const ageText = (value) => {
+        if (!value) return "";
+        const minutes = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 60000));
+        if (minutes < 60) return ` (${minutes} min ago)`;
+        if (minutes < 48 * 60) return ` (${Math.round(minutes / 60)} h ago)`;
+        return ` (${Math.round(minutes / 1440)} days ago — stale)`;
+      };
 
       async function reloadWithFeedback() {
         const button = $("refresh");
@@ -313,8 +322,19 @@
         $("failed").textContent = failed.toLocaleString();
         $("missing").textContent = missing.toLocaleString();
         $("approved-sub").textContent = `${Math.round(approved / data.total * 100)}% approved`;
-        $("freshness-title").textContent = `Last updated: ${dateText(data.generatedAt)}`;
+        $("freshness-title").textContent = `Last updated: ${dateText(data.generatedAt)}${ageText(data.generatedAt)}`;
         $("freshness-detail").textContent = "List is frozen; status is queried every 15 minutes. This button reloads the last published scan — it does not call Twilio.";
+        const outside = data.outsideCohort || [];
+        if (outside.length) {
+          const byClient = {};
+          outside.forEach((row) => { (byClient[row.company] = byClient[row.company] || []).push(row.liveStatus); });
+          const parts = Object.entries(byClient).map(([company, statuses]) => {
+            const counts = {};
+            statuses.forEach((s) => { counts[s] = (counts[s] || 0) + 1; });
+            return `${esc(company)} ${statuses.length} (${Object.entries(counts).map(([s, n]) => `${n} ${esc(statusMeta(s).label.toLowerCase())}`).join(", ")})`;
+          });
+          $("freeze-banner").innerHTML = `<strong>List frozen.</strong> The ${Number(data.total).toLocaleString()} campaigns here are locked — no new ones get added automatically. Their live status still refreshes from Twilio. <strong>${outside.length.toLocaleString()} campaign(s) created after the freeze are not counted:</strong> ${parts.join(" · ")}. Ask Brandon to add them.`;
+        }
         $("notice").innerHTML = `<span>●</span><div><strong>${data.oxpClientCount.toLocaleString()} OXP Submitted clients reconciled.</strong> ${data.oxpClientsAlreadyInOriginalCohort.toLocaleString()} were already in the property cohort; ${data.oxpNetNewClientCount.toLocaleString()} are net-new. ${data.oxpNotOnOriginalMigrationCount.toLocaleString()} were marked as not on the original migration list. ${data.unmappedClients.length.toLocaleString()} could not be confidently mapped to a Twilio subaccount.</div>`;
         const bucketCounts = data.confidenceBucketSummary || {};
         $("bucket-fix-confident").textContent = Number(bucketCounts.fix_confident || 0).toLocaleString();

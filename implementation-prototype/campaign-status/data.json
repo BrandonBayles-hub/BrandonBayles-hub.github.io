@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T12:09:56.047241+00:00",
+  "generatedAt": "2026-09-30T15:02:34.855991+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -90,36 +90,29 @@
       "propertiesFound": 24
     }
   ],
-  "duplicateSubaccounts": [
-    {
-      "cid": "102127",
-      "subaccountCount": 8,
-      "serviceCount": 0,
-      "allEmpty": true
-    }
-  ],
+  "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 1925,
-    "FAILED": 139,
+    "VERIFIED": 1967,
+    "FAILED": 97,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
-    "SERVICE_NOT_FOUND": 3,
-    "IN_PROGRESS": 3
+    "SERVICE_NOT_FOUND": 2,
+    "IN_PROGRESS": 4
   },
   "failureActionSummary": {
     "Entrata \u2014 wrong URL registered": 34,
     "Entrata \u2014 template/copy": 11,
-    "Client \u2014 privacy policy wording": 43,
-    "Unknown \u2014 needs triage": 24,
-    "Client \u2014 website": 26,
+    "Client \u2014 privacy policy wording": 8,
+    "Unknown \u2014 needs triage": 21,
+    "Client \u2014 website": 22,
     "Entrata \u2014 website publishing": 1
   },
   "confidenceBucketSummary": {
     "fix_confident": 0,
-    "fix_will_still_fail": 47,
-    "client_blocked": 53,
-    "needs_triage": 39
+    "fix_will_still_fail": 46,
+    "client_blocked": 28,
+    "needs_triage": 23
   },
   "confidenceBucketLabels": {
     "fix_confident": "Fix now, high confidence",
@@ -156,12 +149,79 @@
     }
   ],
   "templateAVerdict": {
-    "failedUsingTemplateA": 98,
-    "knownWebsiteOrUrlPrimary": 32,
-    "needsUrlTriage": 22,
+    "failedUsingTemplateA": 57,
+    "knownWebsiteOrUrlPrimary": 28,
+    "needsUrlTriage": 20,
     "contentErrorRows": 10
   },
   "scanErrors": [],
+  "outsideCohortCount": 8,
+  "outsideCohort": [
+    {
+      "company": "BRC Real Estate",
+      "cid": "100130",
+      "property": "Property 100187552",
+      "propertyId": "100187552",
+      "liveStatus": "VERIFIED",
+      "dateCreated": "2026-09-22T18:55:13Z"
+    },
+    {
+      "company": "Burkentine Property Management",
+      "cid": "100839",
+      "property": "Property 100165499",
+      "propertyId": "100165499",
+      "liveStatus": "IN_PROGRESS",
+      "dateCreated": "2026-09-29T19:40:28Z"
+    },
+    {
+      "company": "Capstone Collegiate Communities",
+      "cid": "16858",
+      "property": "Property 100183312",
+      "propertyId": "100183312",
+      "liveStatus": "VERIFIED",
+      "dateCreated": "2026-09-22T19:43:00Z"
+    },
+    {
+      "company": "Green Alpha Property Management",
+      "cid": "102127",
+      "property": "Property 100169289",
+      "propertyId": "100169289",
+      "liveStatus": "IN_PROGRESS",
+      "dateCreated": "2026-09-29T17:39:31Z"
+    },
+    {
+      "company": "Green Alpha Property Management",
+      "cid": "102127",
+      "property": "Property 100169290",
+      "propertyId": "100169290",
+      "liveStatus": "IN_PROGRESS",
+      "dateCreated": "2026-09-29T17:39:44Z"
+    },
+    {
+      "company": "Green Alpha Property Management",
+      "cid": "102127",
+      "property": "Property 100169295",
+      "propertyId": "100169295",
+      "liveStatus": "IN_PROGRESS",
+      "dateCreated": "2026-09-29T17:39:57Z"
+    },
+    {
+      "company": "Greenbrier Management",
+      "cid": "16824",
+      "property": "Property 100185658",
+      "propertyId": "100185658",
+      "liveStatus": "VERIFIED",
+      "dateCreated": "2026-09-23T19:54:14Z"
+    },
+    {
+      "company": "Southhampton Management",
+      "cid": "17364",
+      "property": "Property 100188346",
+      "propertyId": "100188346",
+      "liveStatus": "VERIFIED",
+      "dateCreated": "2026-09-25T14:36:29Z"
+    }
+  ],
   "campaigns": [
     {
       "company": "Advanced Asset Management LLC",
@@ -568,16 +628,16 @@
       "dateUpdated": "2026-09-11T21:53:51Z",
       "errors": [
         {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
           "code": 30886,
           "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": false,
@@ -612,20 +672,20 @@
       "dateUpdated": "2026-09-11T21:53:54Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": false,
@@ -664,12 +724,12 @@
           "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         },
         {
-          "code": 30909,
-          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30909,
+          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         }
       ],
       "usesTemplateA": false,
@@ -784,20 +844,20 @@
       "dateUpdated": "2026-09-11T21:54:07Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": false,
@@ -832,20 +892,20 @@
       "dateUpdated": "2026-09-11T21:54:15Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -920,20 +980,20 @@
       "dateUpdated": "2026-09-11T21:54:20Z",
       "errors": [
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        },
+        {
           "code": 30886,
           "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": false,
@@ -1048,20 +1108,20 @@
       "dateUpdated": "2026-09-11T21:54:31Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30891,
           "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        },
+        {
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         }
       ],
       "usesTemplateA": false,
@@ -1096,20 +1156,20 @@
       "dateUpdated": "2026-09-11T21:54:33Z",
       "errors": [
         {
-          "code": 30909,
-          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30891,
           "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         },
         {
+          "code": 30909,
+          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
+        },
+        {
           "code": 30886,
           "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": false,
@@ -1144,20 +1204,20 @@
       "dateUpdated": "2026-09-11T21:54:36Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
+        },
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -1344,20 +1404,20 @@
       "dateUpdated": "2026-09-11T21:54:46Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         },
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         },
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -1392,12 +1452,12 @@
       "dateUpdated": "2026-09-11T21:54:48Z",
       "errors": [
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
+        },
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -1432,12 +1492,12 @@
       "dateUpdated": "2026-09-11T21:54:50Z",
       "errors": [
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
           "code": 30927,
           "description": "The campaign submission has been reviewed and rejected because the opt-in consent is for a different company than the registered brand."
+        },
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -1584,10 +1644,6 @@
       "dateUpdated": "2026-09-11T21:55:00Z",
       "errors": [
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
@@ -1598,6 +1654,10 @@
         {
           "code": 30909,
           "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
+        },
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         }
       ],
       "usesTemplateA": false,
@@ -1632,12 +1692,12 @@
       "dateUpdated": "2026-09-11T21:55:03Z",
       "errors": [
         {
-          "code": 30909,
-          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
-        },
-        {
           "code": 30891,
           "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        },
+        {
+          "code": 30909,
+          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         }
       ],
       "usesTemplateA": false,
@@ -1672,20 +1732,20 @@
       "dateUpdated": "2026-09-11T21:55:06Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
         },
         {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
-          "code": 30909,
-          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         },
         {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+          "code": 30909,
+          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         }
       ],
       "usesTemplateA": false,
@@ -4594,12 +4654,12 @@
       "dateUpdated": "2026-09-14T17:23:32Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -10887,12 +10947,12 @@
       "dateUpdated": "2026-09-14T15:33:10Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -14299,22 +14359,26 @@
       "submitted": true,
       "liveStatus": "FAILED",
       "tcrCampaignId": null,
-      "dateCreated": "2026-09-23T14:48:32Z",
-      "dateUpdated": "2026-09-23T14:48:32Z",
+      "dateCreated": "2026-09-28T21:33:06Z",
+      "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30894,
-          "description": "The campaign submission has been reviewed and it was rejected because invalid brand information."
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
-      "actionCategory": "Unknown \u2014 needs triage",
-      "actionOwner": "Entrata",
-      "actionItem": "Needs triage \u2014 inspect the carrier's rejected fields before changing anything.",
-      "actionDetail": "The available rejection does not identify a safe correction. Entrata must open the read-only carrier record, note every rejected field, compare each value with the public website and registered business, and document the exact mismatch before choosing a fix. Do not guess or resubmit unchanged.",
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "actionCategory": "Client \u2014 website",
+      "actionOwner": "Client",
+      "actionItem": "Client must publish a complete, public text-messaging privacy policy.",
+      "actionDetail": "Please publish a Privacy Policy page linked from https://luxefishtown.prospectportal.com that opens without a login. It must explain what personal information is collected, how phone numbers are used for text messages, that mobile information is not sold or shared with third parties for marketing, expected message frequency, how to stop messages by replying STOP, how to get help, and how to contact your company. The reviewer could not find a compliant policy. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for review.",
+      "confidenceBucket": "client_blocked",
+      "confidenceBucketLabel": "Blocked on client",
+      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
     },
     {
       "company": "Fishtown Leasing & Management, LLC",
@@ -18180,17 +18244,22 @@
     {
       "company": "Green Alpha Property Management",
       "cid": "102127",
-      "property": "No Entrata messaging service in Twilio",
+      "property": "3 campaign(s) created after the freeze \u2014 outside the frozen list, not tracked here",
       "propertyId": "",
       "paigeStatus": "OXP Submitted",
       "sourceDisposition": "client_level_expansion",
       "cohortOrigins": [
         "OXP submitted client list"
       ],
-      "notOnOriginalMigration": true,
-      "forcedLiveStatus": "NO_SERVICE",
+      "notOnOriginalMigration": false,
+      "serviceName": null,
+      "serviceSid": null,
+      "submitted": false,
       "liveStatus": "NO_SERVICE",
-      "submitted": false
+      "outsideCohortStatuses": {
+        "IN_PROGRESS": 3
+      },
+      "errors": []
     },
     {
       "company": "Greenbrier Management",
@@ -25209,12 +25278,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -25243,38 +25312,15 @@
       "serviceSid": "MGfd1faf5256ecee06fcea42917f3f9096",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C2TSID9",
       "dateCreated": "2026-09-15T16:54:35Z",
       "dateUpdated": "2026-09-15T16:54:35Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25320,34 +25366,15 @@
       "serviceSid": "MGc49ba625e3c5ba366baf51083dad59a6",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "COV6EYT",
       "dateCreated": "2026-09-15T16:54:18Z",
       "dateUpdated": "2026-09-15T16:54:18Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25366,34 +25393,15 @@
       "serviceSid": "MG61db9dc35e36b84bcda8d9c7731be18e",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CBUJM3N",
       "dateCreated": "2026-09-15T16:54:44Z",
       "dateUpdated": "2026-09-15T16:54:44Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25412,38 +25420,15 @@
       "serviceSid": "MGe2d22ebb6769240239078158d5db9fef",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CNS73W5",
       "dateCreated": "2026-09-15T16:54:23Z",
       "dateUpdated": "2026-09-15T16:54:23Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30922,
-          "description": "The campaign submission has been reviewed and rejected because the provided website does not meet validation requirements."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25462,38 +25447,15 @@
       "serviceSid": "MG730197901cb9bf44a049777afc864dab",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C4T2Y9G",
       "dateCreated": "2026-09-15T16:54:37Z",
       "dateUpdated": "2026-09-15T16:54:37Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25512,38 +25474,15 @@
       "serviceSid": "MG734fd38eb41748a94b9728071eacc81b",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CMULLVI",
       "dateCreated": "2026-09-15T16:54:38Z",
       "dateUpdated": "2026-09-15T16:54:38Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25562,34 +25501,15 @@
       "serviceSid": "MGcfcd806d4cbb7085e117a0f8ef21de3e",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C5AAF1K",
       "dateCreated": "2026-09-15T16:54:40Z",
       "dateUpdated": "2026-09-15T16:54:40Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25608,38 +25528,15 @@
       "serviceSid": "MG3cf99affa1793a795f192ac3970f51d2",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C7OYNG4",
       "dateCreated": "2026-09-15T16:54:48Z",
       "dateUpdated": "2026-09-15T16:54:48Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25658,38 +25555,15 @@
       "serviceSid": "MG46b3a339377d1b50ff7e43b0c0d073dc",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C9FBZRX",
       "dateCreated": "2026-09-15T16:54:30Z",
       "dateUpdated": "2026-09-15T16:54:30Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25708,34 +25582,15 @@
       "serviceSid": "MG55df47d2aaaa42dc2d4b0b11111ded51",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CKTG4SZ",
       "dateCreated": "2026-09-15T16:54:52Z",
       "dateUpdated": "2026-09-15T16:54:52Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25754,38 +25609,15 @@
       "serviceSid": "MG3d4191d360b781b4e97dd9176cfc7fd5",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CV3DC1C",
       "dateCreated": "2026-09-15T16:54:17Z",
       "dateUpdated": "2026-09-15T16:54:17Z",
-      "errors": [
-        {
-          "code": 30922,
-          "description": "The campaign submission has been reviewed and rejected because the provided website does not meet validation requirements."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25804,34 +25636,15 @@
       "serviceSid": "MG97d5ee482bec56adec7a4de7afe8643c",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C59O778",
       "dateCreated": "2026-09-15T16:54:28Z",
       "dateUpdated": "2026-09-15T16:54:28Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25850,34 +25663,15 @@
       "serviceSid": "MG5ce138fd431da331b4852943e7e5e159",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C10F53I",
       "dateCreated": "2026-09-15T16:54:29Z",
       "dateUpdated": "2026-09-15T16:54:29Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25896,38 +25690,15 @@
       "serviceSid": "MGba49cfd95f5ae64ccfa15781569d2e35",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CZDCC4P",
       "dateCreated": "2026-09-15T16:54:31Z",
       "dateUpdated": "2026-09-15T16:54:31Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25946,34 +25717,15 @@
       "serviceSid": "MGc102cb3375a0159073b1fe3ee98171ea",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C6UB43Z",
       "dateCreated": "2026-09-15T16:54:34Z",
       "dateUpdated": "2026-09-15T16:54:34Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -25992,38 +25744,15 @@
       "serviceSid": "MG315cfb235d32165abad09561679ad425",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CHHSNHS",
       "dateCreated": "2026-09-15T16:54:39Z",
       "dateUpdated": "2026-09-15T16:54:39Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26042,38 +25771,15 @@
       "serviceSid": "MG8d4c1886b403a8ead86709feb605aeb7",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CIBMSO5",
       "dateCreated": "2026-09-15T16:54:41Z",
       "dateUpdated": "2026-09-15T16:54:41Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26119,38 +25825,15 @@
       "serviceSid": "MG786090a9b9d8812de14f644a5f3673d7",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CTR88D2",
       "dateCreated": "2026-09-15T16:54:43Z",
       "dateUpdated": "2026-09-15T16:54:43Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26169,34 +25852,15 @@
       "serviceSid": "MG36df2f03d9bdbeea0323a497093cc04f",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CQ80ZJ8",
       "dateCreated": "2026-09-15T16:54:45Z",
       "dateUpdated": "2026-09-15T16:54:45Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26215,34 +25879,15 @@
       "serviceSid": "MGfc1a6d7c059ecae3c70e069563a254b1",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CLQ0TB9",
       "dateCreated": "2026-09-15T16:54:14Z",
       "dateUpdated": "2026-09-15T16:54:14Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26261,38 +25906,15 @@
       "serviceSid": "MG2ce12019d62273ce22d237940ad9f903",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CTNC0H1",
       "dateCreated": "2026-09-15T16:54:24Z",
       "dateUpdated": "2026-09-15T16:54:24Z",
-      "errors": [
-        {
-          "code": 30922,
-          "description": "The campaign submission has been reviewed and rejected because the provided website does not meet validation requirements."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26311,38 +25933,15 @@
       "serviceSid": "MGad1d62d8d7bc825fe4d06f2d0f93bf11",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "COZGNOK",
       "dateCreated": "2026-09-15T16:54:32Z",
       "dateUpdated": "2026-09-15T16:54:32Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26361,38 +25960,15 @@
       "serviceSid": "MGe8f10fe1db6e5f4255149e41c4a81275",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CYL7VMD",
       "dateCreated": "2026-09-15T16:54:36Z",
       "dateUpdated": "2026-09-15T16:54:36Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26411,38 +25987,15 @@
       "serviceSid": "MGd9d61e167068365214d335fefc948377",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CSZSSDX",
       "dateCreated": "2026-09-15T16:54:49Z",
       "dateUpdated": "2026-09-15T16:54:49Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26461,34 +26014,15 @@
       "serviceSid": "MG6983bcc10dc6ad4c6f2f7c58e435cf73",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CVX3TO1",
       "dateCreated": "2026-09-15T16:54:47Z",
       "dateUpdated": "2026-09-15T16:54:47Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26534,38 +26068,15 @@
       "serviceSid": "MG772e048afca7ba00216eb89a2c0db2f0",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CW4F6GF",
       "dateCreated": "2026-09-15T16:55:01Z",
       "dateUpdated": "2026-09-15T16:55:01Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26665,38 +26176,15 @@
       "serviceSid": "MG44e325adbe7bacf4b86e4bda51640822",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CIKFIAB",
       "dateCreated": "2026-09-15T16:54:19Z",
       "dateUpdated": "2026-09-15T16:54:19Z",
-      "errors": [
-        {
-          "code": 30922,
-          "description": "The campaign submission has been reviewed and rejected because the provided website does not meet validation requirements."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26715,34 +26203,15 @@
       "serviceSid": "MG39d85d4e05806887f7e1ad7df706193f",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CS0ZL82",
       "dateCreated": "2026-09-15T16:54:21Z",
       "dateUpdated": "2026-09-15T16:54:21Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26761,34 +26230,15 @@
       "serviceSid": "MG1dba4a18bb14c0a1219f3ae87ef91c99",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CIWB8MQ",
       "dateCreated": "2026-09-15T16:54:28Z",
       "dateUpdated": "2026-09-15T16:54:28Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26807,38 +26257,15 @@
       "serviceSid": "MG251b4faa88322020ef2bf7513a74b65a",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CNX09OB",
       "dateCreated": "2026-09-15T16:54:43Z",
       "dateUpdated": "2026-09-15T16:54:43Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26857,38 +26284,15 @@
       "serviceSid": "MGaf07523e155ef801730f50836df2bddf",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CUGZDQM",
       "dateCreated": "2026-09-15T16:54:25Z",
       "dateUpdated": "2026-09-15T16:54:25Z",
-      "errors": [
-        {
-          "code": 30922,
-          "description": "The campaign submission has been reviewed and rejected because the provided website does not meet validation requirements."
-        },
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26907,34 +26311,15 @@
       "serviceSid": "MG4c9513a375f182cba3dcac5b9ac1b8fe",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CUBR3B1",
       "dateCreated": "2026-09-15T16:54:22Z",
       "dateUpdated": "2026-09-15T16:54:22Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -26980,38 +26365,15 @@
       "serviceSid": "MG691dd9f7d21a3f3c6eef4b6f3aa6d16f",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CI7IKOK",
       "dateCreated": "2026-09-15T16:54:36Z",
       "dateUpdated": "2026-09-15T16:54:36Z",
-      "errors": [
-        {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -27030,34 +26392,15 @@
       "serviceSid": "MGe81573e5be9c1e39bd556d77f8dd6db8",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C2M4GHL",
       "dateCreated": "2026-09-15T16:54:57Z",
       "dateUpdated": "2026-09-15T16:54:57Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 34 submitted sites loaded publicly and 34 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 34 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "JP Management",
-        "sitesTested": 34,
-        "sitesPubliclyReachable": 34,
-        "sitesWithReachablePrivacy": 34,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 34,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "JP Management",
@@ -32206,11 +31549,24 @@
       "paigeStatus": "Pending",
       "sourceDisposition": "unmatched",
       "cohortOrigins": [
-        "Original property cohort"
+        "Original property cohort",
+        "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "SERVICE_NOT_FOUND",
-      "submitted": false
+      "serviceName": "Entrata_18183_100184405",
+      "serviceCreated": "2026-09-28T14:39:16Z",
+      "serviceSid": "MGbc3d9164b3adc9bc6d94454c74241d72",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CDHOWBR",
+      "dateCreated": "2026-09-28T14:39:16Z",
+      "dateUpdated": "2026-09-28T14:39:16Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "LV Collective",
@@ -32404,34 +31760,15 @@
       "serviceSid": "MG93201bba1b72cbcb84eb60f7864cc6d3",
       "duplicateServiceCount": 2,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-22T14:36:50Z",
-      "dateUpdated": "2026-09-22T14:36:50Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C3NHVG5",
+      "dateCreated": "2026-09-24T14:05:38Z",
+      "dateUpdated": "2026-09-24T14:05:38Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 5 submitted sites loaded publicly and 5 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 4 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "Maslow's",
-        "sitesTested": 5,
-        "sitesPubliclyReachable": 5,
-        "sitesWithReachablePrivacy": 5,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 4,
-        "privacyHasSmsClause": 1,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Maslow s Campus Communities",
@@ -39025,24 +38362,15 @@
       "serviceSid": "MG88dc374043738218a1e3840e9e562302",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-21T16:29:49Z",
-      "dateUpdated": "2026-09-21T16:29:49Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C9PO2MG",
+      "dateCreated": "2026-09-24T21:45:41Z",
+      "dateUpdated": "2026-09-24T21:45:41Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 website",
-      "actionOwner": "Client",
-      "actionItem": "Client must publish public text-messaging Terms & Conditions.",
-      "actionDetail": "Please publish a Terms & Conditions page linked from https://palisadeproperty.com that opens without a login. It must name the company sending texts, describe the messages, state expected frequency, say that message and data rates may apply, explain HELP and STOP, and link to the Privacy Policy. The reviewer looked for these terms and could not verify them. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for carrier review.",
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Palisade Property Management",
@@ -39358,24 +38686,15 @@
       "serviceSid": "MG386bbc40177bb97b963c25cbd8ab1b18",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-21T16:30:10Z",
-      "dateUpdated": "2026-09-21T16:30:10Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C3RR42E",
+      "dateCreated": "2026-09-24T21:45:33Z",
+      "dateUpdated": "2026-09-24T21:45:33Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 website",
-      "actionOwner": "Client",
-      "actionItem": "Client must publish public text-messaging Terms & Conditions.",
-      "actionDetail": "Please publish a Terms & Conditions page linked from https://palisadeproperty.com that opens without a login. It must name the company sending texts, describe the messages, state expected frequency, say that message and data rates may apply, explain HELP and STOP, and link to the Privacy Policy. The reviewer looked for these terms and could not verify them. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for carrier review.",
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Palisade Property Management",
@@ -39475,24 +38794,15 @@
       "serviceSid": "MG93afe7021bc3570fd53e153ad34f750d",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-21T16:30:18Z",
-      "dateUpdated": "2026-09-21T16:30:18Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CI9VTVP",
+      "dateCreated": "2026-09-24T21:45:45Z",
+      "dateUpdated": "2026-09-24T21:45:45Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 website",
-      "actionOwner": "Client",
-      "actionItem": "Client must publish public text-messaging Terms & Conditions.",
-      "actionDetail": "Please publish a Terms & Conditions page linked from https://palisadeproperty.com that opens without a login. It must name the company sending texts, describe the messages, state expected frequency, say that message and data rates may apply, explain HELP and STOP, and link to the Privacy Policy. The reviewer looked for these terms and could not verify them. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for carrier review.",
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Palisade Property Management",
@@ -39862,24 +39172,15 @@
       "serviceSid": "MG47b435bbe9c4267f1f91e301210cf8bd",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-21T16:30:24Z",
-      "dateUpdated": "2026-09-21T16:30:24Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C68X6NK",
+      "dateCreated": "2026-09-24T21:45:48Z",
+      "dateUpdated": "2026-09-24T21:45:48Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 website",
-      "actionOwner": "Client",
-      "actionItem": "Client must publish public text-messaging Terms & Conditions.",
-      "actionDetail": "Please publish a Terms & Conditions page linked from https://palisadeproperty.com that opens without a login. It must name the company sending texts, describe the messages, state expected frequency, say that message and data rates may apply, explain HELP and STOP, and link to the Privacy Policy. The reviewer looked for these terms and could not verify them. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for carrier review.",
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Palisade Property Management",
@@ -39925,24 +39226,15 @@
       "serviceSid": "MGd4b07f4598a589b4c6a123a2df09a5cf",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-21T16:30:29Z",
-      "dateUpdated": "2026-09-21T16:30:29Z",
-      "errors": [
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C4G9FUC",
+      "dateCreated": "2026-09-24T21:46:03Z",
+      "dateUpdated": "2026-09-24T21:46:03Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Client \u2014 website",
-      "actionOwner": "Client",
-      "actionItem": "Client must publish public text-messaging Terms & Conditions.",
-      "actionDetail": "Please publish a Terms & Conditions page linked from https://palisadeproperty.com that opens without a login. It must name the company sending texts, describe the messages, state expected frequency, say that message and data rates may apply, explain HELP and STOP, and link to the Privacy Policy. The reviewer looked for these terms and could not verify them. Send Paige or Brandon the final public URL; Entrata will verify it and resubmit for carrier review.",
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Palisade Property Management",
@@ -48715,24 +48007,15 @@
       "serviceSid": "MG338d26aa793f42fcc8c594b2efe8f6dd",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-14T16:53:19Z",
-      "dateUpdated": "2026-09-14T16:53:19Z",
-      "errors": [
-        {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        }
-      ],
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C4K8T1C",
+      "dateCreated": "2026-09-28T14:57:39Z",
+      "dateUpdated": "2026-09-28T14:57:39Z",
+      "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Unknown \u2014 needs triage",
-      "actionOwner": "Entrata",
-      "actionItem": "Compare the submitted website with the registered business; correct the mismatch.",
-      "actionDetail": "The reviewer checked https://lifeatdovelanding.prospectportal.com against the legal business registered for messaging and could not validate that they belong together. Entrata must open the submitted site, compare its business name and domain with the registered legal company, and check the exact website stored in the business profile. If the submitted URL is wrong, replace it with the correct public property URL; if the business profile is wrong, correct that profile through the approved support path. The rejection does not identify which value is wrong, so do not guess. After the values match and the site is public, resubmit for carrier review.",
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "StoneCreek Living",
@@ -49507,28 +48790,19 @@
       "serviceSid": "MG5ec51d6c8bb4c9e79dd87723f8afa27a",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "FAILED",
+      "liveStatus": "IN_PROGRESS",
       "tcrCampaignId": null,
-      "dateCreated": "2026-09-18T18:15:25Z",
-      "dateUpdated": "2026-09-18T18:15:25Z",
-      "errors": [
-        {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
-          "code": 30893,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid sample message content."
-        }
-      ],
-      "usesTemplateA": false,
-      "actionCategory": "Unknown \u2014 needs triage",
-      "actionOwner": "Entrata",
-      "actionItem": "Compare the submitted website with the registered business; correct the mismatch.",
-      "actionDetail": "The reviewer checked https://heatherridgelife.prospectportal.com against the legal business registered for messaging and could not validate that they belong together. Entrata must open the submitted site, compare its business name and domain with the registered legal company, and check the exact website stored in the business profile. If the submitted URL is wrong, replace it with the correct public property URL; if the business profile is wrong, correct that profile through the approved support path. The rejection does not identify which value is wrong, so do not guess. After the values match and the site is public, resubmit for carrier review.",
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "dateCreated": "2026-09-30T14:46:50Z",
+      "dateUpdated": "2026-09-30T14:46:50Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "actionCategory": "Twilio/Carrier \u2014 waiting",
+      "actionOwner": "Twilio/Carrier",
+      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
+      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "StoneCreek Living",
@@ -49823,12 +49097,12 @@
       "dateUpdated": "2026-09-14T16:53:45Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -51289,16 +50563,16 @@
       "dateUpdated": "2026-09-15T18:00:40Z",
       "errors": [
         {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         },
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
@@ -54931,8 +54205,8 @@
       "submitted": true,
       "liveStatus": "IN_PROGRESS",
       "tcrCampaignId": null,
-      "dateCreated": "2026-09-23T14:52:49Z",
-      "dateUpdated": "2026-09-23T14:52:49Z",
+      "dateCreated": "2026-09-30T14:45:54Z",
+      "dateUpdated": "2026-09-30T14:45:54Z",
       "errors": [],
       "usesTemplateA": true,
       "actionCategory": "Twilio/Carrier \u2014 waiting",
