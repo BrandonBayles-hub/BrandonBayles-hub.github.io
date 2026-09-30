@@ -1,0 +1,4 @@
+{
+  "uiBuild": "2026-09-18-freeze",
+  "note": "Bump this together with the UI_BUILD constant and the ui-build meta tag in index.html. The page compares its own build against this file so a cached copy can warn the reader."
+}

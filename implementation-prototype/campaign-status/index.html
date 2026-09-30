@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+      <meta name="ui-build" content="2026-09-18-freeze" />
+    <title>A2P Campaign Status</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #231f20;
+        --muted: #6f655f;
+        --line: #e8e1dc;
+        --paper: #fff;
+        --canvas: #f7f4f1;
+        --approved: #18794e;
+        --approved-bg: #e9f7ef;
+        --pending: #9a6700;
+        --pending-bg: #fff5d6;
+        --failed: #b42318;
+        --failed-bg: #ffebe9;
+        --missing: #6941c6;
+        --missing-bg: #f1eafe;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--canvas); color: var(--ink); }
+      .shell { max-width: 1540px; margin: 0 auto; padding: 28px 32px 56px; }
+      header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 24px; }
+      .eyebrow { color: #9a5b3b; font-weight: 750; letter-spacing: .08em; font-size: 11px; text-transform: uppercase; }
+      h1 { font-size: clamp(28px, 3vw, 42px); margin: 7px 0 8px; letter-spacing: -.035em; line-height: 1.05; }
+      .lede { color: var(--muted); max-width: 740px; margin: 0; line-height: 1.5; font-size: 14px; }
+      .freshness { min-width: 250px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; box-shadow: 0 5px 18px rgba(62, 47, 39, .05); }
+      .freshness strong { display: block; margin-bottom: 4px; }
+      .freshness span { color: var(--muted); font-size: 12px; line-height: 1.4; }
+      .summary { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
+      .card { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; padding: 16px 17px; box-shadow: 0 5px 18px rgba(62, 47, 39, .045); }
+      .card .label { color: var(--muted); font-size: 12px; font-weight: 650; }
+      .card .value { font-size: 30px; font-weight: 780; margin-top: 4px; letter-spacing: -.03em; }
+      .card .sub { color: var(--muted); font-size: 11px; margin-top: 2px; }
+      .card.approved .value { color: var(--approved); }
+      .card.pending .value { color: var(--pending); }
+      .card.failed .value { color: var(--failed); }
+      .card.missing .value { color: var(--missing); }
+      #failed-card { cursor: pointer; }
+      #failed-card:hover { border-color: #e3a49d; box-shadow: 0 5px 18px rgba(180, 35, 24, .12); }
+      #failed-card:focus-visible { outline: 2px solid #b42318; outline-offset: 2px; }
+      .notice { display: flex; align-items: flex-start; gap: 10px; padding: 13px 15px; background: #fff9ed; border: 1px solid #f0d7a1; border-radius: 12px; color: #76530b; font-size: 13px; line-height: 1.45; margin-bottom: 18px; }
+      .notice strong { color: #4e3607; }
+      .verdict { padding: 15px 17px; background: #f5f7ff; border: 1px solid #ccd5f3; border-radius: 12px; color: #344054; font-size: 13px; line-height: 1.5; margin-bottom: 18px; }
+      .verdict strong { color: #182230; }
+      .verdict-counts { margin-top: 7px; color: #475467; font-size: 12px; }
+      .confidence { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 17px; margin-bottom: 18px; box-shadow: 0 5px 18px rgba(62, 47, 39, .05); }
+      .confidence h2 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.02em; }
+      .confidence-intro { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+      .bucket-grid { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 10px; }
+      .bucket-card { text-align: left; padding: 13px; min-height: 102px; border-radius: 11px; }
+      .bucket-card .bucket-value { display: block; font-size: 27px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+      .bucket-card .bucket-label { display: block; color: var(--ink); font-size: 12px; font-weight: 760; }
+      .bucket-card .bucket-sub { display: block; color: var(--muted); font-size: 10px; line-height: 1.35; margin-top: 4px; }
+      .bucket-card[data-bucket="fix_confident"] .bucket-value { color: var(--approved); }
+      .bucket-card[data-bucket="fix_will_still_fail"] .bucket-value { color: #9a6700; }
+      .bucket-card[data-bucket="client_blocked"] .bucket-value { color: var(--failed); }
+      .bucket-card[data-bucket="needs_triage"] .bucket-value { color: var(--missing); }
+      .brand-rollup { margin-top: 12px; padding: 12px 13px; border-radius: 10px; background: #f8fafc; color: #344054; font-size: 12px; line-height: 1.5; }
+      .brand-rollup strong { color: #182230; }
+      .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 5px 18px rgba(62, 47, 39, .05); }
+      .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) 145px 180px 205px 205px 190px auto; gap: 10px; padding: 14px; border-bottom: 1px solid var(--line); }
+      input, select, button { font: inherit; }
+      input, select { width: 100%; border: 1px solid #d8cec8; border-radius: 9px; background: #fff; padding: 10px 11px; color: var(--ink); outline: none; }
+      input:focus, select:focus { border-color: #b97955; box-shadow: 0 0 0 3px rgba(185, 121, 85, .12); }
+      button { border: 1px solid #d8cec8; background: #fff; border-radius: 9px; padding: 9px 13px; cursor: pointer; font-weight: 650; color: #594b43; }
+      button:hover { background: #f8f3ef; }
+      .countline { padding: 10px 15px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line); }
+      .table-wrap { overflow: auto; max-height: calc(100vh - 365px); min-height: 430px; }
+      table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      th { position: sticky; top: 0; z-index: 1; text-align: left; background: #faf8f6; color: #62564e; font-size: 10px; text-transform: uppercase; letter-spacing: .055em; padding: 11px 12px; border-bottom: 1px solid var(--line); white-space: normal; }
+      td { padding: 12px; border-bottom: 1px solid #eee8e4; vertical-align: top; }
+      tbody tr:hover { background: #fcfaf8; }
+      .property { font-weight: 720; margin-bottom: 3px; font-size: 13px; }
+      .company, .meta { color: var(--muted); }
+      .meta { font-size: 10px; margin-top: 4px; }
+      .badge { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 8px; font-weight: 750; white-space: nowrap; font-size: 10px; }
+      .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+      .badge.approved { color: var(--approved); background: var(--approved-bg); }
+      .badge.pending { color: var(--pending); background: var(--pending-bg); }
+      .badge.failed { color: var(--failed); background: var(--failed-bg); }
+      .badge.missing { color: var(--missing); background: var(--missing-bg); }
+      .badge.other { color: #525252; background: #efefef; }
+      .source { display: inline-block; border-radius: 6px; padding: 3px 6px; margin: 0 4px 4px 0; background: #f2efec; color: #594b43; font-size: 10px; font-weight: 700; }
+      .source.oxp { background: #e8f2ff; color: #175cd3; }
+      .flag { display: block; color: var(--failed); font-size: 10px; font-weight: 750; margin-top: 3px; }
+      .id { font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; color: #6c5e55; white-space: nowrap; }
+      .issue { max-width: 250px; color: #6d261e; line-height: 1.4; }
+      .action { min-width: 210px; max-width: 320px; line-height: 1.45; }
+      .source { white-space: normal; }
+      .action-owner { display: block; color: #344054; font-weight: 780; margin-bottom: 4px; }
+      .action-short { color: #475467; }
+      details { margin-top: 6px; }
+      summary { color: #175cd3; cursor: pointer; font-weight: 700; font-size: 11px; }
+      .action-detail { color: #475467; margin-top: 6px; padding: 8px 10px; background: #f8fafc; border-left: 3px solid #b2c2e8; border-radius: 4px; }
+      .empty { padding: 56px; text-align: center; color: var(--muted); }
+      .stale { display: none; align-items: center; gap: 12px; padding: 13px 15px; background: #fdeceb; border: 1px solid #f3b9b4; border-radius: 12px; color: #7a2b22; font-size: 13px; line-height: 1.45; margin-bottom: 18px; }
+      .stale[data-visible="true"] { display: flex; }
+      .stale strong { color: #5c1d16; }
+      .stale button { margin-left: auto; border-color: #d98e86; background: #fff; color: #9a2f24; white-space: nowrap; }
+      .reload-flash { color: var(--approved); font-weight: 700; }
+      footer { color: var(--muted); font-size: 11px; margin-top: 13px; display: flex; justify-content: space-between; gap: 16px; }
+      @media (max-width: 1050px) {
+        .summary { grid-template-columns: repeat(3, 1fr); }
+        .bucket-grid { grid-template-columns: repeat(2, 1fr); }
+        .toolbar { grid-template-columns: 1fr 1fr; }
+        header { flex-direction: column; }
+        .freshness { width: 100%; }
+      }
+      @media (max-width: 650px) {
+        .shell { padding: 20px 14px 40px; }
+        .summary { grid-template-columns: 1fr 1fr; }
+        .bucket-grid { grid-template-columns: 1fr; }
+        .toolbar { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="root" class="shell">
+      <header>
+        <div>
+          <div class="eyebrow">ELI+ · A2P Registration</div>
+          <h1>Campaign status tracker</h1>
+          <p class="lede">Frozen list of 2,084 campaigns — nothing is added unless Brandon asks. Twilio status for these campaigns still refreshes every 15 minutes.</p>
+        </div>
+        <div class="freshness">
+          <strong id="freshness-title">Loading current status…</strong>
+          <span id="freshness-detail">Loading the last published scan.</span>
+        </div>
+      </header>
+
+      <div class="notice" id="freeze-banner"><strong>List frozen.</strong> The 2,084 campaigns here are locked — no new ones get added automatically. Their live status still refreshes from Twilio.</div>
+      <section class="summary">
+        <div class="card"><div class="label">Monitored properties</div><div class="value" id="total">—</div><div class="sub" id="total-sub">original + OXP client expansion</div></div>
+        <div class="card approved"><div class="label">Approved</div><div class="value" id="approved">—</div><div class="sub" id="approved-sub">—</div></div>
+        <div class="card pending"><div class="label">Pending review</div><div class="value" id="pending">—</div><div class="sub">carrier review in progress</div></div>
+        <div class="card failed" id="failed-card" role="button" tabindex="0"><div class="label">Failed</div><div class="value" id="failed">—</div><div class="sub">needs action — click to see action items</div></div>
+        <div class="card missing"><div class="label">Needs investigation</div><div class="value" id="missing">—</div><div class="sub">no matching live service</div></div>
+      </section>
+
+      <section class="confidence" id="confidence-summary">
+        <h2>What can we actually fix?</h2>
+        <div class="confidence-intro" id="confidence-intro">Loading current failed-campaign evidence…</div>
+        <div class="bucket-grid">
+          <button class="bucket-card" data-bucket="fix_confident"><span class="bucket-value" id="bucket-fix-confident">—</span><span class="bucket-label">Fix now, high confidence</span><span class="bucket-sub">We control it and verified the corrected target.</span></button>
+          <button class="bucket-card" data-bucket="fix_will_still_fail"><span class="bucket-value" id="bucket-fix-still-fail">—</span><span class="bucket-label">Fix now, but will still fail</span><span class="bucket-sub">Accuracy fix available; website evidence still fails.</span></button>
+          <button class="bucket-card" data-bucket="client_blocked"><span class="bucket-value" id="bucket-client-blocked">—</span><span class="bucket-label">Blocked on client</span><span class="bucket-sub">Client must change public website evidence.</span></button>
+          <button class="bucket-card" data-bucket="needs_triage"><span class="bucket-value" id="bucket-needs-triage">—</span><span class="bucket-label">Needs triage</span><span class="bucket-sub">Rejection does not identify a safe correction.</span></button>
+        </div>
+        <div class="brand-rollup" id="brand-rollup"><strong>Brand-level leverage:</strong> Loading…</div>
+      </section>
+
+      <div class="stale" id="stale-banner">
+        <span>●</span>
+        <div><strong>You are viewing an outdated version of this page.</strong> Your browser cached an older copy, so columns and layout may be missing. Reload to get the current version.</div>
+        <button id="stale-reload" type="button">Reload this page</button>
+      </div>
+
+      <div class="notice" id="notice"><span>●</span><div><strong>Source reconciliation:</strong> Loading details…</div></div>
+      <div class="verdict" id="template-verdict">
+        <strong>Template A verdict:</strong> Loading failure evidence…
+      </div>
+
+      <section class="panel">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search property, client, CID, property ID, or carrier reference…" />
+          <select id="status"><option value="">All live statuses</option></select>
+          <select id="client"><option value="">All clients</option></select>
+          <select id="bucket"><option value="">All confidence buckets</option></select>
+          <select id="action"><option value="">All action owners</option></select>
+          <select id="source"><option value="">All cohort sources</option><option>Original property cohort</option><option>OXP submitted client list</option></select>
+          <button id="refresh" type="button">Reload last scan</button>
+        </div>
+        <div class="countline" id="countline">Loading campaigns…</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Live status</th>
+                <th>Property</th>
+                <th>Client</th>
+                <th>Cohort source</th>
+                <th>Sheet status</th>
+                <th>Submitted / updated (UTC)</th>
+                <th>Carrier ref (TCR)</th>
+                <th>Action item</th>
+                <th>Issue</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <div class="empty" id="empty" hidden>No campaigns match these filters.</div>
+        </div>
+      </section>
+      <footer>
+        <span>Sources: original 575-property cohort + Eli+ OXP Reconciliation</span>
+        <span>Read-only Twilio reconciliation · no campaigns are changed by this tracker</span>
+      </footer>
+    </main>
+
+    <script>
+      let data;
+      const $ = (id) => document.getElementById(id);
+      const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+      const statusMeta = (status) => {
+        const value = String(status || "UNKNOWN").toUpperCase();
+        if (["VERIFIED", "APPROVED"].includes(value)) return { label: "Approved", css: "approved" };
+        if (["IN_PROGRESS", "PENDING", "PENDING_REVIEW"].includes(value)) return { label: "Pending", css: "pending" };
+        if (value === "FAILED") return { label: "Failed", css: "failed" };
+        if (["SERVICE_NOT_FOUND", "NO_CAMPAIGN", "NO_SERVICE", "NO_SUBACCOUNT"].includes(value)) return { label: "Needs investigation", css: "missing" };
+        return { label: value.replaceAll("_", " "), css: "other" };
+      };
+      const errorMeaning = (code) => ({
+        30882: "Public text-messaging Terms & Conditions could not be verified",
+        30886: "Submitted purpose statement was not acceptable",
+        30891: "Registered company website could not be verified",
+        30893: "Submitted example text message was not acceptable",
+        30896: "Submitted sign-up/consent description was not acceptable",
+        30907: "Submitted website did not match the registered business",
+        30908: "Public privacy policy could not be verified",
+        30909: "Public sign-up form could not be matched to our description",
+        30917: "Multiple sign-up routes were incomplete or unclear",
+        30921: "Website required a login and could not be reviewed",
+        30922: "Submitted website did not meet validation requirements",
+      })[Number(code)] || "Carrier rejection needs field-level review";
+      const dateText = (value) => value ? new Date(value).toLocaleString("en-US", {
+        timeZone: "UTC",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short",
+      }) : "—";
+
+      // Per-row dates drop the timezone suffix because the column header carries it.
+      const rowDateText = (value) => value ? new Date(value).toLocaleString("en-US", {
+        timeZone: "UTC",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      }) : "—";
+
+      // Bumped whenever this page's markup or script changes. Compared against the
+      // published ui-version.json so a browser running a cached copy of this file
+      // can tell the reader instead of silently showing an old layout.
+      const UI_BUILD = "2026-09-18-freeze";
+
+      async function checkForStaleShell() {
+        try {
+          const response = await fetch(`ui-version.json?v=${Date.now()}`, { cache: "no-store" });
+          if (!response.ok) return;
+          const published = (await response.json()).uiBuild;
+          $("stale-banner").dataset.visible = String(Boolean(published) && published !== UI_BUILD);
+        } catch {
+          // A failed version check should never block the status table.
+        }
+      }
+
+      async function load() {
+        $("freshness-title").textContent = "Reloading last scan…";
+        const response = await fetch(`data.json?v=${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Status feed returned ${response.status}`);
+        data = await response.json();
+        hydrate();
+        render();
+        checkForStaleShell();
+      }
+
+      const clockText = (value) => value.toLocaleTimeString("en-US", { timeZone: "UTC", hour: "numeric", minute: "2-digit", second: "2-digit", timeZoneName: "short" });
+
+      async function reloadWithFeedback() {
+        const button = $("refresh");
+        const previousGeneratedAt = data && data.generatedAt;
+        button.disabled = true;
+        button.textContent = "Reloading…";
+        try {
+          await load();
+          const isNewScan = data.generatedAt !== previousGeneratedAt;
+          button.textContent = isNewScan ? "Newer scan loaded ✓" : "Reloaded — no new scan ✓";
+          $("freshness-detail").innerHTML = `<span class="reload-flash">Checked at ${esc(clockText(new Date()))}.</span> ${isNewScan ? "This pulled in a newer published scan." : "The published scan has not changed since the last reload."} List is frozen; status is queried every 15 minutes. This button reloads the last published scan — it does not call Twilio.`;
+        } catch (error) {
+          button.textContent = "Reload failed";
+          showError(error);
+        } finally {
+          setTimeout(() => {
+            button.disabled = false;
+            button.textContent = "Reload last scan";
+          }, 2600);
+        }
+      }
+
+      function hydrate() {
+        const summary = data.summary || {};
+        const approved = (summary.VERIFIED || 0) + (summary.APPROVED || 0);
+        const pending = (summary.IN_PROGRESS || 0) + (summary.PENDING || 0) + (summary.PENDING_REVIEW || 0);
+        const failed = summary.FAILED || 0;
+        const missing = (summary.SERVICE_NOT_FOUND || 0) + (summary.NO_CAMPAIGN || 0) + (summary.LOOKUP_ERROR || 0)
+          + (summary.NO_SERVICE || 0) + (summary.NO_SUBACCOUNT || 0);
+        $("total").textContent = data.total.toLocaleString();
+        $("total-sub").textContent = `${data.originalPropertyCount.toLocaleString()} original · ${data.oxpAddedPropertyCount.toLocaleString()} added · ${(data.remediationAddedPropertyCount || 0).toLocaleString()} remediation`;
+        $("approved").textContent = approved.toLocaleString();
+        $("pending").textContent = pending.toLocaleString();
+        $("failed").textContent = failed.toLocaleString();
+        $("missing").textContent = missing.toLocaleString();
+        $("approved-sub").textContent = `${Math.round(approved / data.total * 100)}% approved`;
+        $("freshness-title").textContent = `Last updated: ${dateText(data.generatedAt)}`;
+        $("freshness-detail").textContent = "List is frozen; status is queried every 15 minutes. This button reloads the last published scan — it does not call Twilio.";
+        $("notice").innerHTML = `<span>●</span><div><strong>${data.oxpClientCount.toLocaleString()} OXP Submitted clients reconciled.</strong> ${data.oxpClientsAlreadyInOriginalCohort.toLocaleString()} were already in the property cohort; ${data.oxpNetNewClientCount.toLocaleString()} are net-new. ${data.oxpNotOnOriginalMigrationCount.toLocaleString()} were marked as not on the original migration list. ${data.unmappedClients.length.toLocaleString()} could not be confidently mapped to a Twilio subaccount.</div>`;
+        const bucketCounts = data.confidenceBucketSummary || {};
+        $("bucket-fix-confident").textContent = Number(bucketCounts.fix_confident || 0).toLocaleString();
+        $("bucket-fix-still-fail").textContent = Number(bucketCounts.fix_will_still_fail || 0).toLocaleString();
+        $("bucket-client-blocked").textContent = Number(bucketCounts.client_blocked || 0).toLocaleString();
+        $("bucket-needs-triage").textContent = Number(bucketCounts.needs_triage || 0).toLocaleString();
+        const verification = data.siteVerification || {};
+        $("confidence-intro").textContent = `${failed.toLocaleString()} current failures. ${Number(verification.uniqueTargetsTested || 0).toLocaleString()} possible fix targets tested against HTTPS, Privacy, Terms, and claimed opt-in controls; ${Number(verification.fullyPassed || 0).toLocaleString()} passed every check. Click a bucket to filter.`;
+        const brandRows = data.brandWebsiteRollup || [];
+        const brandCampaigns = brandRows.reduce((sum, row) => sum + Number(row.affectedCampaigns || 0), 0);
+        $("brand-rollup").innerHTML = `<strong>Brand-level leverage:</strong> Correcting ${brandRows.length.toLocaleString()} registered brand websites removes a brand-level blocker from ${brandCampaigns.toLocaleString()} campaigns: ${brandRows.map((row) => `${esc(row.company)} (${Number(row.affectedCampaigns).toLocaleString()})`).join(" · ")}. This does not mean those campaigns are ready to resubmit; the replacement sites still fail at least one required check.`;
+        const verdict = data.templateAVerdict || {};
+        const actionCounts = data.failureActionSummary || {};
+        const entrataFixable = Object.entries(actionCounts).filter(([name]) => name.startsWith("Entrata")).reduce((sum, [, count]) => sum + count, 0);
+        const clientBlocked = Object.entries(actionCounts).filter(([name]) => name.startsWith("Client")).reduce((sum, [, count]) => sum + count, 0);
+        const waiting = actionCounts["Twilio/Carrier — waiting"] || 0;
+        const unknown = actionCounts["Unknown — needs triage"] || 0;
+        $("template-verdict").innerHTML = `<strong>Template A is not a universal fix.</strong> ${Number(verdict.failedUsingTemplateA || 0).toLocaleString()} failed rows already use Template A. Of those, ${Number(verdict.knownWebsiteOrUrlPrimary || 0).toLocaleString()} primarily fail because the public or registered website cannot support what the reviewer must verify, ${Number(verdict.needsUrlTriage || 0).toLocaleString()} need an exact URL mismatch checked, and ${Number(verdict.contentErrorRows || 0).toLocaleString()} also have a submission-content rejection. The AMG evidence is especially clear: Ridge Falls kept the standard wording and still failed on AMG’s broken registered URL; rewritten AMG rows kept that failure and added sign-up rejections. Fix the underlying website or registered URL before changing locked copy.<div class="verdict-counts"><strong>All failed rows:</strong> Entrata-fixable ${entrataFixable.toLocaleString()} · Client-blocked ${clientBlocked.toLocaleString()} · Carrier waiting ${waiting.toLocaleString()} · Needs triage ${unknown.toLocaleString()}</div>`;
+
+        // Rebuilding a select's options clears its value, which would silently drop
+        // the reader's filter on every reload — including the 15-minute auto-reload.
+        const fillSelect = (id, placeholder, values) => {
+          const select = $(id);
+          const previous = select.value;
+          const options = values.map((value) => typeof value === "object" ? value : ({ value, label: value }));
+          select.innerHTML = `<option value="">${placeholder}</option>${options.map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`).join("")}`;
+          if (previous && options.some((option) => option.value === previous)) select.value = previous;
+        };
+        fillSelect("status", "All live statuses", [...new Set(data.campaigns.map((row) => statusMeta(row.liveStatus).label))].sort());
+        fillSelect("client", "All clients", [...new Set(data.campaigns.map((row) => row.company))].sort());
+        fillSelect("bucket", "All confidence buckets", Object.entries(data.confidenceBucketLabels || {}).map(([value, label]) => ({ value, label })));
+        fillSelect("action", "All action owners", [...new Set(data.campaigns.map((row) => row.actionCategory).filter(Boolean))].sort());
+      }
+
+      function render() {
+        const query = $("search").value.trim().toLowerCase();
+        const status = $("status").value;
+        const client = $("client").value;
+        const bucket = $("bucket").value;
+        const action = $("action").value;
+        const source = $("source").value;
+        const filtered = data.campaigns.filter((row) => {
+          const meta = statusMeta(row.liveStatus);
+          const haystack = [row.property, row.company, row.cid, row.propertyId, row.tcrCampaignId, row.confidenceBucketLabel, row.actionCategory, row.actionOwner, row.actionItem, row.actionDetail, ...(row.cohortOrigins || [])].join(" ").toLowerCase();
+          return (!query || haystack.includes(query)) && (!status || meta.label === status) && (!client || row.company === client) && (!bucket || row.confidenceBucket === bucket) && (!action || row.actionCategory === action) && (!source || (row.cohortOrigins || []).includes(source));
+        });
+        $("countline").textContent = `Showing ${filtered.length.toLocaleString()} of ${data.total.toLocaleString()} monitored properties`;
+        $("empty").hidden = filtered.length > 0;
+        $("rows").innerHTML = filtered.map((row) => {
+          const meta = statusMeta(row.liveStatus);
+          const errors = row.errors || [];
+          const issue = errors.length
+            ? errors.map((error) => `${esc(errorMeaning(error.code))} <span class="meta">(carrier code ${esc(error.code || "unknown")})</span>`).join("<br>")
+            : row.liveStatus === "SERVICE_NOT_FOUND" ? "No current Messaging Service matched this property ID."
+            : row.liveStatus === "NO_SERVICE" ? "Twilio subaccount exists but holds no Entrata messaging service, so no campaign was ever created."
+            : row.liveStatus === "NO_SUBACCOUNT" ? "No readable Twilio subaccount for this client."
+            : "—";
+          return `<tr>
+            <td><span class="badge ${meta.css}">${esc(meta.label)}</span></td>
+            <td><div class="property">${esc(row.property)}</div><div class="meta">Property ID ${esc(row.propertyId)}</div></td>
+            <td><div>${esc(row.company)}</div><div class="meta">CID ${esc(row.cid)}</div></td>
+            <td>${(row.cohortOrigins || []).map((value) => `<span class="source ${value.startsWith("OXP") ? "oxp" : ""}">${esc(value)}</span>`).join("")}${row.notOnOriginalMigration ? `<span class="flag">Not on original migration sheet</span>` : ""}</td>
+            <td>${esc(row.paigeStatus)}</td>
+            <td>${rowDateText(row.dateUpdated || row.dateCreated)}</td>
+            <td><div class="id">${row.tcrCampaignId ? esc(row.tcrCampaignId) : "Pending"}</div></td>
+            <td class="action">${row.actionItem ? `<span class="action-owner">${esc(row.confidenceBucketLabel || row.actionCategory)}</span><span class="action-short">${esc(row.actionItem)}</span><details><summary>Why this failed + exact steps</summary><div class="action-detail">${esc(row.confidenceBucketDetail)} ${esc(row.actionDetail)}</div></details>` : "—"}</td>
+            <td class="issue">${issue}</td>
+          </tr>`;
+        }).join("");
+      }
+
+      ["search", "status", "client", "bucket", "action", "source"].forEach((id) => $(id).addEventListener(id === "search" ? "input" : "change", render));
+      document.querySelectorAll(".bucket-card").forEach((button) => button.addEventListener("click", () => {
+        $("status").value = "Failed";
+        $("bucket").value = button.dataset.bucket;
+        $("search").value = "";
+        render();
+        document.querySelector(".panel").scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+      function showFailedOnly() {
+        $("status").value = "Failed";
+        $("search").value = "";
+        render();
+        $("rows").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+      $("failed-card").addEventListener("click", showFailedOnly);
+      $("failed-card").addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          showFailedOnly();
+        }
+      });
+
+      $("refresh").addEventListener("click", reloadWithFeedback);
+      $("stale-reload").addEventListener("click", () => {
+        // Cache-busted navigation so the browser must re-request this document.
+        window.location.replace(`${window.location.pathname}?r=${Date.now()}`);
+      });
+      function showError(error) {
+        $("freshness-title").textContent = "Unable to reload last scan";
+        $("freshness-detail").textContent = error.message;
+      }
+      load().catch(showError);
+      setInterval(() => load().catch(showError), 15 * 60 * 1000);
+    </script>
+  </body>
+</html>
