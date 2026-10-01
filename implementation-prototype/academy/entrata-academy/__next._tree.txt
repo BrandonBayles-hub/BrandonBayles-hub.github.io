@@ -1,3 +1,3 @@
 :HL["/implementation-prototype/academy/_next/static/css/ef810cfe8f3dfd6d.css","style"]
 :HL["/implementation-prototype/academy/_next/static/css/66c5da43a7297535.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":20,"slots":{"children":{"name":"entrata-academy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"1gnIr7yUStt7jnHjkwqSp"}
+0:{"tree":{"name":"","param":null,"prefetchHints":20,"slots":{"children":{"name":"entrata-academy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"zwqTjS64BH0NLv_r0K-IJ"}
