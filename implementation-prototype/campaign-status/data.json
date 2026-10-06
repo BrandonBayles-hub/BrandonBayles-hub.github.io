@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T21:45:03.518831+00:00",
+  "generatedAt": "2026-10-06T21:56:46.963380+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -94,8 +94,8 @@
   "excludedCount": 41,
   "summary": {
     "VERIFIED": 1967,
-    "FAILED": 48,
-    "IN_PROGRESS": 51,
+    "FAILED": 47,
+    "IN_PROGRESS": 52,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
     "SERVICE_NOT_FOUND": 4
@@ -106,13 +106,13 @@
     "Entrata \u2014 template/copy": 10,
     "Client \u2014 website": 19,
     "Entrata \u2014 website publishing": 1,
-    "Unknown \u2014 needs triage": 15
+    "Unknown \u2014 needs triage": 14
   },
   "confidenceBucketSummary": {
     "fix_confident": 0,
     "fix_will_still_fail": 12,
     "client_blocked": 21,
-    "needs_triage": 15
+    "needs_triage": 14
   },
   "confidenceBucketLabels": {
     "fix_confident": "Fix now, high confidence",
@@ -142,9 +142,9 @@
     }
   ],
   "templateAVerdict": {
-    "failedUsingTemplateA": 35,
+    "failedUsingTemplateA": 34,
     "knownWebsiteOrUrlPrimary": 19,
-    "needsUrlTriage": 14,
+    "needsUrlTriage": 13,
     "contentErrorRows": 9
   },
   "scanErrors": [],
@@ -581,12 +581,12 @@
       "dateUpdated": "2026-09-11T21:53:39Z",
       "errors": [
         {
-          "code": 30909,
-          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
-        },
-        {
           "code": 30891,
           "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        },
+        {
+          "code": 30909,
+          "description": "The campaign submission has been reviewed and rejected due to issues verifying the Call to Action (CTA) provided for the campaign."
         }
       ],
       "usesTemplateA": false,
@@ -14036,12 +14036,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
@@ -39129,28 +39129,23 @@
       ],
       "notOnOriginalMigration": true,
       "serviceName": "Entrata_102202_100179284",
-      "serviceCreated": "2026-09-18T19:17:17Z",
-      "serviceSid": "MGb57d5c8bd7003276f6b606238dfc139e",
-      "duplicateServiceCount": 1,
+      "serviceCreated": "2026-10-06T21:46:06Z",
+      "serviceSid": "MG04101914037786853188ec38845ac503",
+      "duplicateServiceCount": 2,
       "submitted": true,
-      "liveStatus": "FAILED",
+      "liveStatus": "IN_PROGRESS",
       "tcrCampaignId": null,
-      "dateCreated": "2026-09-22T13:24:36Z",
-      "dateUpdated": "2026-09-22T13:24:36Z",
-      "errors": [
-        {
-          "code": 30891,
-          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
-        }
-      ],
-      "usesTemplateA": true,
-      "actionCategory": "Unknown \u2014 needs triage",
-      "actionOwner": "Entrata",
-      "actionItem": "Compare the submitted website with the registered business; correct the mismatch.",
-      "actionDetail": "The reviewer checked https://pointeatjsu.com against the legal business registered for messaging and could not validate that they belong together. Entrata must open the submitted site, compare its business name and domain with the registered legal company, and check the exact website stored in the business profile. If the submitted URL is wrong, replace it with the correct public property URL; if the business profile is wrong, correct that profile through the approved support path. The rejection does not identify which value is wrong, so do not guess. After the values match and the site is public, resubmit for carrier review.",
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "dateCreated": "2026-10-06T21:46:06Z",
+      "dateUpdated": "2026-10-06T21:46:06Z",
+      "errors": [],
+      "usesTemplateA": false,
+      "actionCategory": "Twilio/Carrier \u2014 waiting",
+      "actionOwner": "Twilio/Carrier",
+      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
+      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Paradigm Management Company",
@@ -44454,12 +44449,12 @@
       "dateUpdated": "2026-09-14T16:46:34Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -50202,12 +50197,12 @@
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30882,
           "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
