@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
 2:I[61304,[],"ClientPageRoot"]
-3:I[94968,["688","static/chunks/688-560d63b93c41f7b9.js","140","static/chunks/140-f969e3a0667044ef.js","321","static/chunks/321-ef53df78625201e9.js","183","static/chunks/183-2911317a7f6f1d20.js","693","static/chunks/693-5772dad807c45381.js","201","static/chunks/app/entrata-academy/page-b4d6d42112d5dfbe.js"],"default"]
+3:I[94968,["688","static/chunks/688-560d63b93c41f7b9.js","140","static/chunks/140-f969e3a0667044ef.js","321","static/chunks/321-ef53df78625201e9.js","183","static/chunks/183-2911317a7f6f1d20.js","693","static/chunks/693-1ec0fabb2d345445.js","201","static/chunks/app/entrata-academy/page-b4d6d42112d5dfbe.js"],"default"]
 6:I[90484,[],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"UQZo5yAP2uVlhRQhME324"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"5ts3XcUwJ21NVaPFqcBsv"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
