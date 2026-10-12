@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T05:01:00.021154+00:00",
+  "generatedAt": "2026-10-12T15:47:31.007399+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -93,26 +93,25 @@
   "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 1967,
-    "FAILED": 47,
-    "IN_PROGRESS": 52,
+    "VERIFIED": 1980,
+    "FAILED": 82,
     "NO_CAMPAIGN": 13,
+    "IN_PROGRESS": 4,
     "NO_SERVICE": 1,
     "SERVICE_NOT_FOUND": 4
   },
   "failureActionSummary": {
-    "Entrata \u2014 wrong URL registered": 2,
-    "Client \u2014 privacy policy wording": 1,
-    "Entrata \u2014 template/copy": 10,
+    "Entrata \u2014 wrong URL registered": 36,
+    "Entrata \u2014 template/copy": 11,
     "Client \u2014 website": 19,
     "Entrata \u2014 website publishing": 1,
-    "Unknown \u2014 needs triage": 14
+    "Unknown \u2014 needs triage": 15
   },
   "confidenceBucketSummary": {
     "fix_confident": 0,
-    "fix_will_still_fail": 12,
-    "client_blocked": 21,
-    "needs_triage": 14
+    "fix_will_still_fail": 47,
+    "client_blocked": 20,
+    "needs_triage": 15
   },
   "confidenceBucketLabels": {
     "fix_confident": "Fix now, high confidence",
@@ -135,16 +134,23 @@
   "brandWebsiteRollup": [
     {
       "company": "Advanced Management Group",
-      "affectedCampaigns": 2,
+      "affectedCampaigns": 30,
       "registeredUrl": "https://www.amgnevada.com",
       "correctedUrl": "https://amgnevada.com",
       "remainingBlocker": "The corrected site loads and exposes a Privacy Policy, but no public Terms page was found; affected property sites also need their claimed opt-in controls verified."
+    },
+    {
+      "company": "Aztex Management Group",
+      "affectedCampaigns": 6,
+      "registeredUrl": "https://www/aztexmgmt.com",
+      "correctedUrl": "https://aztexmgmt.com",
+      "remainingBlocker": "The corrected site loads, but no public Privacy Policy or Terms page was found."
     }
   ],
   "templateAVerdict": {
-    "failedUsingTemplateA": 34,
-    "knownWebsiteOrUrlPrimary": 19,
-    "needsUrlTriage": 13,
+    "failedUsingTemplateA": 68,
+    "knownWebsiteOrUrlPrimary": 53,
+    "needsUrlTriage": 14,
     "contentErrorRows": 9
   },
   "scanErrors": [],
@@ -651,16 +657,21 @@
       "serviceSid": "MG4fe96d590c6f6322cdcce5bb60dd1916",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:28Z",
       "dateUpdated": "2026-10-06T17:49:28Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -682,16 +693,21 @@
       "serviceSid": "MG5ba899b05004ee4616d245310abb6b45",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:18Z",
       "dateUpdated": "2026-10-06T17:48:18Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -713,16 +729,21 @@
       "serviceSid": "MGcb2aea19ba573f92dc725e558f97dd31",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:20Z",
       "dateUpdated": "2026-10-06T17:48:20Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -744,16 +765,21 @@
       "serviceSid": "MGe6baf3a345a4dbbde6570dbb867193f9",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:24Z",
       "dateUpdated": "2026-10-06T17:48:24Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -775,16 +801,21 @@
       "serviceSid": "MG0b035578b9105c15100596b2a94fa50f",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:32Z",
       "dateUpdated": "2026-10-06T17:48:32Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -806,16 +837,21 @@
       "serviceSid": "MGa587c2a5c899e4f2eb374f5879c48ec5",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:35Z",
       "dateUpdated": "2026-10-06T17:48:35Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -837,16 +873,21 @@
       "serviceSid": "MG19f2bb94ccba0aff0f7c7413891f446a",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:39Z",
       "dateUpdated": "2026-10-06T17:48:39Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -868,16 +909,21 @@
       "serviceSid": "MG69237d49245752097809cb915c653b08",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:41Z",
       "dateUpdated": "2026-10-06T17:48:41Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -899,16 +945,21 @@
       "serviceSid": "MG21cb810035c1e3e086e01c55d314c001",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:45Z",
       "dateUpdated": "2026-10-06T17:48:45Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -930,16 +981,21 @@
       "serviceSid": "MG9dab5eb1bec35b2bc10db53149c8cd48",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:48Z",
       "dateUpdated": "2026-10-06T17:48:48Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -961,16 +1017,21 @@
       "serviceSid": "MG041d9f5a2179013850e5ddb8dbff3a7e",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:50Z",
       "dateUpdated": "2026-10-06T17:48:50Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -992,16 +1053,21 @@
       "serviceSid": "MG32fc2691d30ba12b839068cbd482c927",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:53Z",
       "dateUpdated": "2026-10-06T17:48:53Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1023,16 +1089,21 @@
       "serviceSid": "MG09022cb7a414a10a0e9d4f330e8d9105",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:55Z",
       "dateUpdated": "2026-10-06T17:48:55Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1054,16 +1125,21 @@
       "serviceSid": "MG39390e7174343029f2d2e05544c4bff2",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:48:58Z",
       "dateUpdated": "2026-10-06T17:48:58Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1085,16 +1161,21 @@
       "serviceSid": "MGe94ed8b850a3c7139aa0c73f5f11e41c",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:00Z",
       "dateUpdated": "2026-10-06T17:49:00Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1116,16 +1197,21 @@
       "serviceSid": "MG0e9550ca074ff34b51f5bf8790da0a5b",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:04Z",
       "dateUpdated": "2026-10-06T17:49:04Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1147,16 +1233,21 @@
       "serviceSid": "MG8735e2688a18bfef64147971c2cca8b3",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:06Z",
       "dateUpdated": "2026-10-06T17:49:06Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1178,16 +1269,21 @@
       "serviceSid": "MGaadf06806b73b65823b0e8a8559ef375",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:08Z",
       "dateUpdated": "2026-10-06T17:49:08Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1209,16 +1305,21 @@
       "serviceSid": "MG07f9704c1a19bb136a0784ce963805dc",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:10Z",
       "dateUpdated": "2026-10-06T17:49:10Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1240,16 +1341,21 @@
       "serviceSid": "MG5bc30fc756297d94d57748c9a4d028b9",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:14Z",
       "dateUpdated": "2026-10-06T17:49:14Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1271,16 +1377,21 @@
       "serviceSid": "MG4a1a5cb84f55ddf9c0e9a98091f559a9",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:17Z",
       "dateUpdated": "2026-10-06T17:49:17Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1302,16 +1413,21 @@
       "serviceSid": "MGf243329398fead80e8c09c5b820959ba",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:19Z",
       "dateUpdated": "2026-10-06T17:49:19Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1333,16 +1449,21 @@
       "serviceSid": "MG8a1dd02ba3ed8b12faeac410631ef1ed",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:21Z",
       "dateUpdated": "2026-10-06T17:49:21Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1364,16 +1485,21 @@
       "serviceSid": "MGa4dfc48fb20e4b2a6fde87972c02436e",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:23Z",
       "dateUpdated": "2026-10-06T17:49:23Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1395,16 +1521,21 @@
       "serviceSid": "MG85e5a018ffdca9558a51e27176eb70de",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:25Z",
       "dateUpdated": "2026-10-06T17:49:25Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1426,16 +1557,21 @@
       "serviceSid": "MG6871acd38d9e1abee586aa76d33b2260",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:31Z",
       "dateUpdated": "2026-10-06T17:49:31Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1457,16 +1593,21 @@
       "serviceSid": "MG32d8ebbef3b596ac2fdbf45ca11486ff",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:33Z",
       "dateUpdated": "2026-10-06T17:49:33Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1488,16 +1629,21 @@
       "serviceSid": "MG1286b704a430569c5cc59585b273acd6",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:49:36Z",
       "dateUpdated": "2026-10-06T17:49:36Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix AMG's URL for accuracy; client website work is still required before resubmission.",
+      "actionDetail": "Entrata registered AMG's company website as https://www.amgnevada.com, which the reviewer could not open because its security certificate does not cover that address. Correct the registered company-website field to https://amgnevada.com for accuracy, but do not resubmit yet: the corrected site has a public Privacy Policy but no public Terms page. For rows also showing a sign-up rejection, compare the public form with the submitted sign-up description and remove any claim about a phone field or consent checkbox that is not actually visible. The client must publish the missing website evidence before re-review is likely to pass.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1542,38 +1688,28 @@
       ],
       "notOnOriginalMigration": true,
       "serviceName": "Entrata_102203_100179331",
-      "serviceCreated": "2026-09-11T22:05:06Z",
-      "serviceSid": "MG24483ea0fa5bbbd02cc5fe560f0fce84",
-      "duplicateServiceCount": 1,
+      "serviceCreated": "2026-10-07T15:18:52Z",
+      "serviceSid": "MG1250ac7ca770bfc95d3dbe6b5ebd396f",
+      "duplicateServiceCount": 2,
       "submitted": true,
       "liveStatus": "FAILED",
       "tcrCampaignId": null,
-      "dateCreated": "2026-10-05T14:42:23Z",
-      "dateUpdated": "2026-10-05T14:42:23Z",
+      "dateCreated": "2026-10-07T15:18:52Z",
+      "dateUpdated": "2026-10-07T15:18:52Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
-      "usesTemplateA": true,
-      "actionCategory": "Client \u2014 privacy policy wording",
-      "actionOwner": "Client (wording change only)",
-      "actionItem": "Policy is already published \u2014 it needs the text-messaging paragraph added.",
-      "actionDetail": "Tested on 2026-09-17: all 2 submitted sites loaded publicly and 2 had a reachable privacy policy, so the client does NOT need to publish a policy or unlock a website. However 2 of those policies contain no text-messaging language at all. A2P review requires the policy to state that mobile phone numbers are collected for text messages, that mobile information is not sold or shared with third parties for marketing, the expected message frequency, and that STOP ends messages and HELP gets help. Ask the client to add that paragraph to the policy they already have.",
-      "evidence": {
-        "company": "Axia Living",
-        "sitesTested": 2,
-        "sitesPubliclyReachable": 2,
-        "sitesWithReachablePrivacy": 2,
-        "privacyPdfOnly": 0,
-        "privacyMissingSmsClause": 2,
-        "privacyHasSmsClause": 0,
-        "testedAt": "2026-09-17"
-      },
-      "confidenceBucket": "client_blocked",
-      "confidenceBucketLabel": "Blocked on client",
-      "confidenceBucketDetail": "The carrier found a defect in the client's public website: access, business information, Privacy Policy, or Terms. Nothing changed only in Twilio can make that evidence valid."
+      "usesTemplateA": false,
+      "actionCategory": "Entrata \u2014 template/copy",
+      "actionOwner": "Entrata",
+      "actionItem": "Correct the rejected submission text to match the live sign-up experience; resubmit.",
+      "actionDetail": "The reviewer expected our submitted wording and examples to match a real, public customer sign-up experience and rejected the content. Entrata must compare the public sign-up form at http://canterburyhouse.prospectportal.com with the submitted description and describe only what is visible. Do not edit the locked template ad hoc: document the mismatch, obtain the approved-template owner's change, apply it consistently, and then resubmit for carrier review. The tracker data does not provide a reliable review-time estimate.",
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Axia Living LLC",
@@ -1673,16 +1809,21 @@
       "serviceSid": "MG9d0a64b15a1021ab1184fa8f8127aa7b",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:06Z",
       "dateUpdated": "2026-10-06T17:47:06Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1704,16 +1845,21 @@
       "serviceSid": "MGceb61c86b912016a3b709e672cb13116",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:08Z",
       "dateUpdated": "2026-10-06T17:47:08Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1735,16 +1881,21 @@
       "serviceSid": "MG8da4121eace29881879317f8067b5d59",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:10Z",
       "dateUpdated": "2026-10-06T17:47:10Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1766,16 +1917,21 @@
       "serviceSid": "MG31d9fcc88032090c8a552b414aa70615",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:15Z",
       "dateUpdated": "2026-10-06T17:47:15Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1797,16 +1953,21 @@
       "serviceSid": "MG3533a1e05ab5d2838c262c127f6e7db8",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:17Z",
       "dateUpdated": "2026-10-06T17:47:17Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -1828,16 +1989,21 @@
       "serviceSid": "MGbfd88a686751edd1c3944f359ef9ffa2",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:47:19Z",
       "dateUpdated": "2026-10-06T17:47:19Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30891,
+          "description": "The campaign submission has been reviewed and it was rejected because of unverifiable website."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "actionCategory": "Entrata \u2014 wrong URL registered",
+      "actionOwner": "Entrata + client",
+      "actionItem": "Fix Aztex URL typo; client publishes Privacy + Terms pages; then resubmit.",
+      "actionDetail": "Entrata registered https://www/aztexmgmt.com with a slash where the dot after 'www' should be, so the reviewer reached no website. Correct the registered company-website field to https://aztexmgmt.com. Aztex must also publish public Privacy Policy and Terms pages that cover text messaging before approval is likely. Brownstone additionally has rejected example messages: the approved-template owner must replace bracketed fill-in-the-blank text with realistic examples. After all applicable fixes, Entrata resubmits for carrier review. The tracker data does not provide a reliable review-time estimate.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct the registered brand URL, but the empirically tested replacement still lacks required public evidence. Do not expect re-review to pass after that fix alone."
@@ -4350,12 +4516,12 @@
       "dateUpdated": "2026-09-14T17:23:32Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -6274,12 +6440,12 @@
       "dateUpdated": "2026-05-21T16:32:43Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
-        },
-        {
           "code": 30917,
           "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
+        },
+        {
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         }
       ],
       "usesTemplateA": false,
@@ -9684,16 +9850,12 @@
       "serviceSid": "MGcfa26a147116e7b035e987813821502e",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CZMNLVB",
       "dateCreated": "2026-10-06T17:52:03Z",
       "dateUpdated": "2026-10-06T17:52:03Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -9773,16 +9935,12 @@
       "serviceSid": "MG9eda8d73d45d0f56ddce76ed249a0393",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CZJYP6D",
       "dateCreated": "2026-10-06T17:52:10Z",
       "dateUpdated": "2026-10-06T17:52:10Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -10620,12 +10778,12 @@
       "dateUpdated": "2026-09-14T15:33:10Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -24951,12 +25109,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -31291,12 +31449,12 @@
       "dateUpdated": "2026-09-15T17:14:04Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -39135,10 +39293,10 @@
       "submitted": true,
       "liveStatus": "IN_PROGRESS",
       "tcrCampaignId": null,
-      "dateCreated": "2026-10-06T21:46:06Z",
-      "dateUpdated": "2026-10-06T21:46:06Z",
+      "dateCreated": "2026-10-09T18:04:54Z",
+      "dateUpdated": "2026-10-09T18:04:54Z",
       "errors": [],
-      "usesTemplateA": false,
+      "usesTemplateA": true,
       "actionCategory": "Twilio/Carrier \u2014 waiting",
       "actionOwner": "Twilio/Carrier",
       "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
@@ -48449,19 +48607,24 @@
       "serviceSid": "MG5ec51d6c8bb4c9e79dd87723f8afa27a",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
+      "liveStatus": "FAILED",
       "tcrCampaignId": null,
       "dateCreated": "2026-10-06T17:54:36Z",
       "dateUpdated": "2026-10-06T17:54:36Z",
-      "errors": [],
+      "errors": [
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        }
+      ],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "actionCategory": "Unknown \u2014 needs triage",
+      "actionOwner": "Entrata",
+      "actionItem": "Compare the submitted website with the registered business; correct the mismatch.",
+      "actionDetail": "The reviewer checked https://lifeatheatherridge.com against the legal business registered for messaging and could not validate that they belong together. Entrata must open the submitted site, compare its business name and domain with the registered legal company, and check the exact website stored in the business profile. If the submitted URL is wrong, replace it with the correct public property URL; if the business profile is wrong, correct that profile through the approved support path. The rejection does not identify which value is wrong, so do not guess. After the values match and the site is public, resubmit for carrier review.",
+      "confidenceBucket": "needs_triage",
+      "confidenceBucketLabel": "Needs triage",
+      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
     },
     {
       "company": "StoneCreek Living",
@@ -48750,16 +48913,12 @@
       "serviceSid": "MGfc3fbbd265c5b41bf60bcbf0ab879731",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C3GUKOG",
       "dateCreated": "2026-10-06T17:54:57Z",
       "dateUpdated": "2026-10-06T17:54:57Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -48781,16 +48940,12 @@
       "serviceSid": "MGe383efb9347423774e74280412e21da7",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C070VAC",
       "dateCreated": "2026-10-06T17:55:00Z",
       "dateUpdated": "2026-10-06T17:55:00Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -48812,16 +48967,12 @@
       "serviceSid": "MGf86e15e2968ac0e495150848f52db9ed",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C9RQML5",
       "dateCreated": "2026-10-06T17:55:12Z",
       "dateUpdated": "2026-10-06T17:55:12Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -48843,16 +48994,12 @@
       "serviceSid": "MGd0532ff3ebeb3bf3e84b92e8a332b973",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CXNY2JW",
       "dateCreated": "2026-10-06T17:55:14Z",
       "dateUpdated": "2026-10-06T17:55:14Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -48874,16 +49021,12 @@
       "serviceSid": "MG129a535d6a90c90ccacb4dfca3ba622d",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CC84YYI",
       "dateCreated": "2026-10-06T17:55:15Z",
       "dateUpdated": "2026-10-06T17:55:15Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -49964,12 +50107,12 @@
       "dateUpdated": "2026-09-15T18:00:18Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30882,
           "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -50193,16 +50336,16 @@
       "dateUpdated": "2026-09-15T18:00:40Z",
       "errors": [
         {
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+        },
+        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         },
         {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
@@ -53332,16 +53475,12 @@
       "serviceSid": "MG6e229d078d406a6f773b7a143f40a034",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CGUC3S8",
       "dateCreated": "2026-10-06T17:55:35Z",
       "dateUpdated": "2026-10-06T17:55:35Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -53390,16 +53529,12 @@
       "serviceSid": "MGc30a1fb96641190ecf72080540c8f8cb",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CN6QMZ5",
       "dateCreated": "2026-10-06T17:55:37Z",
       "dateUpdated": "2026-10-06T17:55:37Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -53448,16 +53583,12 @@
       "serviceSid": "MG101f273c5a3bc3e400a90769acf8af84",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C5B6DAP",
       "dateCreated": "2026-10-06T17:55:40Z",
       "dateUpdated": "2026-10-06T17:55:40Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -53506,16 +53637,12 @@
       "serviceSid": "MG4fd884d0312920a5224c818165940fd9",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C1DMOL9",
       "dateCreated": "2026-10-06T17:55:42Z",
       "dateUpdated": "2026-10-06T17:55:42Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -53564,16 +53691,12 @@
       "serviceSid": "MGfd7a072b8fdf24212f5286f95f77d799",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CKOHPY4",
       "dateCreated": "2026-10-06T17:55:45Z",
       "dateUpdated": "2026-10-06T17:55:45Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
@@ -53595,16 +53718,12 @@
       "serviceSid": "MGcfbcec0c3de52c1df70576fd010f9bc8",
       "duplicateServiceCount": 1,
       "submitted": true,
-      "liveStatus": "IN_PROGRESS",
-      "tcrCampaignId": null,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CIGGVGP",
       "dateCreated": "2026-10-06T17:55:47Z",
       "dateUpdated": "2026-10-06T17:55:47Z",
       "errors": [],
       "usesTemplateA": true,
-      "actionCategory": "Twilio/Carrier \u2014 waiting",
-      "actionOwner": "Twilio/Carrier",
-      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
-      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
