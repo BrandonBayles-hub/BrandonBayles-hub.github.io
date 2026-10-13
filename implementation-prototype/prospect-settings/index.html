@@ -34,6 +34,20 @@
       .freshness { min-width: 260px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
       .freshness strong { display: block; margin-bottom: 4px; }
       .freshness span { color: var(--muted); font-size: 12px; line-height: 1.5; display: block; }
+      .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 8px 0 26px; }
+      .kpi .n { font-size: 34px; font-weight: 780; letter-spacing: -.04em; line-height: 1; }
+      .kpi .l { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.35; }
+      .kpi.ready .n { color: var(--ready); }
+      .bars { margin: 14px 0 6px; }
+      .bar-row, .axis { display: grid; grid-template-columns: 132px 1fr 48px; align-items: center; gap: 12px; }
+      .bar-row { margin: 6px 0; }
+      .bar-name { font-size: 13px; }
+      .bar-track { height: 16px; }
+      .bar-fill { height: 16px; background: #8eb8d8; border-radius: 2px; min-width: 2px; }
+      .bar-n { text-align: right; font-size: 13px; font-weight: 650; color: #5c6b78; }
+      .axis { margin-top: 4px; color: var(--muted); font-size: 11px; }
+      .axis span:nth-child(2) { display: flex; justify-content: space-between; }
+      .caption { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 10px 0 22px; max-width: 920px; }
       .summary { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
       .card { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; padding: 16px 17px; }
       .card .label { color: var(--muted); font-size: 12px; font-weight: 650; }
@@ -95,7 +109,7 @@
       footer { color: var(--muted); font-size: 12px; line-height: 1.6; }
       @media (max-width: 900px) {
         header { flex-direction: column; }
-        .summary { grid-template-columns: repeat(2, 1fr); }
+        .kpis, .summary { grid-template-columns: repeat(2, 1fr); }
         .picker { grid-template-columns: 1fr; }
       }
     </style>
@@ -119,6 +133,18 @@
           <span>Refreshes nightly from Gong.</span>
         </div>
       </header>
+
+      <section class="kpis">
+        <div class="kpi"><div class="n" id="k-prospect">–</div><div class="l">Prospect calls in the Gong mirror</div></div>
+        <div class="kpi"><div class="n" id="k-long">–</div><div class="l">Calls 15 minutes or longer</div></div>
+        <div class="kpi ready"><div class="n" id="k-suggest">–</div><div class="l">Suggestions on this company</div></div>
+        <div class="kpi"><div class="n">0</div><div class="l">Settings written</div></div>
+      </section>
+
+      <h2>How prospect calls break down</h2>
+      <div class="bars" id="bars"></div>
+      <div class="axis"><span></span><span><i>0</i><i id="axis-mid">–</i><i id="axis-max">–</i></span><span></span></div>
+      <p class="caption" id="chart-caption"></p>
 
       <section class="summary">
         <div class="card"><div class="label">Prospects</div><div class="value" id="s-companies">–</div><div class="sub">with a call 15+ min in the last year</div></div>
@@ -179,6 +205,8 @@
       const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
       const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       const LABEL = { mapped: "Ready", path: "Confirm value", unmapped: "No setting yet" };
+      const TYPE_NAME = { prospecting: "Prospecting", other: "Other", demo: "Demo", discovery: "Discovery", sync: "Sync", pricing: "Pricing", implementation: "Implementation", inbound: "Inbound", training: "Training", support: "Support" };
+      const short = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
 
       let DATA = null;
       let current = null;
@@ -303,12 +331,27 @@
           b.addEventListener("click", () => { filter = b.dataset.f; render(); })
         );
         $("result").classList.add("on");
+        const suggestions = c.counts.mapped + c.counts.path;
+        $("k-suggest").textContent = fmt(suggestions);
       }
 
       async function boot() {
         const res = await fetch(`data.json?ts=${Date.now()}`, { cache: "no-store" });
         DATA = await res.json();
         const t = DATA.totals;
+        $("k-prospect").textContent = fmt(t.prospectCalls);
+        $("k-long").textContent = fmt(t.longCalls);
+        const types = DATA.callTypes || [];
+        const max = Math.max(...types.map((x) => x.count), 1);
+        $("bars").innerHTML = types.map((x) => `
+          <div class="bar-row">
+            <div class="bar-name">${esc(TYPE_NAME[x.type] || x.type)}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${Math.max(1, (x.count / max) * 100)}%"></div></div>
+            <div class="bar-n">${short(x.count)}</div>
+          </div>`).join("");
+        $("axis-mid").textContent = short(Math.round(max / 2));
+        $("axis-max").textContent = short(max);
+        $("chart-caption").textContent = `Source: Gong mirror, company status = Prospect, newest call ${DATA.latestCallInMirror}. Most short calls are outbound prospecting and do not contain a setting. The list below is the calls long enough to extract a want.`;
         $("s-companies").textContent = fmt(t.companies);
         $("s-calls").textContent = fmt(t.callsUsed);
         $("s-calls-sub").textContent = `of ${fmt(t.prospectCalls)} prospect calls in Gong`;
