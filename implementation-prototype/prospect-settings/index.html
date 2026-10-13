@@ -25,6 +25,10 @@
       }
       * { box-sizing: border-box; }
       body { margin: 0; background: var(--canvas); color: var(--ink); }
+      body.review-paused .shell > :not(.paused) { display: none; }
+      .paused { max-width: 760px; margin: 12vh auto 0; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+      .paused h1 { margin-top: 0; }
+      .paused p { color: var(--muted); line-height: 1.6; }
       .shell { max-width: 1440px; margin: 0 auto; padding: 28px 32px 56px; }
       header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 24px; }
       .eyebrow { color: var(--accent); font-weight: 750; letter-spacing: .08em; font-size: 11px; text-transform: uppercase; }
@@ -119,8 +123,22 @@
       }
     </style>
   </head>
-  <body>
+  <body class="review-paused">
     <div class="shell">
+      <section class="paused">
+        <div class="eyebrow">RFP to Implementation · Professional Services</div>
+        <h1>Recommendations temporarily withdrawn</h1>
+        <p>
+          The first extraction method produced unsupported setting matches.
+          Those rows are not safe for Professional Services to use and have
+          been removed while the evidence-to-configuration workflow is rebuilt.
+        </p>
+        <p>
+          The replacement will publish only recommendations that connect a
+          prospect-stated operating need to a specific Entrata setting and
+          value, with the causal rationale and source evidence visible.
+        </p>
+      </section>
       <header>
         <div>
           <div class="eyebrow">RFP to Implementation · Professional Services</div>
