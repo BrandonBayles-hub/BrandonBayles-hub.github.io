@@ -204,9 +204,17 @@
       function search(q) {
         q = q.trim().toLowerCase();
         if (!q) return DATA.companies;
-        return DATA.companies.filter((c) =>
-          [c.name, c.city, ...c.opportunities.map((o) => o.name)].some((v) => (v || "").toLowerCase().includes(q))
-        );
+        const rank = (c) => {
+          const n = (c.name || "").toLowerCase();
+          if (n.startsWith(q)) return 0;
+          if (n.includes(q)) return 1;
+          return [c.city, ...c.opportunities.map((o) => o.name)].some((v) => (v || "").toLowerCase().includes(q)) ? 2 : -1;
+        };
+        return DATA.companies
+          .map((c) => [rank(c), c])
+          .filter(([r]) => r >= 0)
+          .sort((a, b) => a[0] - b[0])
+          .map(([, c]) => c);
       }
 
       async function open(id) {
