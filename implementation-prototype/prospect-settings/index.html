@@ -93,6 +93,17 @@
       .badge.mapped { background: var(--ready-bg); color: var(--ready); }
       .badge.path { background: var(--path-bg); color: var(--path); }
       .badge.unmapped { background: var(--none-bg); color: var(--none); }
+      .confidence { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 760; }
+      .confidence::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--none); }
+      .confidence.medium::before { background: var(--path); }
+      .confidence.high::before { background: var(--ready); }
+      .recommendation { font-weight: 720; margin-bottom: 4px; }
+      .value { color: var(--ink); }
+      .quote { color: #403834; margin-bottom: 5px; }
+      details { margin-top: 7px; }
+      summary { cursor: pointer; color: var(--accent); font-size: 12px; font-weight: 700; }
+      .evidence-item { border-left: 2px solid var(--line); padding: 7px 0 7px 10px; margin-top: 6px; color: var(--muted); font-size: 12px; }
+      .evidence-item a { color: var(--accent); text-decoration: none; }
       .area { font-size: 11px; color: var(--muted); font-weight: 650; }
       .calls { margin-top: 18px; }
       .call { padding: 12px 0; border-top: 1px solid var(--line); }
@@ -133,7 +144,7 @@
         <div class="kpi"><div class="n" id="k-long">–</div><div class="l">Calls 15 minutes or longer</div></div>
         <div class="kpi"><div class="n" id="k-companies">–</div><div class="l">Prospects with a call we can use</div></div>
         <div class="kpi"><div class="n" id="k-read">–</div><div class="l">Gong calls read</div></div>
-        <div class="kpi ready"><div class="n" id="k-mapped">–</div><div class="l">Ready to set</div></div>
+        <div class="kpi ready"><div class="n" id="k-mapped">–</div><div class="l">Values suggested from transcript evidence</div></div>
         <div class="kpi path"><div class="n" id="k-path">–</div><div class="l">Setting found, value to confirm</div></div>
         <div class="kpi none"><div class="n" id="k-unmapped">–</div><div class="l">No setting yet</div></div>
         <div class="kpi ready"><div class="n" id="k-suggest">–</div><div class="l">Suggestions on this company</div></div>
@@ -272,23 +283,30 @@
         ].filter(Boolean).join(" · ");
         const btn = (k, label, n) => `<button data-f="${k}" class="${filter === k ? "active" : ""}">${label} (${n})</button>`;
         const rows = items.length
-          ? items.map((i) => `
+          ? items.map((i) => {
+              const evidence = (i.evidence || []).map((e) => `
+                <div class="evidence-item">
+                  “${esc(e.text)}”
+                  <div>${esc(e.speaker)} · <a href="${esc(e.callUrl)}" target="_blank" rel="noopener">${esc(e.date)}</a></div>
+                </div>`).join("");
+              return `
               <tr>
-                <td><span class="badge ${i.kind}">${LABEL[i.kind]}</span><div class="area">${esc(i.area)}</div></td>
-                <td class="heard">${esc(i.heard)}</td>
-                <td>${i.setting ? esc(i.setting) : "—"}</td>
+                <td><span class="confidence ${esc(i.confidenceLabel.toLowerCase())}">${esc(i.confidenceLabel)} ${i.confidence}%</span></td>
+                <td>
+                  <div class="recommendation">${i.setting ? esc(i.setting) : `Needs a ${esc(i.area)} setting`}</div>
+                  <div class="area">${esc(i.area)} · ${esc(i.level || "Not mapped")}</div>
+                </td>
                 <td class="path">${i.path ? esc(i.path) : "No path in the catalog yet"}</td>
-                <td>${i.value ? esc(i.value) : "—"}</td>
-                <td>${i.level ? esc(i.level) : "—"}</td>
-                <td>${esc(i.date)}</td>
-              </tr>`).join("")
-          : `<tr class="empty-row"><td colspan="7">Nothing in this group for ${esc(c.name)}.</td></tr>`;
-        const calls = c.calls.map((k) => `
-          <div class="call">
-            <a href="${esc(k.url)}" target="_blank" rel="noopener">${esc(k.title)}</a>
-            <span class="meta"> · ${esc(k.date)} · ${k.minutes} min · ${esc(k.type || "call")}</span>
-            ${k.brief ? `<p>${esc(k.brief)}</p>` : ""}
-          </div>`).join("");
+                <td class="value">${esc(i.value || "No value suggested")}</td>
+                <td class="heard">
+                  <div class="quote">“${esc(i.heard)}”</div>
+                  <div class="area">${i.evidenceCount} transcript signal${i.evidenceCount === 1 ? "" : "s"} across ${i.callCount} call${i.callCount === 1 ? "" : "s"}</div>
+                  ${i.evidenceCount > 1 ? `<details><summary>Show all evidence</summary>${evidence}</details>` : ""}
+                </td>
+                <td>${i.needsConfirmation ? `<span class="badge path">Confirm</span>` : `<span class="badge mapped">Ready</span>`}</td>
+              </tr>`;
+            }).join("")
+          : `<tr class="empty-row"><td colspan="6">Nothing in this group for ${esc(c.name)}.</td></tr>`;
 
         $("result").innerHTML = `
           <div class="co-head">
@@ -299,24 +317,20 @@
             </div>
           </div>
           <div class="done">
-            <strong>${c.counts.mapped} ready to set</strong>, ${c.counts.path} with a setting path to confirm,
-            and ${c.counts.unmapped} wants we heard that have no setting path yet.
+            <strong>${c.counts.mapped} values suggested</strong>, ${c.counts.path} setting paths with values to confirm,
+            and ${c.counts.unmapped} prospect needs that do not have a setting path yet.
           </div>
           <div class="filters">
             ${btn("all", "All", c.items.length)}
-            ${btn("mapped", "Ready", c.counts.mapped)}
+            ${btn("mapped", "Value suggested", c.counts.mapped)}
             ${btn("path", "Confirm value", c.counts.path)}
-            ${btn("unmapped", "No setting yet", c.counts.unmapped)}
+            ${btn("unmapped", "Needs mapping", c.counts.unmapped)}
           </div>
           <div style="overflow-x:auto">
             <table>
-              <thead><tr><th>Status</th><th>What they said</th><th>Setting</th><th>Where it lives</th><th>Suggested value</th><th>Level</th><th>Call</th></tr></thead>
+              <thead><tr><th>Confidence</th><th>Recommendation</th><th>Setting path</th><th>Suggested value</th><th>Prospect evidence</th><th>Action</th></tr></thead>
               <tbody>${rows}</tbody>
             </table>
-          </div>
-          <div class="calls">
-            <h2>Calls this came from</h2>
-            ${calls}
           </div>`;
         $("result").querySelectorAll(".filters button").forEach((b) =>
           b.addEventListener("click", () => { filter = b.dataset.f; render(); })
