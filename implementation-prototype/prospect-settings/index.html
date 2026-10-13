@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Prospect Settings from Gong</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #231f20;
+        --muted: #6f655f;
+        --line: #e8e1dc;
+        --paper: #fff;
+        --canvas: #f7f4f1;
+        --accent: #9a5b3b;
+        --ready: #18794e;
+        --ready-bg: #e9f7ef;
+        --path: #9a6700;
+        --path-bg: #fff5d6;
+        --none: #b42318;
+        --none-bg: #ffebe9;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--canvas); color: var(--ink); }
+      .shell { max-width: 1440px; margin: 0 auto; padding: 28px 32px 56px; }
+      header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 24px; }
+      .eyebrow { color: var(--accent); font-weight: 750; letter-spacing: .08em; font-size: 11px; text-transform: uppercase; }
+      h1 { font-size: clamp(28px, 3vw, 40px); margin: 7px 0 8px; letter-spacing: -.035em; line-height: 1.05; }
+      h2 { font-size: 18px; margin: 0 0 4px; letter-spacing: -.02em; }
+      .lede { color: var(--muted); max-width: 760px; margin: 0; line-height: 1.5; font-size: 14px; }
+      .freshness { min-width: 260px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+      .freshness strong { display: block; margin-bottom: 4px; }
+      .freshness span { color: var(--muted); font-size: 12px; line-height: 1.5; display: block; }
+      .summary { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
+      .card { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; padding: 16px 17px; }
+      .card .label { color: var(--muted); font-size: 12px; font-weight: 650; }
+      .card .value { font-size: 30px; font-weight: 780; margin-top: 4px; letter-spacing: -.03em; }
+      .card .sub { color: var(--muted); font-size: 11px; margin-top: 2px; }
+      .card.ready .value { color: var(--ready); }
+      .card.path .value { color: var(--path); }
+      .card.none .value { color: var(--none); }
+      .notice { padding: 13px 15px; background: #fff9ed; border: 1px solid #f0d7a1; border-radius: 12px; color: #76530b; font-size: 13px; line-height: 1.5; margin-bottom: 18px; }
+      .notice strong { color: #4e3607; }
+      .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 18px; }
+      .picker { display: grid; grid-template-columns: minmax(240px, 1fr) minmax(300px, 1.4fr); gap: 12px; margin-top: 12px; }
+      .field label { display: block; font-size: 12px; font-weight: 650; color: var(--muted); margin-bottom: 6px; }
+      input[type="search"], select {
+        width: 100%; font: inherit; font-size: 14px; color: var(--ink); background: #fff;
+        border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; outline: none;
+      }
+      input[type="search"]:focus, select:focus { border-color: var(--accent); }
+      .hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+      .loader { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 56px 0; }
+      .loader.on { display: flex; }
+      .cube { width: 64px; height: 64px; animation: spin 1.1s cubic-bezier(.6,.05,.4,.95) infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(.88); } 100% { transform: rotate(360deg) scale(1); } }
+      .step { font-size: 14px; font-weight: 650; }
+      .step-sub { font-size: 12px; color: var(--muted); }
+      .progress { width: 260px; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+      .progress div { height: 100%; width: 0; background: var(--accent); transition: width .28s ease; }
+      .result { display: none; }
+      .result.on { display: block; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); animation: rise .35s ease; }
+      @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+      .co-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+      .co-name { font-size: 24px; font-weight: 780; letter-spacing: -.03em; margin: 0 0 4px; }
+      .meta { color: var(--muted); font-size: 13px; line-height: 1.6; }
+      .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+      .chip { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: #f2ece7; color: var(--ink); }
+      .done { margin: 14px 0; padding: 12px 14px; border-radius: 12px; background: var(--ready-bg); color: #0f5132; font-size: 13px; line-height: 1.5; }
+      .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 10px; }
+      .filters button {
+        font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; padding: 6px 12px; border-radius: 999px;
+        border: 1px solid var(--line); background: #fff; color: var(--ink);
+      }
+      .filters button.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 9px 10px; border-bottom: 1px solid var(--line); background: #fbf9f7; position: sticky; top: 0; }
+      td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+      td.path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #4a403b; max-width: 360px; }
+      td.heard { max-width: 380px; }
+      .badge { display: inline-block; font-size: 11px; font-weight: 750; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+      .badge.mapped { background: var(--ready-bg); color: var(--ready); }
+      .badge.path { background: var(--path-bg); color: var(--path); }
+      .badge.unmapped { background: var(--none-bg); color: var(--none); }
+      .area { font-size: 11px; color: var(--muted); font-weight: 650; }
+      .calls { margin-top: 18px; }
+      .call { padding: 12px 0; border-top: 1px solid var(--line); }
+      .call a { color: var(--accent); font-weight: 650; text-decoration: none; }
+      .call a:hover { text-decoration: underline; }
+      .call p { margin: 4px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+      .empty-row td { color: var(--muted); text-align: center; padding: 22px; }
+      footer { color: var(--muted); font-size: 12px; line-height: 1.6; }
+      @media (max-width: 900px) {
+        header { flex-direction: column; }
+        .summary { grid-template-columns: repeat(2, 1fr); }
+        .picker { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <div class="eyebrow">RFP to Implementation · Professional Services</div>
+          <h1>What prospects asked for, mapped to Entrata settings</h1>
+          <p class="lede">
+            Every Gong call where Salesforce marks the company as a Prospect. We pull what they said,
+            list it, and point each want at the setting that would deliver it. These are suggestions for
+            implementation. Nothing is written into Entrata.
+          </p>
+        </div>
+        <div class="freshness">
+          <strong id="fresh-title">Loading…</strong>
+          <span id="fresh-gen"></span>
+          <span id="fresh-call"></span>
+          <span>Refreshes nightly from Gong.</span>
+        </div>
+      </header>
+
+      <section class="summary">
+        <div class="card"><div class="label">Prospects</div><div class="value" id="s-companies">–</div><div class="sub">with a call 15+ min in the last year</div></div>
+        <div class="card"><div class="label">Gong calls read</div><div class="value" id="s-calls">–</div><div class="sub" id="s-calls-sub"></div></div>
+        <div class="card ready"><div class="label">Ready to set</div><div class="value" id="s-mapped">–</div><div class="sub">setting + value said on the call</div></div>
+        <div class="card path"><div class="label">Setting found</div><div class="value" id="s-path">–</div><div class="sub">confirm the value at Start</div></div>
+        <div class="card none"><div class="label">No setting yet</div><div class="value" id="s-unmapped">–</div><div class="sub">heard, kept, needs a path</div></div>
+      </section>
+
+      <div class="notice">
+        <strong>Internal only.</strong> Built from Project Amplify Gong data. Do not forward outside the
+        Entrata implementation team or share with prospects.
+      </div>
+
+      <section class="panel">
+        <h2>Pick a prospect</h2>
+        <div class="meta">Search by company, city, or opportunity name, then choose from the list.</div>
+        <div class="picker">
+          <div class="field">
+            <label for="search">Search</label>
+            <input id="search" type="search" placeholder="Start typing a company name…" autocomplete="off" />
+            <div class="hint" id="match-count"></div>
+          </div>
+          <div class="field">
+            <label for="prospect">Prospect</label>
+            <select id="prospect"></select>
+            <div class="hint">Most recent call first. Count shows ready settings.</div>
+          </div>
+        </div>
+
+        <div class="loader" id="loader">
+          <svg class="cube" viewBox="0 0 80 80" aria-hidden="true">
+            <path d="M40 40V0L4 20V60L40 40Z" fill="#E25B2C" />
+            <path d="M40 40L76 60V20L40 0V40Z" fill="#F08A3C" />
+            <path d="M40 40V80L76 60V20L40 40Z" fill="#9A3A1B" />
+            <path d="M40 80L4 60V20L40 40V80Z" fill="#C2461F" />
+            <path d="M40 40L76 20L40 0L4 20L40 40Z" fill="#F6B26B" />
+          </svg>
+          <div class="step" id="step">Pulling Gong calls…</div>
+          <div class="step-sub" id="step-sub"></div>
+          <div class="progress"><div id="bar"></div></div>
+        </div>
+
+        <div class="result" id="result"></div>
+      </section>
+
+      <footer>
+        Source: Gong API mirror (project-amplify), company status from the Gong ↔ Salesforce sync.
+        Setting paths from the Entrata settings catalog used for Beam Living (901 rows). A value is
+        only marked ready when the call itself said it. Everything else needs a quick confirm when an
+        implementation starts.
+      </footer>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+      const LABEL = { mapped: "Ready", path: "Confirm value", unmapped: "No setting yet" };
+
+      let DATA = null;
+      let current = null;
+      let filter = "all";
+      let runId = 0;
+
+      function setStep(text, sub, pct) {
+        $("step").textContent = text;
+        $("step-sub").textContent = sub || "";
+        $("bar").style.width = pct + "%";
+      }
+
+      function fillSelect(list, keepId) {
+        const sel = $("prospect");
+        sel.innerHTML = list.map((c) => {
+          const ready = c.counts.mapped + c.counts.path;
+          return `<option value="${esc(c.id)}">${esc(c.name)} — ${ready} setting${ready === 1 ? "" : "s"} · last call ${esc(c.lastCall)}</option>`;
+        }).join("");
+        $("match-count").textContent = `Showing ${list.length} of ${DATA.companies.length} prospects`;
+        if (keepId && list.some((c) => c.id === keepId)) sel.value = keepId;
+      }
+
+      function search(q) {
+        q = q.trim().toLowerCase();
+        if (!q) return DATA.companies;
+        return DATA.companies.filter((c) =>
+          [c.name, c.city, ...c.opportunities.map((o) => o.name)].some((v) => (v || "").toLowerCase().includes(q))
+        );
+      }
+
+      async function open(id) {
+        const c = DATA.companies.find((x) => x.id === id);
+        if (!c) return;
+        const mine = ++runId;
+        current = c;
+        filter = "all";
+        $("result").classList.remove("on");
+        $("loader").classList.add("on");
+        const points = c.items.length;
+        const settings = c.counts.mapped + c.counts.path;
+        setStep(`Pulling ${c.calls.length} Gong call${c.calls.length === 1 ? "" : "s"} for ${c.name}`, "Matched on the Salesforce account", 22);
+        await sleep(420); if (mine !== runId) return;
+        setStep(`Reading what they asked for`, `${points} requirement${points === 1 ? "" : "s"} found in the call summaries`, 52);
+        await sleep(420); if (mine !== runId) return;
+        setStep(`Matching to Entrata settings`, `${settings} point to a setting path`, 82);
+        await sleep(380); if (mine !== runId) return;
+        setStep(`Done`, "", 100);
+        await sleep(160); if (mine !== runId) return;
+        $("loader").classList.remove("on");
+        render();
+      }
+
+      function render() {
+        const c = current;
+        const items = c.items.filter((i) => filter === "all" || i.kind === filter);
+        const order = { mapped: 0, path: 1, unmapped: 2 };
+        items.sort((a, b) => order[a.kind] - order[b.kind] || a.area.localeCompare(b.area));
+        const opps = c.opportunities.map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
+        const facts = [
+          c.units ? `${fmt(c.units)} units` : null,
+          c.properties ? `${fmt(c.properties)} properties` : null,
+          c.city,
+          `${c.calls.length} call${c.calls.length === 1 ? "" : "s"} read`,
+        ].filter(Boolean).join(" · ");
+        const btn = (k, label, n) => `<button data-f="${k}" class="${filter === k ? "active" : ""}">${label} (${n})</button>`;
+        const rows = items.length
+          ? items.map((i) => `
+              <tr>
+                <td><span class="badge ${i.kind}">${LABEL[i.kind]}</span><div class="area">${esc(i.area)}</div></td>
+                <td class="heard">${esc(i.heard)}</td>
+                <td>${i.setting ? esc(i.setting) : "—"}</td>
+                <td class="path">${i.path ? esc(i.path) : "No path in the catalog yet"}</td>
+                <td>${i.value ? esc(i.value) : "—"}</td>
+                <td>${i.level ? esc(i.level) : "—"}</td>
+                <td>${esc(i.date)}</td>
+              </tr>`).join("")
+          : `<tr class="empty-row"><td colspan="7">Nothing in this group for ${esc(c.name)}.</td></tr>`;
+        const calls = c.calls.map((k) => `
+          <div class="call">
+            <a href="${esc(k.url)}" target="_blank" rel="noopener">${esc(k.title)}</a>
+            <span class="meta"> · ${esc(k.date)} · ${k.minutes} min · ${esc(k.type || "call")}</span>
+            ${k.brief ? `<p>${esc(k.brief)}</p>` : ""}
+          </div>`).join("");
+
+        $("result").innerHTML = `
+          <div class="co-head">
+            <div>
+              <div class="co-name">${esc(c.name)}</div>
+              <div class="meta">${esc(facts)}</div>
+              <div class="chips">${opps}</div>
+            </div>
+          </div>
+          <div class="done">
+            <strong>${c.counts.mapped} ready to set</strong>, ${c.counts.path} with a setting path to confirm,
+            and ${c.counts.unmapped} wants we heard that have no setting path yet.
+          </div>
+          <div class="filters">
+            ${btn("all", "All", c.items.length)}
+            ${btn("mapped", "Ready", c.counts.mapped)}
+            ${btn("path", "Confirm value", c.counts.path)}
+            ${btn("unmapped", "No setting yet", c.counts.unmapped)}
+          </div>
+          <div style="overflow-x:auto">
+            <table>
+              <thead><tr><th>Status</th><th>What they said</th><th>Setting</th><th>Where it lives</th><th>Suggested value</th><th>Level</th><th>Call</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+          <div class="calls">
+            <h2>Calls this came from</h2>
+            ${calls}
+          </div>`;
+        $("result").querySelectorAll(".filters button").forEach((b) =>
+          b.addEventListener("click", () => { filter = b.dataset.f; render(); })
+        );
+        $("result").classList.add("on");
+      }
+
+      async function boot() {
+        const res = await fetch(`data.json?ts=${Date.now()}`, { cache: "no-store" });
+        DATA = await res.json();
+        const t = DATA.totals;
+        $("s-companies").textContent = fmt(t.companies);
+        $("s-calls").textContent = fmt(t.callsUsed);
+        $("s-calls-sub").textContent = `of ${fmt(t.prospectCalls)} prospect calls in Gong`;
+        $("s-mapped").textContent = fmt(t.mapped);
+        $("s-path").textContent = fmt(t.path);
+        $("s-unmapped").textContent = fmt(t.unmapped);
+        const gen = new Date(DATA.generatedAt);
+        $("fresh-title").textContent = "Data is current";
+        $("fresh-gen").textContent = `Built ${gen.toLocaleString()}`;
+        $("fresh-call").textContent = `Newest call in Gong mirror: ${DATA.latestCallInMirror}`;
+
+        fillSelect(DATA.companies);
+        $("search").addEventListener("input", (e) => {
+          const list = search(e.target.value);
+          fillSelect(list, current && current.id);
+          if (list.length && (!current || !list.some((c) => c.id === current.id))) open(list[0].id);
+        });
+        $("prospect").addEventListener("change", (e) => open(e.target.value));
+        const first = DATA.companies.find((c) => c.counts.mapped + c.counts.path > 0) || DATA.companies[0];
+        if (first) { $("prospect").value = first.id; open(first.id); }
+      }
+
+      boot().catch((err) => {
+        $("fresh-title").textContent = "Could not load data";
+        $("fresh-gen").textContent = String(err);
+      });
+    </script>
+  </body>
+</html>
