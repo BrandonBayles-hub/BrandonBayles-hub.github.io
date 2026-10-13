@@ -34,10 +34,12 @@
       .freshness { min-width: 260px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
       .freshness strong { display: block; margin-bottom: 4px; }
       .freshness span { color: var(--muted); font-size: 12px; line-height: 1.5; display: block; }
-      .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 8px 0 26px; }
-      .kpi .n { font-size: 34px; font-weight: 780; letter-spacing: -.04em; line-height: 1; }
+      .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px 18px; margin: 8px 0 26px; }
+      .kpi .n { font-size: 32px; font-weight: 780; letter-spacing: -.04em; line-height: 1; }
       .kpi .l { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.35; }
       .kpi.ready .n { color: var(--ready); }
+      .kpi.path .n { color: var(--path); }
+      .kpi.none .n { color: var(--none); }
       .bars { margin: 14px 0 6px; }
       .bar-row, .axis { display: grid; grid-template-columns: 132px 1fr 48px; align-items: center; gap: 12px; }
       .bar-row { margin: 6px 0; }
@@ -48,14 +50,6 @@
       .axis { margin-top: 4px; color: var(--muted); font-size: 11px; }
       .axis span:nth-child(2) { display: flex; justify-content: space-between; }
       .caption { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 10px 0 22px; max-width: 920px; }
-      .summary { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
-      .card { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; padding: 16px 17px; }
-      .card .label { color: var(--muted); font-size: 12px; font-weight: 650; }
-      .card .value { font-size: 30px; font-weight: 780; margin-top: 4px; letter-spacing: -.03em; }
-      .card .sub { color: var(--muted); font-size: 11px; margin-top: 2px; }
-      .card.ready .value { color: var(--ready); }
-      .card.path .value { color: var(--path); }
-      .card.none .value { color: var(--none); }
       .notice { padding: 13px 15px; background: #fff9ed; border: 1px solid #f0d7a1; border-radius: 12px; color: #76530b; font-size: 13px; line-height: 1.5; margin-bottom: 18px; }
       .notice strong { color: #4e3607; }
       .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 18px; }
@@ -109,7 +103,7 @@
       footer { color: var(--muted); font-size: 12px; line-height: 1.6; }
       @media (max-width: 900px) {
         header { flex-direction: column; }
-        .kpis, .summary { grid-template-columns: repeat(2, 1fr); }
+        .kpis { grid-template-columns: repeat(2, 1fr); }
         .picker { grid-template-columns: 1fr; }
       }
     </style>
@@ -137,6 +131,11 @@
       <section class="kpis">
         <div class="kpi"><div class="n" id="k-prospect">–</div><div class="l">Prospect calls in the Gong mirror</div></div>
         <div class="kpi"><div class="n" id="k-long">–</div><div class="l">Calls 15 minutes or longer</div></div>
+        <div class="kpi"><div class="n" id="k-companies">–</div><div class="l">Prospects with a call we can use</div></div>
+        <div class="kpi"><div class="n" id="k-read">–</div><div class="l">Gong calls read</div></div>
+        <div class="kpi ready"><div class="n" id="k-mapped">–</div><div class="l">Ready to set</div></div>
+        <div class="kpi path"><div class="n" id="k-path">–</div><div class="l">Setting found, value to confirm</div></div>
+        <div class="kpi none"><div class="n" id="k-unmapped">–</div><div class="l">No setting yet</div></div>
         <div class="kpi ready"><div class="n" id="k-suggest">–</div><div class="l">Suggestions on this company</div></div>
         <div class="kpi"><div class="n">0</div><div class="l">Settings written</div></div>
       </section>
@@ -145,14 +144,6 @@
       <div class="bars" id="bars"></div>
       <div class="axis"><span></span><span><i>0</i><i id="axis-mid">–</i><i id="axis-max">–</i></span><span></span></div>
       <p class="caption" id="chart-caption"></p>
-
-      <section class="summary">
-        <div class="card"><div class="label">Prospects</div><div class="value" id="s-companies">–</div><div class="sub">with a call 15+ min in the last year</div></div>
-        <div class="card"><div class="label">Gong calls read</div><div class="value" id="s-calls">–</div><div class="sub" id="s-calls-sub"></div></div>
-        <div class="card ready"><div class="label">Ready to set</div><div class="value" id="s-mapped">–</div><div class="sub">setting + value said on the call</div></div>
-        <div class="card path"><div class="label">Setting found</div><div class="value" id="s-path">–</div><div class="sub">confirm the value at Start</div></div>
-        <div class="card none"><div class="label">No setting yet</div><div class="value" id="s-unmapped">–</div><div class="sub">heard, kept, needs a path</div></div>
-      </section>
 
       <div class="notice">
         <strong>Internal only.</strong> Built from Project Amplify Gong data. Do not forward outside the
@@ -221,12 +212,12 @@
 
       function fillSelect(list, keepId) {
         const sel = $("prospect");
-        sel.innerHTML = list.map((c) => {
+        sel.innerHTML = `<option value="">Choose a prospect</option>` + list.map((c) => {
           const ready = c.counts.mapped + c.counts.path;
           return `<option value="${esc(c.id)}">${esc(c.name)} — ${ready} setting${ready === 1 ? "" : "s"} · last call ${esc(c.lastCall)}</option>`;
         }).join("");
         $("match-count").textContent = `Showing ${list.length} of ${DATA.companies.length} prospects`;
-        if (keepId && list.some((c) => c.id === keepId)) sel.value = keepId;
+        sel.value = keepId && list.some((c) => c.id === keepId) ? keepId : "";
       }
 
       function search(q) {
@@ -352,26 +343,35 @@
         $("axis-mid").textContent = short(Math.round(max / 2));
         $("axis-max").textContent = short(max);
         $("chart-caption").textContent = `Source: Gong mirror, company status = Prospect, newest call ${DATA.latestCallInMirror}. Most short calls are outbound prospecting and do not contain a setting. The list below is the calls long enough to extract a want.`;
-        $("s-companies").textContent = fmt(t.companies);
-        $("s-calls").textContent = fmt(t.callsUsed);
-        $("s-calls-sub").textContent = `of ${fmt(t.prospectCalls)} prospect calls in Gong`;
-        $("s-mapped").textContent = fmt(t.mapped);
-        $("s-path").textContent = fmt(t.path);
-        $("s-unmapped").textContent = fmt(t.unmapped);
+        $("k-companies").textContent = fmt(t.companies);
+        $("k-read").textContent = fmt(t.callsUsed);
+        $("k-mapped").textContent = fmt(t.mapped);
+        $("k-path").textContent = fmt(t.path);
+        $("k-unmapped").textContent = fmt(t.unmapped);
         const gen = new Date(DATA.generatedAt);
         $("fresh-title").textContent = "Data is current";
         $("fresh-gen").textContent = `Built ${gen.toLocaleString()}`;
         $("fresh-call").textContent = `Newest call in Gong mirror: ${DATA.latestCallInMirror}`;
 
+        function clearPick() {
+          current = null;
+          runId++;
+          $("loader").classList.remove("on");
+          $("result").classList.remove("on");
+          $("result").innerHTML = "";
+          $("k-suggest").textContent = "–";
+        }
         fillSelect(DATA.companies);
         $("search").addEventListener("input", (e) => {
           const list = search(e.target.value);
-          fillSelect(list, current && current.id);
-          if (list.length && (!current || !list.some((c) => c.id === current.id))) open(list[0].id);
+          const keep = current && list.some((c) => c.id === current.id) ? current.id : "";
+          fillSelect(list, keep);
+          if (!keep) clearPick();
         });
-        $("prospect").addEventListener("change", (e) => open(e.target.value));
-        const first = DATA.companies.find((c) => c.counts.mapped + c.counts.path > 0) || DATA.companies[0];
-        if (first) { $("prospect").value = first.id; open(first.id); }
+        $("prospect").addEventListener("change", (e) => {
+          if (e.target.value) open(e.target.value);
+          else clearPick();
+        });
       }
 
       boot().catch((err) => {
