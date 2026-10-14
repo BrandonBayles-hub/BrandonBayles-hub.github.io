@@ -99,36 +99,74 @@
       .q strong, .gap strong { display: block; margin-bottom: 3px; }
       .call { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
       .call a { color: var(--accent); font-weight: 650; text-decoration: none; }
-      .card { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin: 10px 0; background: #fff; font-size: 13.5px; line-height: 1.55; }
-      .card p { margin: 6px 0; }
-      .card.rejected { background: #faf8f6; }
-      .card-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 8px; }
+      .review-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 10px; }
+      .review-bar h3 { margin: 0; }
+      .review-bar .meta { text-align: right; }
+      .review-shell { display: grid; grid-template-columns: minmax(290px, 36%) minmax(0, 1fr); min-height: 610px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
+      .queue { border-right: 1px solid var(--line); background: #fbfaf9; }
+      .queue-tools { padding: 12px; border-bottom: 1px solid var(--line); }
+      .filters { display: flex; gap: 5px; flex-wrap: wrap; }
+      .filter { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 5px 9px; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+      .filter.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+      .category-filter { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 7px 8px; color: var(--ink); background: #fff; font: inherit; font-size: 12px; }
+      .queue-list { max-height: 610px; overflow-y: auto; }
+      .queue-item { width: 100%; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; background: transparent; padding: 13px 14px 12px; text-align: left; color: var(--ink); font: inherit; cursor: pointer; }
+      .queue-item:hover { background: #fff; }
+      .queue-item.on { background: #fff; border-left-color: var(--accent); }
+      .queue-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+      .queue-title { font-size: 13px; font-weight: 730; line-height: 1.3; }
+      .queue-value { margin: 5px 0; font-size: 12px; }
+      .queue-summary { color: var(--muted); font-size: 12px; line-height: 1.4; }
+      .status { flex: 0 0 auto; font-size: 10px; font-weight: 750; border-radius: 999px; padding: 3px 7px; background: var(--path-bg); color: var(--path); }
+      .status.approved { background: var(--ready-bg); color: var(--ready); }
+      .status.rejected { background: var(--none-bg); color: var(--none); }
+      .status.info { background: #eef2f6; color: #52616d; }
+      .detail { min-width: 0; padding: 22px 24px 28px; overflow-y: auto; max-height: 680px; }
+      .detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
       .topic { font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
-      .decision { font-size: 16px; margin-top: 3px; }
+      .decision { font-size: 21px; line-height: 1.25; letter-spacing: -.02em; margin: 4px 0 7px; }
       .badge.partial { background: var(--path-bg); color: var(--path); }
-      .chain { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
-      .num { width: 24px; height: 24px; border-radius: 50%; background: #f2ece7; font-size: 12px; font-weight: 750; display: grid; place-items: center; }
-      .ct { font-weight: 700; margin-bottom: 4px; }
-      .chain ol { margin: 4px 0; padding-left: 18px; }
-      .path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #4a403b; background: #faf8f6; border-radius: 8px; padding: 6px 8px; margin: 4px 0; }
-      .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
-      .opt { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
-      .opt.pick { border-color: var(--ready); background: var(--ready-bg); }
-      .rej { margin: 4px 0; }
-      .default { font-weight: 650; margin: 4px 0; }
-      .raw { margin: 6px 0; border-left: 3px solid var(--line); padding-left: 10px; }
-      .raw summary { cursor: pointer; font-weight: 650; font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
-      .raw summary a { color: var(--accent); }
-      .line { display: grid; grid-template-columns: 44px 150px 1fr; gap: 8px; padding: 3px 0; font-size: 13px; }
-      .line .t { color: var(--muted); font-variant-numeric: tabular-nums; }
-      .line .who { color: var(--muted); font-size: 12px; }
-      .line.them .txt { color: var(--ink); }
-      .line.us .txt { color: #7a706a; }
-      .line.key { background: #fff5d6; border-radius: 6px; }
+      .change-strip { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; gap: 10px; margin: 16px 0; padding: 12px 14px; border-radius: 10px; background: #faf8f6; }
+      .change-strip .arrow { text-align: center; color: var(--muted); }
+      .change-strip span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+      .change-strip strong { display: block; margin-top: 2px; font-size: 18px; }
+      .change-strip .proposed strong { color: var(--ready); }
+      .insight { background: #fff8e8; border-left: 4px solid #e0a52b; border-radius: 8px; padding: 11px 13px; margin: 14px 0; font-size: 14px; line-height: 1.5; }
+      .section { padding-top: 16px; margin-top: 16px; border-top: 1px solid var(--line); }
+      .section-title { font-size: 12px; font-weight: 780; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+      .path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #4a403b; background: #faf8f6; border-radius: 8px; padding: 8px 10px; margin: 6px 0; overflow-wrap: anywhere; }
+      .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 4px; }
+      .action { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 13px; font: inherit; font-size: 12px; font-weight: 730; cursor: pointer; }
+      .action.approve { background: var(--ready); border-color: var(--ready); color: #fff; }
+      .action.reject { color: var(--none); }
+      .edit-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+      .edit-box[hidden] { display: none; }
+      .edit-box select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font: inherit; }
+      .reason-list { margin: 7px 0; padding-left: 20px; }
+      .reason-list li { margin: 5px 0; }
+      .evidence { margin-top: 9px; }
+      .bubble { display: grid; grid-template-columns: 34px 1fr; gap: 8px; margin: 8px 0; }
+      .avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #eee7e1; color: #675951; font-size: 10px; font-weight: 800; }
+      .bubble.us .avatar { background: #e9f1f7; color: #37627f; }
+      .speech { background: #f6f2ee; border-radius: 3px 11px 11px 11px; padding: 8px 10px; }
+      .bubble.us .speech { background: #eff5f8; }
+      .speech.key { box-shadow: inset 3px 0 #e0a52b; background: #fff7df; }
+      .speaker { font-size: 11px; font-weight: 750; margin-bottom: 2px; }
+      .speech p { margin: 0; font-size: 13px; line-height: 1.45; }
+      .stamp { color: var(--muted); font-size: 10px; margin-left: 6px; font-weight: 500; }
+      .expand { border: 0; background: transparent; color: var(--accent); padding: 4px 0; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+      .more-evidence[hidden] { display: none; }
+      .support { margin: 6px 0; padding: 8px 10px; background: #faf8f6; border-radius: 8px; font-size: 12.5px; line-height: 1.45; }
+      .empty-detail { display: grid; place-items: center; min-height: 420px; text-align: center; color: var(--muted); }
       footer { color: var(--muted); font-size: 12px; line-height: 1.6; }
       @media (max-width: 900px) {
         header { flex-direction: column; }
         .kpis { grid-template-columns: repeat(2, 1fr); }
+        .review-shell { grid-template-columns: 1fr; }
+        .queue { border-right: 0; border-bottom: 1px solid var(--line); }
+        .queue-list { max-height: 260px; }
+        .detail { max-height: none; }
+        .line { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -214,6 +252,10 @@
       let current = null;
       let runId = 0;
       let active = 0;
+      let selectedReviewId = null;
+      let reviewFilter = "all";
+      let categoryFilter = "all";
+      const reviewDecisions = {};
 
       function setStep(text, sub, pct) {
         $("step").textContent = text;
@@ -288,43 +330,6 @@
         const facts = [c.units ? `${fmt(c.units)} units` : null, c.properties ? `${fmt(c.properties)} properties` : null, c.city, `${c.calls.length} call${c.calls.length === 1 ? "" : "s"}`].filter(Boolean).join(" · ");
         const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
         const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
-        const transcript = (s, open = true) => s ? `
-          <details class="raw" ${open ? "open" : ""}>
-            <summary>What they said · ${esc(s.at)} · <a href="${esc(s.callUrl)}" target="_blank" rel="noopener">open call</a></summary>
-            ${s.lines.map((l) => `<div class="line ${l.prospect ? "them" : "us"} ${l.key ? "key" : ""}">
-              <span class="t">${esc(l.t)}</span><span class="who">${esc(l.who)}${l.prospect ? "" : " (Entrata)"}</span><span class="txt">${esc(l.text)}</span>
-            </div>`).join("")}
-          </details>` : "";
-        const step = (n, title, body) => `<div class="chain"><div class="num">${n}</div><div><div class="ct">${title}</div>${body}</div></div>`;
-        const rows = plan.rows.length
-          ? plan.rows.map((r) => `<div class="card">
-              <div class="card-head"><div><div class="topic">${esc(r.topic)}</div><div class="decision">Set <strong>${esc(r.setting)}</strong> to <strong>${esc(r.proposed)}</strong></div></div>
-                <span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} match</span></div>
-              ${step(1, "What they said", transcript(r.said))}
-              ${step(2, "What it means", `<p>${esc(r.meaning)}</p>`)}
-              ${step(3, "The setting", `<div class="path">${esc(r.path)}</div>
-                <p>${esc(r.does)}</p>
-                <div class="opts">${r.options.map((o) => `<div class="opt ${o.value === r.proposed ? "pick" : ""}"><strong>${esc(o.value)}</strong>${o.value === r.proposed ? " · our pick" : ""}<div>${esc(o.effect)}</div></div>`).join("")}</div>
-                <div class="meta">Default: ${esc(r.catalogDefault)} · Checked in code: ${esc(r.codeRef)}</div>`)}
-              ${step(4, `Why ${esc(r.proposed)}`, `<ol>${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>`)}
-              ${step(5, "What this does not cover", `<p>${esc(r.notCovered)}</p>`)}
-              ${step(6, "Considered and rejected", r.rejected.map((x) => `<div class="rej"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join(""))}
-            </div>`).join("")
-          : `<div class="baseline">No setting changes. The calls did not give enough to pick a value, so everything stays on the factory default.</div>`;
-        const rejectedSettings = (plan.rejectedSettings || []).map((x) => `<div class="card rejected"><div class="topic">Looked like a match, but is not</div>
-            <div class="decision"><strong>${esc(x.setting)}</strong></div><p>${esc(x.why)}</p><div class="meta">Checked in code: ${esc(x.codeRef)}</div></div>`).join("");
-        const questions = plan.questions.length
-          ? plan.questions.map((q, i) => `<div class="card">
-              <div class="decision"><strong>${i + 1}. ${esc(q.question)}</strong></div>
-              <div class="default">Default if no answer: ${esc(q.default)}</div>
-              <p>${esc(q.why)}</p>
-              ${q.setting ? `<div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div>` : ""}
-              ${transcript(q.said)}
-            </div>`).join("")
-          : `<div class="meta">No confirmation questions.</div>`;
-        const gaps = plan.gaps.length
-          ? plan.gaps.map((g) => `<div class="card"><p>${esc(g.text)}</p>${transcript(g.said, false)}</div>`).join("")
-          : `<div class="meta">No product gaps from this review.</div>`;
         const notes = plan.summary ? `<div class="note">${esc(plan.summary)}</div>` : "";
         const calls = c.calls.map((call) => `<div class="call"><a href="${esc(call.url)}" target="_blank" rel="noopener">${esc(call.title || "Gong call")}</a><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min</div></div>`).join("");
         const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
@@ -335,16 +340,158 @@
           ${waiting}
           <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
           ${notes}
-          <h3>Settings to change</h3>
-          ${rows}
-          ${rejectedSettings}
-          <h3>Confirm before implementation</h3>
-          ${questions}
-          <h3>Not a setting</h3>
-          ${gaps}
+          ${c.reviewed ? `<div class="review-bar"><h3>Review queue</h3><div class="meta">Review only. Nothing is written into Entrata.</div></div>
+          <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
           <h3>Calls</h3>
           ${calls || `<div class="meta">No calls on file.</div>`}`;
         $("result").classList.add("on");
+        if (c.reviewed) initReview(c, plan);
+      }
+
+      function categoryFor(path) {
+        if (!path) return "Other";
+        const text = path.toLowerCase();
+        if (text.includes("financial") || text.includes("payment")) return "Financial / Payments";
+        if (text.includes("floor plan") || text.includes("unit availability")) return "Leasing / Availability";
+        if (text.includes("maintenance")) return "Maintenance";
+        return "Other";
+      }
+
+      function reviewItems(plan) {
+        return [
+          ...plan.rows.map((data, i) => ({ id: `change-${i}`, kind: "change", category: categoryFor(data.path), title: data.setting, value: `${data.catalogDefault} → ${data.proposed}`, summary: data.meaning, data })),
+          ...plan.questions.map((data, i) => ({ id: `confirm-${i}`, kind: "confirm", category: categoryFor(data.path), title: data.question, value: "Confirmation needed", summary: data.why, data })),
+          ...(plan.rejectedSettings || []).map((data, i) => ({ id: `ruled-${i}`, kind: "ruled", category: categoryFor(data.path), title: data.setting, value: "No change", summary: data.why, data })),
+          ...plan.gaps.map((data, i) => ({ id: `gap-${i}`, kind: "gap", category: "Product gap", title: data.text, value: "Not a setting", summary: "The transcript describes a workflow or reporting need, not a configurable setting.", data })),
+        ];
+      }
+
+      function statusFor(item) {
+        if (item.kind !== "change") return item.kind === "confirm" ? ["Needs input", ""] : item.kind === "ruled" ? ["Ruled out", "info"] : ["Product gap", "info"];
+        const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+        return state.status === "approved" ? ["Approved", "approved"] : state.status === "rejected" ? ["Rejected", "rejected"] : state.value ? ["Edited", "info"] : ["Pending", ""];
+      }
+
+      function initials(name) {
+        return (name || "?").split(/\s+/).slice(0, 2).map((x) => x[0]).join("").toUpperCase();
+      }
+
+      function humanTime(raw) {
+        const [m, s] = String(raw || "0:00").split(":").map(Number);
+        const h = Math.floor(m / 60);
+        const min = m % 60;
+        return h ? `${h}h ${min}m ${s}s` : `${min}m ${s}s`;
+      }
+
+      function evidence(s, id) {
+        if (!s) return `<div class="meta">No transcript excerpt attached.</div>`;
+        const key = Math.max(0, s.lines.findIndex((line) => line.key));
+        const start = Math.max(0, key - 1);
+        const end = Math.min(s.lines.length, key + 2);
+        const bubble = (line) => `<div class="bubble ${line.prospect ? "them" : "us"}"><div class="avatar">${esc(initials(line.who))}</div>
+          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}${line.prospect ? " · Prospect" : " · Entrata"}<a class="stamp" href="${esc(s.callUrl)}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${esc(line.text)}</p></div></div>`;
+        const snippet = s.lines.slice(start, end).map(bubble).join("");
+        const full = s.lines.map(bubble).join("");
+        const remaining = s.lines.length - (end - start);
+        return `<div class="evidence"><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand full conversation (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
+      }
+
+      function initReview(c, plan) {
+        const items = reviewItems(plan);
+        selectedReviewId = items.some((x) => x.id === selectedReviewId) ? selectedReviewId : items[0]?.id;
+        reviewFilter = "all";
+        categoryFilter = "all";
+        renderReviewWorkspace(items);
+      }
+
+      function renderReviewWorkspace(items) {
+        const kinds = [
+          ["all", "All", items.length],
+          ["change", "Changes", items.filter((x) => x.kind === "change").length],
+          ["confirm", "Confirm", items.filter((x) => x.kind === "confirm").length],
+          ["analysis", "No change", items.filter((x) => ["ruled", "gap"].includes(x.kind)).length],
+        ];
+        const categories = [...new Set(items.map((x) => x.category))];
+        $("queue-tools").innerHTML = `<div class="filters">${kinds.map(([id, label, count]) => `<button type="button" class="filter ${reviewFilter === id ? "on" : ""}" data-filter="${id}">${label} ${count}</button>`).join("")}</div>
+          <select class="category-filter" id="category-filter" aria-label="Filter by category"><option value="all">All categories</option>${categories.map((x) => `<option value="${esc(x)}" ${categoryFilter === x ? "selected" : ""}>${esc(x)}</option>`).join("")}</select>`;
+        const filtered = items.filter((x) => {
+          const kindMatch = reviewFilter === "all" || x.kind === reviewFilter || (reviewFilter === "analysis" && ["ruled", "gap"].includes(x.kind));
+          return kindMatch && (categoryFilter === "all" || x.category === categoryFilter);
+        });
+        if (!filtered.some((x) => x.id === selectedReviewId)) selectedReviewId = filtered[0]?.id;
+        $("queue-list").innerHTML = filtered.length ? filtered.map((item) => {
+          const [status, cls] = statusFor(item);
+          const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+          const queueValue = item.kind === "change" && state.value ? `${item.data.catalogDefault} → ${state.value}` : item.value;
+          return `<button type="button" class="queue-item ${selectedReviewId === item.id ? "on" : ""}" data-review-id="${esc(item.id)}">
+            <div class="queue-top"><div class="queue-title">${esc(item.title)}</div><span class="status ${cls}">${esc(status)}</span></div>
+            <div class="queue-value">${esc(queueValue)}</div><div class="queue-summary">${esc(item.summary)}</div></button>`;
+        }).join("") : `<div class="empty-detail">No items in this filter.</div>`;
+        const selected = items.find((x) => x.id === selectedReviewId);
+        $("review-detail").innerHTML = selected ? detailFor(selected) : `<div class="empty-detail">Choose a review item.</div>`;
+        bindReviewEvents(items);
+      }
+
+      function detailFor(item) {
+        if (item.kind === "change") {
+          const r = item.data;
+          const key = `${current.id}-${item.id}`;
+          const state = reviewDecisions[key] || {};
+          const choice = state.value || r.proposed;
+          return `<div class="detail-head"><div><div class="topic">${esc(item.category)} · Proposed setting change</div><div class="decision">Set “${esc(r.setting)}” to ${esc(choice)}</div></div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} evidence match</span></div>
+            <div class="change-strip"><div><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div></div>
+            <div class="insight"><strong>AI insight:</strong> ${esc(r.meaning)}</div>
+            <div class="actions"><button class="action approve" data-decision="approved">Approve</button><button class="action reject" data-decision="rejected">Reject</button><button class="action" data-edit>Edit value</button>${state.status || state.value ? `<span class="status ${state.status === "approved" ? "approved" : state.status === "rejected" ? "rejected" : "info"}">${esc(state.status || "Edited")}</span>` : ""}</div>
+            <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
+            <div class="section"><div class="section-title">Setting path and impact</div><div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div></div>
+            <div class="section"><div class="section-title">Why this value</div><ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>
+            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
+            <div class="section"><div class="section-title">Limits and alternatives</div><div class="support"><strong>Not covered:</strong> ${esc(r.notCovered)}</div>${r.rejected.map((x) => `<div class="support"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join("")}</div>`;
+        }
+        if (item.kind === "confirm") {
+          const q = item.data;
+          return `<div class="topic">${esc(item.category)} · Confirmation needed</div><div class="decision">${esc(q.question)}</div>
+            <div class="insight"><strong>Default if unanswered:</strong> ${esc(q.default)}</div><p>${esc(q.why)}</p>
+            ${q.path ? `<div class="section"><div class="section-title">Closest setting</div><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></div>` : ""}
+            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>`;
+        }
+        if (item.kind === "ruled") {
+          const r = item.data;
+          return `<div class="topic">${esc(item.category)} · No change</div><div class="decision">${esc(r.setting)}</div><div class="insight"><strong>Why it was ruled out:</strong> ${esc(r.why)}</div><div class="meta">Checked in code: ${esc(r.codeRef)}</div>`;
+        }
+        return `<div class="topic">Product gap · Not a setting</div><div class="decision">${esc(item.data.text)}</div><div class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</div><div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>`;
+      }
+
+      function bindReviewEvents(items) {
+        document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => {
+          reviewFilter = button.dataset.filter;
+          renderReviewWorkspace(items);
+        }));
+        $("category-filter")?.addEventListener("change", (event) => {
+          categoryFilter = event.target.value;
+          renderReviewWorkspace(items);
+        });
+        document.querySelectorAll("[data-review-id]").forEach((button) => button.addEventListener("click", () => {
+          selectedReviewId = button.dataset.reviewId;
+          renderReviewWorkspace(items);
+        }));
+        document.querySelectorAll("[data-expand]").forEach((button) => button.addEventListener("click", () => {
+          const more = $(`more-${button.dataset.expand}`);
+          const snippet = $(`snippet-${button.dataset.expand}`);
+          more.hidden = !more.hidden;
+          snippet.hidden = !more.hidden;
+          button.textContent = more.hidden ? `Expand full conversation (+${Math.max(0, more.children.length - snippet.children.length)} turns)` : "Collapse conversation";
+        }));
+        document.querySelectorAll("[data-decision]").forEach((button) => button.addEventListener("click", () => {
+          const key = `${current.id}-${selectedReviewId}`;
+          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), status: button.dataset.decision };
+          renderReviewWorkspace(items);
+        }));
+        document.querySelector("[data-edit]")?.addEventListener("click", () => { $("edit-box").hidden = false; });
+        document.querySelector("[data-save-edit]")?.addEventListener("click", () => {
+          reviewDecisions[`${current.id}-${selectedReviewId}`] = { value: $("edit-value").value };
+          renderReviewWorkspace(items);
+        });
       }
 
       async function boot() {
