@@ -583,7 +583,7 @@
           return acc;
         }, {});
         const summary = `Reviewed ${payload.reviews.length} items: ${counts.accurate || 0} accurate, ${counts.correction || 0} need correction, ${counts.context || 0} need more context.`;
-        const body = `## AI quality review submission\n\n**Prospect:** ${payload.prospectName}\n**Reviewer:** ${payload.reviewer}\n**Summary:** ${summary}\n\nThis structured feedback was submitted from the quality-review workspace. An automated workflow will validate it and open a draft change for Brandon to review.\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
+        const body = `## AI quality review submission\n\n**Prospect:** ${payload.prospectName}\n**Reviewer:** ${payload.reviewer}\n**Summary:** ${summary}\n\nThis structured feedback was submitted from the quality-review workspace for Brandon's review and ingestion.\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
         const title = `AI quality feedback: ${payload.prospectName} — ${payload.reviewer}`;
         const url = `https://github.com/${FEEDBACK_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         window.open(url, "_blank", "noopener");
