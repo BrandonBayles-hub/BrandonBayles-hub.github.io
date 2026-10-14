@@ -99,9 +99,14 @@
       .q strong, .gap strong { display: block; margin-bottom: 3px; }
       .call { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
       .call a { color: var(--accent); font-weight: 650; text-decoration: none; }
+      .call-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 14px; margin: 8px 0; border: 1px solid var(--line); border-radius: 10px; background: #faf8f6; }
+      .call-card strong { display: block; margin-bottom: 3px; }
+      .call-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
       .review-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 10px; }
       .review-bar h3 { margin: 0; }
       .review-bar .meta { text-align: right; }
+      .review-progress-track { width: 220px; height: 6px; margin: 5px 0 0 auto; border-radius: 999px; background: #e7e2de; overflow: hidden; }
+      .review-progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--ready); transition: width .2s ease; }
       .review-shell { display: grid; grid-template-columns: minmax(290px, 36%) minmax(0, 1fr); min-height: 610px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
       .queue { border-right: 1px solid var(--line); background: #fbfaf9; }
       .queue-tools { padding: 12px; border-bottom: 1px solid var(--line); }
@@ -115,6 +120,7 @@
       .queue-item.on { background: #fff; border-left-color: var(--accent); }
       .queue-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
       .queue-title { font-size: 13px; font-weight: 730; line-height: 1.3; }
+      .queue-kind { display: inline-block; margin-bottom: 5px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
       .queue-value { margin: 5px 0; font-size: 12px; }
       .queue-summary { color: var(--muted); font-size: 12px; line-height: 1.4; }
       .status { flex: 0 0 auto; font-size: 10px; font-weight: 750; border-radius: 999px; padding: 3px 7px; background: var(--path-bg); color: var(--path); }
@@ -141,6 +147,8 @@
       .action.reject { color: var(--none); }
       .action.context { color: var(--path); }
       .action.selected { box-shadow: 0 0 0 2px currentColor inset; }
+      .action.reject.selected { background: var(--none-bg); }
+      .action.context.selected { background: #eef4fb; color: #28679a; }
       .edit-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
       .edit-box[hidden] { display: none; }
       .edit-box select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font: inherit; }
@@ -148,7 +156,7 @@
       .guide-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
       .guide-step { color: #44545e; font-size: 12px; line-height: 1.45; }
       .guide-step strong { color: var(--ink); }
-      .quality-review { margin-top: 18px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fbfaf9; }
+      .quality-review { position: sticky; z-index: 3; bottom: 0; margin-top: 18px; padding: 14px; border: 1px solid #d9d0ca; border-radius: 10px; background: rgba(251, 250, 249, .97); box-shadow: 0 -8px 20px rgba(35, 31, 32, .06); backdrop-filter: blur(8px); }
       .quality-review label { display: block; font-size: 11px; font-weight: 750; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 5px; }
       .quality-review input, .quality-review textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; color: var(--ink); font: inherit; font-size: 12px; }
       .quality-review textarea { min-height: 82px; resize: vertical; line-height: 1.45; }
@@ -157,7 +165,7 @@
       .source-meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
       .reason-list { margin: 7px 0; padding-left: 20px; }
       .reason-list li { margin: 5px 0; }
-      .evidence { margin-top: 9px; }
+      .evidence { margin-top: 9px; padding: 12px; border: 1px solid #ddd5cf; border-radius: 10px; background: #fdfcfb; }
       .bubble { display: grid; grid-template-columns: 34px 1fr; gap: 8px; margin: 8px 0; }
       .avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #eee7e1; color: #675951; font-size: 10px; font-weight: 800; }
       .bubble.us .avatar { background: #e9f1f7; color: #37627f; }
@@ -177,6 +185,8 @@
         .kpis { grid-template-columns: repeat(2, 1fr); }
         .review-shell { grid-template-columns: 1fr; }
         .guide-steps { grid-template-columns: 1fr; }
+        .call-card { grid-template-columns: 1fr; }
+        .call-actions { justify-content: flex-start; }
         .queue { border-right: 0; border-bottom: 1px solid var(--line); }
         .queue-list { max-height: 260px; }
         .detail { max-height: none; }
@@ -260,6 +270,7 @@
       const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
       const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       const TYPE_NAME = { prospecting: "Prospecting", other: "Other", demo: "Demo", discovery: "Discovery", sync: "Sync", pricing: "Pricing", implementation: "Implementation", inbound: "Inbound", training: "Training", support: "Support" };
+      const FEEDBACK_REPO = "Entrata-Collab/entrata-rfp-engine";
       const short = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
 
       let DATA = null;
@@ -270,7 +281,8 @@
       let reviewFilter = "all";
       let categoryFilter = "all";
       const reviewDecisions = JSON.parse(localStorage.getItem("prospect-quality-reviews") || "{}");
-      let reviewerName = localStorage.getItem("prospect-reviewer-name") || "";
+      let reviewerName = new URLSearchParams(location.search).get("reviewer") || localStorage.getItem("prospect-reviewer-name") || "";
+      if (reviewerName) localStorage.setItem("prospect-reviewer-name", reviewerName);
 
       function setStep(text, sub, pct) {
         $("step").textContent = text;
@@ -346,13 +358,16 @@
         const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
         const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
         const notes = plan.summary ? `<div class="note">${esc(plan.summary)}</div>` : "";
-        const calls = c.calls.map((call) => `<div class="call"><a href="${esc(call.url)}" target="_blank" rel="noopener">${esc(call.title || "Gong call")}</a><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min</div></div>`).join("");
+        const calls = c.calls.map((call) => `<div class="call-card"><div><strong>${esc(call.title || "Gong call")}</strong><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min · Call ID ${esc(call.callId)}</div></div><div class="call-actions"><a class="action" href="${esc(call.url)}" target="_blank" rel="noopener">Open call in Gong</a></div></div>`).join("");
         const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
         $("result").innerHTML = `
           <div class="co-name">${esc(c.name)}</div>
           <div class="meta">${esc(facts)}</div>
           <div class="chips">${opps}</div>
           ${waiting}
+          <h3>Call details</h3>
+          <div class="meta">Use the call title and highlighted timestamp below to find the cited moment in Gong.</div>
+          ${calls || `<div class="meta">No calls on file.</div>`}
           <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
           ${notes}
           ${c.reviewed ? `<div class="review-guide"><strong>Quality review — about 2 minutes per item</strong><div class="guide-steps">
@@ -360,10 +375,9 @@
             <div class="guide-step"><strong>2. Check evidence and scope.</strong><br>Verify the quote, occupancy type, implementation package, and contracted product.</div>
             <div class="guide-step"><strong>3. Rate the result.</strong><br>Mark accurate, needs correction, or missing context.</div>
           </div></div>
-          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action" id="export-feedback">Download feedback CSV</button><div class="meta" id="review-progress"></div></div></div>
+          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action approve" id="submit-feedback">Submit shared feedback</button> <button type="button" class="action" id="export-feedback">Download backup CSV</button><div class="meta" id="review-progress"></div><div class="review-progress-track" aria-hidden="true"><div class="review-progress-fill" id="review-progress-fill"></div></div></div></div>
           <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
-          <h3>Calls</h3>
-          ${calls || `<div class="meta">No calls on file.</div>`}`;
+          `;
         $("result").classList.add("on");
         if (c.reviewed) initReview(c, plan);
       }
@@ -416,7 +430,7 @@
         const full = s.lines.map(bubble).join("");
         const remaining = s.lines.length - (end - start);
         const source = [s.callTitle, s.callDate].filter(Boolean).join(" · ");
-        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open source call</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
+        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open call in Gong</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
       }
 
       function initReview(c, plan) {
@@ -446,14 +460,17 @@
           const [status, cls] = statusFor(item);
           const state = reviewDecisions[`${current.id}-${item.id}`] || {};
           const queueValue = item.kind === "change" && state.value ? `${item.data.catalogDefault} → ${state.value}` : item.value;
+          const kindLabel = { change: "Proposed configuration", confirm: "Confirmation", ruled: "No change", gap: "Product gap" }[item.kind] || item.kind;
           return `<button type="button" class="queue-item ${selectedReviewId === item.id ? "on" : ""}" data-review-id="${esc(item.id)}">
-            <div class="queue-top"><div class="queue-title">${esc(item.title)}</div><span class="status ${cls}">${esc(status)}</span></div>
+            <span class="queue-kind">${esc(kindLabel)} · ${esc(item.category)}</span>
+            <div class="queue-top"><div class="queue-title">${esc(item.title)}</div><span class="status ${cls}">${state.result ? "✓ " : ""}${esc(status)}</span></div>
             <div class="queue-value">${esc(queueValue)}</div><div class="queue-summary">${esc(item.summary)}</div></button>`;
         }).join("") : `<div class="empty-detail">No items in this filter.</div>`;
         const selected = items.find((x) => x.id === selectedReviewId);
         $("review-detail").innerHTML = selected ? detailFor(selected) : `<div class="empty-detail">Choose a review item.</div>`;
         const reviewed = items.filter((item) => reviewDecisions[`${current.id}-${item.id}`]?.result).length;
         if ($("review-progress")) $("review-progress").textContent = `${reviewed} of ${items.length} quality checks completed`;
+        if ($("review-progress-fill")) $("review-progress-fill").style.width = `${items.length ? (reviewed / items.length) * 100 : 0}%`;
         bindReviewEvents(items);
       }
 
@@ -465,7 +482,7 @@
           <label>Is the AI output supported by this evidence?</label><div class="quality-actions">${option("accurate", "Accurate", "approve")}${option("correction", "Needs correction", "reject")}${option("context", "Missing context", "context")}</div>
           <label for="review-notes">What should change or what is missing?</label><textarea id="review-notes" placeholder="Be specific: wrong setting, wrong value, speaker lacked authority, conflicting call, vertical-specific context…">${esc(state.notes || "")}</textarea>
           <div class="actions"><button type="button" class="action" data-copy-review>Copy review packet</button></div>
-          <div class="export-note">Saved in this browser. Download the CSV to combine feedback from different reviewers; shared server-side comments are not enabled in this static pilot.</div>
+          <div class="export-note">Saved in this browser. Submit shared feedback to open a private review packet; CSV remains the backup.</div>
         </div>`;
       }
 
@@ -481,7 +498,7 @@
             <div class="actions"><button class="action" data-edit>Correct proposed value</button></div>
             <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
             <div class="section"><div class="section-title">Setting path and impact</div><div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div></div>
-            <div class="section"><div class="section-title">Why this value</div><ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>
+            <div class="section"><div class="section-title">Why this value</div><ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>${r.assumption ? `<div class="support"><strong>Assumption to review:</strong> ${esc(r.assumption)}</div>` : ""}</div>
             <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
             <div class="section"><div class="section-title">Limits and alternatives</div><div class="support"><strong>Not covered:</strong> ${esc(r.notCovered)}</div>${r.rejected.map((x) => `<div class="support"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join("")}</div>${qualityPanel(item)}`;
         }
@@ -526,6 +543,50 @@
         link.download = `${current.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-ai-quality-review.csv`;
         link.click();
         URL.revokeObjectURL(link.href);
+      }
+
+      function feedbackPayload(items) {
+        const reviews = items.map((item) => {
+          const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+          return {
+            itemId: item.id,
+            kind: item.kind,
+            title: item.title,
+            result: state.result || "",
+            reviewer: state.reviewer || reviewerName,
+            notes: state.notes || "",
+            correctedValue: state.value || "",
+          };
+        }).filter((review) => review.result);
+        return {
+          schemaVersion: 1,
+          prospectId: current.id,
+          prospectName: current.name,
+          submittedAt: new Date().toISOString(),
+          reviewer: reviewerName || reviews[0]?.reviewer || "",
+          reviews,
+        };
+      }
+
+      function submitSharedFeedback(items) {
+        const payload = feedbackPayload(items);
+        if (!payload.reviews.length) {
+          alert("Rate at least one item before submitting.");
+          return;
+        }
+        if (!payload.reviewer) {
+          alert("Enter your name before submitting.");
+          return;
+        }
+        const counts = payload.reviews.reduce((acc, review) => {
+          acc[review.result] = (acc[review.result] || 0) + 1;
+          return acc;
+        }, {});
+        const summary = `Reviewed ${payload.reviews.length} items: ${counts.accurate || 0} accurate, ${counts.correction || 0} need correction, ${counts.context || 0} need more context.`;
+        const body = `## AI quality review submission\n\n**Prospect:** ${payload.prospectName}\n**Reviewer:** ${payload.reviewer}\n**Summary:** ${summary}\n\nThis structured feedback was submitted from the quality-review workspace. An automated workflow will validate it and open a draft change for Brandon to review.\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
+        const title = `AI quality feedback: ${payload.prospectName} — ${payload.reviewer}`;
+        const url = `https://github.com/${FEEDBACK_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+        window.open(url, "_blank", "noopener");
       }
 
       function bindReviewEvents(items) {
@@ -584,6 +645,7 @@
           renderReviewWorkspace(items);
         });
         $("export-feedback")?.addEventListener("click", () => downloadFeedback(items));
+        $("submit-feedback")?.addEventListener("click", () => submitSharedFeedback(items));
       }
 
       async function boot() {
