@@ -9,12 +9,13 @@
     <style>
       :root {
         color-scheme: light;
-        --ink: #231f20;
-        --muted: #6f655f;
-        --line: #e8e1dc;
+        --ink: #1f2430;
+        --muted: #667085;
+        --line: #e4e7ec;
         --paper: #fff;
-        --canvas: #f7f4f1;
-        --accent: #9a5b3b;
+        --canvas: #f5f6f8;
+        --accent: #4f46e5;
+        --accent-bg: #eef0fe;
         --ready: #18794e;
         --ready-bg: #e9f7ef;
         --path: #9a6700;
@@ -68,7 +69,7 @@
         font: inherit; font-size: 14px; padding: 9px 12px; border: 0; border-bottom: 1px solid var(--line);
         background: #fff; cursor: pointer; color: var(--ink);
       }
-      .list button:hover, .list button.active { background: #fbf6f2; }
+      .list button:hover, .list button.active { background: var(--accent-bg); }
       .list .sub { color: var(--muted); font-size: 12px; }
       .pill { font-size: 11px; font-weight: 750; color: var(--ready); background: var(--ready-bg); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
       .hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
@@ -86,7 +87,7 @@
       .co-name { font-size: 24px; font-weight: 780; letter-spacing: -.03em; margin: 0 0 4px; }
       .meta { color: var(--muted); font-size: 13px; line-height: 1.6; }
       .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-      .chip { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: #f2ece7; color: var(--ink); }
+      .chip { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: #f2f4f7; color: var(--ink); }
       .baseline, .note { margin: 14px 0; padding: 12px 14px; border-radius: 12px; background: #f4f7f8; font-size: 13px; line-height: 1.5; }
       .note { background: var(--path-bg); }
       table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -102,13 +103,22 @@
       .call-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 14px; margin: 8px 0; border: 1px solid var(--line); border-radius: 10px; background: #faf8f6; }
       .call-card strong { display: block; margin-bottom: 3px; }
       .call-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
-      .review-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 10px; }
-      .review-bar h3 { margin: 0; }
-      .review-bar .meta { text-align: right; }
-      .review-progress-track { width: 220px; height: 6px; margin: 5px 0 0 auto; border-radius: 999px; background: #e7e2de; overflow: hidden; }
-      .review-progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--ready); transition: width .2s ease; }
+      .prospect-strip { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+      .strip-main { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .strip-main .co-name { font-size: 20px; margin: 0; }
+      .strip-actions { display: flex; gap: 12px; }
+      .strip-link, .link-button { color: var(--accent); font: inherit; font-size: 13px; font-weight: 650; text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
+      .strip-link:hover, .link-button:hover { text-decoration: underline; }
+      .how-to { margin: 10px 0 0; font-size: 13px; line-height: 1.5; color: #475467; }
+      .how-to summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+      .how-to ol { margin: 8px 0; padding-left: 20px; }
+      .how-to p { margin: 6px 0; }
+      .review-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin: 18px 0 10px; }
+      .review-count { display: flex; flex-direction: column; gap: 4px; }
+      .review-progress-track { width: 220px; height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+      .review-progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--accent); transition: width .2s ease; }
       .review-shell { display: grid; grid-template-columns: minmax(290px, 36%) minmax(0, 1fr); min-height: 610px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
-      .queue { border-right: 1px solid var(--line); background: #fbfaf9; }
+      .queue { border-right: 1px solid var(--line); background: #f9fafb; }
       .queue-tools { padding: 12px; border-bottom: 1px solid var(--line); }
       .filters { display: flex; gap: 5px; flex-wrap: wrap; }
       .filter { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 5px 9px; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
@@ -116,62 +126,66 @@
       .category-filter { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 7px 8px; color: var(--ink); background: #fff; font: inherit; font-size: 12px; }
       .queue-list { max-height: 610px; overflow-y: auto; }
       .queue-item { width: 100%; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; background: transparent; padding: 13px 14px 12px; text-align: left; color: var(--ink); font: inherit; cursor: pointer; }
-      .queue-item:hover { background: #fff; }
-      .queue-item.on { background: #fff; border-left-color: var(--accent); }
-      .queue-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-      .queue-title { font-size: 13px; font-weight: 730; line-height: 1.3; }
-      .queue-kind { display: inline-block; margin-bottom: 5px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
-      .queue-value { margin: 5px 0; font-size: 12px; }
+      .queue-item:hover { background: #fcfcfd; }
+      .queue-item.on { background: #fff; border-left-color: var(--accent); box-shadow: 0 1px 2px rgba(16, 24, 40, .05); }
+      .queue-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+      .queue-title, .queue-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+      .queue-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
+      .queue-kind { display: inline-block; margin-bottom: 4px; color: var(--muted); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+      .queue-value { margin: 4px 0; font-size: 12px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .queue-summary { color: var(--muted); font-size: 12px; line-height: 1.4; }
-      .status { flex: 0 0 auto; font-size: 10px; font-weight: 750; border-radius: 999px; padding: 3px 7px; background: var(--path-bg); color: var(--path); }
+      .status { flex: 0 0 auto; font-size: 10px; font-weight: 700; border-radius: 999px; padding: 3px 7px; background: var(--path-bg); color: var(--path); }
       .status.approved { background: var(--ready-bg); color: var(--ready); }
       .status.rejected { background: var(--none-bg); color: var(--none); }
-      .status.info { background: #eef2f6; color: #52616d; }
-      .detail { min-width: 0; padding: 22px 24px 28px; overflow-y: auto; max-height: 680px; }
-      .detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-      .topic { font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
-      .decision { font-size: 21px; line-height: 1.25; letter-spacing: -.02em; margin: 4px 0 7px; }
+      .status.info { background: #f2f4f7; color: #667085; }
+      .detail { position: relative; min-width: 0; padding: 22px 24px 0; overflow-y: auto; max-height: 720px; }
+      .detail-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+      .topic { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+      .decision { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -.02em; margin: 6px 0 12px; }
       .badge.partial { background: var(--path-bg); color: var(--path); }
-      .change-strip { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; gap: 10px; margin: 16px 0; padding: 12px 14px; border-radius: 10px; background: #faf8f6; }
-      .change-strip .arrow { text-align: center; color: var(--muted); }
+      .change-strip { display: grid; grid-template-columns: auto 24px auto 1fr; align-items: end; gap: 12px; margin: 0 0 4px; }
+      .change-strip .arrow { color: var(--muted); padding-bottom: 2px; }
       .change-strip span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-      .change-strip strong { display: block; margin-top: 2px; font-size: 18px; }
-      .change-strip .proposed strong { color: var(--ready); }
-      .insight { background: #fff8e8; border-left: 4px solid #e0a52b; border-radius: 8px; padding: 11px 13px; margin: 14px 0; font-size: 14px; line-height: 1.5; }
+      .change-strip strong { display: block; margin-top: 2px; font-size: 16px; font-weight: 650; }
+      .change-strip .proposed strong { color: var(--accent); }
+      .change-strip .link-button { justify-self: end; font-size: 12px; }
+      .insight { margin: 0; font-size: 14px; line-height: 1.55; }
+      .assumption { margin: 8px 0 0; font-size: 13px; color: #475467; }
       .section { padding-top: 16px; margin-top: 16px; border-top: 1px solid var(--line); }
-      .section-title { font-size: 12px; font-weight: 780; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
-      .path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #4a403b; background: #faf8f6; border-radius: 8px; padding: 8px 10px; margin: 6px 0; overflow-wrap: anywhere; }
+      .section-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+      .more-detail { font-size: 13px; line-height: 1.5; }
+      .more-detail summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+      .more-detail p { margin: 6px 0; }
+      .path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #475467; margin: 8px 0 4px; overflow-wrap: anywhere; }
       .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 4px; }
-      .action { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 13px; font: inherit; font-size: 12px; font-weight: 730; cursor: pointer; }
-      .action.approve { background: var(--ready); border-color: var(--ready); color: #fff; }
-      .action.reject { color: var(--none); }
-      .action.context { color: var(--path); }
-      .action.selected { box-shadow: 0 0 0 2px currentColor inset; }
-      .action.reject.selected { background: var(--none-bg); }
-      .action.context.selected { background: #eef4fb; color: #28679a; }
+      .action { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 8px; padding: 8px 13px; font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; }
+      .action.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .action.rate-accurate.selected { background: var(--ready); border-color: var(--ready); color: #fff; }
+      .action.rate-correction.selected { background: #b54708; border-color: #b54708; color: #fff; }
+      .action.rate-context.selected { background: var(--none); border-color: var(--none); color: #fff; }
       .edit-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
       .edit-box[hidden] { display: none; }
       .edit-box select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font: inherit; }
-      .review-guide { margin: 14px 0; padding: 14px; border: 1px solid #cfe0ea; border-radius: 12px; background: #f3f8fb; }
-      .guide-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
-      .guide-step { color: #44545e; font-size: 12px; line-height: 1.45; }
-      .guide-step strong { color: var(--ink); }
-      .quality-review { position: sticky; z-index: 3; bottom: 0; margin-top: 18px; padding: 14px; border: 1px solid #d9d0ca; border-radius: 10px; background: rgba(251, 250, 249, .97); box-shadow: 0 -8px 20px rgba(35, 31, 32, .06); backdrop-filter: blur(8px); }
-      .quality-review label { display: block; font-size: 11px; font-weight: 750; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 5px; }
-      .quality-review input, .quality-review textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; color: var(--ink); font: inherit; font-size: 12px; }
-      .quality-review textarea { min-height: 82px; resize: vertical; line-height: 1.45; }
-      .quality-actions { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0; }
-      .export-note { color: var(--muted); font-size: 11px; line-height: 1.45; margin-top: 8px; }
+      .quality-review { position: sticky; z-index: 3; bottom: 0; margin: 20px -24px 0; padding: 14px 24px 16px; border-top: 1px solid var(--line); background: #fff; }
+      .qr-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+      .qr-head .section-title { margin: 0; }
+      .reviewer { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+      .reviewer input { width: 160px; border: 0; border-bottom: 1px solid var(--line); padding: 3px 2px; color: var(--ink); font: inherit; font-size: 12px; background: transparent; }
+      .quality-review textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; color: var(--ink); font: inherit; font-size: 12px; resize: vertical; line-height: 1.45; }
+      .quality-actions { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 8px; }
+      .qr-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; }
+      .export-note { color: var(--muted); font-size: 11px; }
       .source-meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
       .reason-list { margin: 7px 0; padding-left: 20px; }
       .reason-list li { margin: 5px 0; }
-      .evidence { margin-top: 9px; padding: 12px; border: 1px solid #ddd5cf; border-radius: 10px; background: #fdfcfb; }
+      .evidence { margin-top: 4px; }
       .bubble { display: grid; grid-template-columns: 34px 1fr; gap: 8px; margin: 8px 0; }
-      .avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #eee7e1; color: #675951; font-size: 10px; font-weight: 800; }
-      .bubble.us .avatar { background: #e9f1f7; color: #37627f; }
-      .speech { background: #f6f2ee; border-radius: 3px 11px 11px 11px; padding: 8px 10px; }
-      .bubble.us .speech { background: #eff5f8; }
-      .speech.key { box-shadow: inset 3px 0 #e0a52b; background: #fff7df; }
+      .avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #f2f4f7; color: #475467; font-size: 10px; font-weight: 800; }
+      .bubble.them .avatar { background: var(--accent-bg); color: var(--accent); }
+      .speech { background: #f9fafb; border-radius: 3px 11px 11px 11px; padding: 8px 10px; }
+      .speech.key { box-shadow: inset 3px 0 var(--accent); background: var(--accent-bg); }
+      .role { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 999px; background: #f2f4f7; color: #475467; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+      .bubble.them .role { background: #fff; color: var(--accent); }
       .speaker { font-size: 11px; font-weight: 750; margin-bottom: 2px; }
       .speech p { margin: 0; font-size: 13px; line-height: 1.45; }
       .stamp { color: var(--muted); font-size: 10px; margin-left: 6px; font-weight: 500; }
@@ -357,25 +371,24 @@
         const facts = [c.units ? `${fmt(c.units)} units` : null, c.properties ? `${fmt(c.properties)} properties` : null, c.city, `${c.calls.length} call${c.calls.length === 1 ? "" : "s"}`].filter(Boolean).join(" · ");
         const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
         const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
-        const notes = plan.summary ? `<div class="note">${esc(plan.summary)}</div>` : "";
-        const calls = c.calls.map((call) => `<div class="call-card"><div><strong>${esc(call.title || "Gong call")}</strong><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min · Call ID ${esc(call.callId)}</div></div><div class="call-actions"><a class="action" href="${esc(call.url)}" target="_blank" rel="noopener">Open call in Gong</a></div></div>`).join("");
+        const callLinks = c.calls.map((call) => `<a class="strip-link" href="${esc(call.url)}" target="_blank" rel="noopener" title="${esc(call.title || "Gong call")} · ${esc(call.date)} · ${esc(call.minutes)} min">Open call in Gong ↗</a>`).join("");
+        const callMeta = c.calls.map((call) => `${esc(call.title || "Gong call")} · ${esc(call.date)} · ${esc(call.minutes)} min`).join("<br>");
         const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
         $("result").innerHTML = `
-          <div class="co-name">${esc(c.name)}</div>
-          <div class="meta">${esc(facts)}</div>
-          <div class="chips">${opps}</div>
+          <div class="prospect-strip">
+            <div class="strip-main"><span class="co-name">${esc(c.name)}</span><span class="meta">${esc(facts)}</span>${opps}</div>
+            <div class="strip-actions">${callLinks}</div>
+          </div>
           ${waiting}
-          <h3>Call details</h3>
-          <div class="meta">Use the call title and highlighted timestamp below to find the cited moment in Gong.</div>
-          ${calls || `<div class="meta">No calls on file.</div>`}
-          <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
-          ${notes}
-          ${c.reviewed ? `<div class="review-guide"><strong>Quality review — about 2 minutes per item</strong><div class="guide-steps">
-            <div class="guide-step"><strong>1. Read the AI decision.</strong><br>Is the setting outcome clear and actionable?</div>
-            <div class="guide-step"><strong>2. Check evidence and scope.</strong><br>Verify the quote, occupancy type, implementation package, and contracted product.</div>
-            <div class="guide-step"><strong>3. Rate the result.</strong><br>Mark accurate, needs correction, or missing context.</div>
-          </div></div>
-          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action approve" id="submit-feedback">Submit shared feedback</button> <button type="button" class="action" id="export-feedback">Download backup CSV</button><div class="meta" id="review-progress"></div><div class="review-progress-track" aria-hidden="true"><div class="review-progress-fill" id="review-progress-fill"></div></div></div></div>
+          ${c.reviewed ? `<details class="how-to"><summary>How to review · about 2 minutes per item</summary>
+            <ol><li><strong>Read the AI decision</strong> — is the setting outcome clear and actionable?</li>
+            <li><strong>Check evidence and scope</strong> — quote, occupancy type, implementation package, contracted product.</li>
+            <li><strong>Rate it</strong> — Accurate, Needs correction, or Missing context.</li></ol>
+            ${plan.summary ? `<p>${esc(plan.summary)}</p>` : ""}
+            <p>${esc(DATA.baseline.rule)}</p>
+            <p class="meta">${callMeta}</p>
+          </details>
+          <div class="review-bar"><div class="review-count"><strong>Review queue</strong><span class="meta" id="review-progress"></span><div class="review-progress-track" aria-hidden="true"><div class="review-progress-fill" id="review-progress-fill"></div></div></div><div><button type="button" class="action" id="export-feedback">Download CSV</button> <button type="button" class="action primary" id="submit-feedback">Submit shared feedback</button></div></div>
           <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
           `;
         $("result").classList.add("on");
@@ -425,7 +438,7 @@
         const start = Math.max(0, key - 1);
         const end = Math.min(s.lines.length, key + 2);
         const bubble = (line) => `<div class="bubble ${line.prospect ? "them" : "us"}"><div class="avatar">${esc(initials(line.who))}</div>
-          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}${line.prospect ? " · Prospect" : " · Entrata"}<a class="stamp" href="${esc(s.callUrl)}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${esc(line.text)}</p></div></div>`;
+          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}<span class="role">${line.prospect ? "Prospect" : "Entrata"}</span><a class="stamp" href="${esc(s.callUrl)}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${esc(line.text)}</p></div></div>`;
         const snippet = s.lines.slice(start, end).map(bubble).join("");
         const full = s.lines.map(bubble).join("");
         const remaining = s.lines.length - (end - start);
@@ -477,12 +490,11 @@
       function qualityPanel(item) {
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
         const option = (result, label, cls = "") => `<button type="button" class="action ${cls} ${state.result === result ? "selected" : ""}" data-quality="${result}">${label}</button>`;
-        return `<div class="quality-review"><div class="section-title">Your quality check</div>
-          <label for="reviewer-name">Reviewer</label><input id="reviewer-name" value="${esc(state.reviewer || reviewerName)}" placeholder="Your name">
-          <label>Is the AI output supported by this evidence?</label><div class="quality-actions">${option("accurate", "Accurate", "approve")}${option("correction", "Needs correction", "reject")}${option("context", "Missing context", "context")}</div>
-          <label for="review-notes">What should change or what is missing?</label><textarea id="review-notes" placeholder="Be specific: wrong setting, wrong value, speaker lacked authority, conflicting call, vertical-specific context…">${esc(state.notes || "")}</textarea>
-          <div class="actions"><button type="button" class="action" data-copy-review>Copy review packet</button></div>
-          <div class="export-note">Saved in this browser. Submit shared feedback to open a private review packet; CSV remains the backup.</div>
+        return `<div class="quality-review">
+          <div class="qr-head"><div class="section-title">Your quality check</div><label class="reviewer">Reviewer <input id="reviewer-name" value="${esc(state.reviewer || reviewerName)}" placeholder="Your name"></label></div>
+          <div class="quality-actions">${option("accurate", "Accurate", "rate-accurate")}${option("correction", "Needs correction", "rate-correction")}${option("context", "Missing context", "rate-context")}</div>
+          <textarea id="review-notes" aria-label="Reviewer note" placeholder="Optional note: wrong setting, wrong value, speaker lacked authority, conflicting call…">${esc(state.notes || "")}</textarea>
+          <div class="qr-foot"><button type="button" class="link-button" data-copy-review>Copy review packet</button><span class="export-note">Saved in this browser until you submit.</span></div>
         </div>`;
       }
 
@@ -492,28 +504,34 @@
           const key = `${current.id}-${item.id}`;
           const state = reviewDecisions[key] || {};
           const choice = state.value || r.proposed;
-          return `<div class="detail-head"><div><div class="topic">${esc(item.category)} · Proposed setting change</div><div class="decision">Set “${esc(r.setting)}” to ${esc(choice)}</div></div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} evidence match</span></div>
-            <div class="change-strip"><div><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div></div>
-            <div class="insight"><strong>AI insight:</strong> ${esc(r.meaning)}</div>
-            <div class="actions"><button class="action" data-edit>Correct proposed value</button></div>
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · Proposed configuration</div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} match</span></div>
+            <div class="decision">${esc(r.setting)}</div>
+            <div class="change-strip"><div><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div><button class="link-button" data-edit>Correct value</button></div>
             <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
-            <div class="section"><div class="section-title">Setting path and impact</div><div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div></div>
-            <div class="section"><div class="section-title">Why this value</div><ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>${r.assumption ? `<div class="support"><strong>Assumption to review:</strong> ${esc(r.assumption)}</div>` : ""}</div>
+            <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(r.meaning)}</p>${r.assumption ? `<p class="assumption"><strong>Assumption:</strong> ${esc(r.assumption)}</p>` : ""}</div>
             <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
-            <div class="section"><div class="section-title">Limits and alternatives</div><div class="support"><strong>Not covered:</strong> ${esc(r.notCovered)}</div>${r.rejected.map((x) => `<div class="support"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join("")}</div>${qualityPanel(item)}`;
+            <details class="section more-detail"><summary>Setting path, reasoning, and alternatives</summary>
+              <div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div>
+              <ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+              <p><strong>Not covered:</strong> ${esc(r.notCovered)}</p>${r.rejected.map((x) => `<p><strong>Rejected — ${esc(x.setting)}:</strong> ${esc(x.why)}</p>`).join("")}
+            </details>${qualityPanel(item)}`;
         }
         if (item.kind === "confirm") {
           const q = item.data;
-          return `<div class="topic">${esc(item.category)} · Confirmation needed</div><div class="decision">${esc(q.question)}</div>
-            <div class="insight"><strong>Default if unanswered:</strong> ${esc(q.default)}</div><p>${esc(q.why)}</p>
-            ${q.path ? `<div class="section"><div class="section-title">Closest setting</div><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></div>` : ""}
-            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>${qualityPanel(item)}`;
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · Confirmation</div><span class="badge partial">Needs answer</span></div><div class="decision">${esc(q.question)}</div>
+            <div class="change-strip"><div class="proposed"><span>Default if unanswered</span><strong>${esc(q.default)}</strong></div></div>
+            <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(q.why)}</p></div>
+            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>
+            ${q.path ? `<details class="section more-detail"><summary>Closest setting</summary><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></details>` : ""}${qualityPanel(item)}`;
         }
         if (item.kind === "ruled") {
           const r = item.data;
-          return `<div class="topic">${esc(item.category)} · No change</div><div class="decision">${esc(r.setting)}</div><div class="insight"><strong>Why it was ruled out:</strong> ${esc(r.why)}</div><div class="meta">Checked in code: ${esc(r.codeRef)}</div>${qualityPanel(item)}`;
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · No change</div></div><div class="decision">${esc(r.setting)}</div>
+            <div class="section"><div class="section-title">Why it was ruled out</div><p class="insight">${esc(r.why)}</p><div class="path">Checked in code: ${esc(r.codeRef)}</div></div>${qualityPanel(item)}`;
         }
-        return `<div class="topic">Product gap · Not a setting</div><div class="decision">${esc(item.data.text)}</div><div class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</div><div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>${qualityPanel(item)}`;
+        return `<div class="detail-head"><div class="topic">Product gap · Not a setting</div></div><div class="decision">${esc(item.data.text)}</div>
+          <div class="section"><div class="section-title">AI insight</div><p class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</p></div>
+          <div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>${qualityPanel(item)}`;
       }
 
       function evidenceText(item) {
