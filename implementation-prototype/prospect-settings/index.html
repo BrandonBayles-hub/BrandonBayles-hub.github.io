@@ -26,8 +26,8 @@
       }
       * { box-sizing: border-box; }
       body { margin: 0; background: var(--canvas); color: var(--ink); }
-      .shell { max-width: 1440px; margin: 0 auto; padding: 28px 32px 56px; }
-      header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 24px; }
+      .shell { max-width: 1440px; margin: 0 auto; padding: 20px 28px 40px; }
+      header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 14px; }
       .eyebrow { color: var(--accent); font-weight: 750; letter-spacing: .08em; font-size: 11px; text-transform: uppercase; }
       h1 { font-size: clamp(28px, 3vw, 40px); margin: 7px 0 8px; letter-spacing: -.035em; line-height: 1.05; }
       h2 { font-size: 18px; margin: 0 0 4px; letter-spacing: -.02em; }
@@ -36,7 +36,7 @@
       .freshness { min-width: 260px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
       .freshness strong { display: block; margin-bottom: 4px; }
       .freshness span { color: var(--muted); font-size: 12px; line-height: 1.5; display: block; }
-      .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px 18px; margin: 8px 0 26px; }
+      .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px 18px; margin: 4px 0 16px; }
       .kpi .n { font-size: 32px; font-weight: 780; letter-spacing: -.04em; line-height: 1; }
       .kpi .l { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.35; }
       .kpi.ready .n { color: var(--ready); }
@@ -50,7 +50,7 @@
       .axis { margin-top: 4px; color: var(--muted); font-size: 11px; }
       .axis span:nth-child(2) { display: flex; justify-content: space-between; }
       .caption { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 10px 0 22px; max-width: 920px; }
-      .notice { padding: 13px 15px; background: #fff9ed; border: 1px solid #f0d7a1; border-radius: 12px; color: #76530b; font-size: 13px; line-height: 1.5; margin-bottom: 18px; }
+      .notice { padding: 10px 12px; background: #fff9ed; border: 1px solid #f0d7a1; border-radius: 12px; color: #76530b; font-size: 13px; line-height: 1.5; margin-bottom: 12px; }
       .notice strong { color: #4e3607; }
       .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 18px; }
       .combo { position: relative; max-width: 560px; margin-top: 12px; }
@@ -117,39 +117,39 @@
       .review-count { display: flex; flex-direction: column; gap: 4px; }
       .review-progress-track { width: 220px; height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
       .review-progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--accent); transition: width .2s ease; }
-      .review-shell { display: grid; grid-template-columns: minmax(290px, 36%) minmax(0, 1fr); min-height: 610px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
-      .queue { border-right: 1px solid var(--line); background: #f9fafb; }
+      .review-shell { display: grid; grid-template-columns: minmax(320px, 36%) minmax(0, 1fr); min-height: 640px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
+      .queue { border-right: 1px solid var(--line); background: #f7f6f4; }
       .queue-tools { padding: 12px; border-bottom: 1px solid var(--line); }
       .filters { display: flex; gap: 5px; flex-wrap: wrap; }
       .filter { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 5px 9px; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
       .filter.on { background: var(--ink); color: #fff; border-color: var(--ink); }
       .category-filter { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 7px 8px; color: var(--ink); background: #fff; font: inherit; font-size: 12px; }
-      .queue-list { max-height: 610px; overflow-y: auto; }
-      .queue-item { width: 100%; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; background: transparent; padding: 13px 14px 12px; text-align: left; color: var(--ink); font: inherit; cursor: pointer; }
-      .queue-item:hover { background: #fcfcfd; }
-      .queue-item.on { background: #fff; border-left-color: var(--accent); box-shadow: 0 1px 2px rgba(16, 24, 40, .05); }
-      .queue-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-      .queue-title, .queue-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-      .queue-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
-      .queue-kind { display: inline-block; margin-bottom: 4px; color: var(--muted); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-      .queue-value { margin: 4px 0; font-size: 12px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .queue-summary { color: var(--muted); font-size: 12px; line-height: 1.4; }
-      .status { flex: 0 0 auto; font-size: 10px; font-weight: 700; border-radius: 999px; padding: 3px 7px; background: var(--path-bg); color: var(--path); }
-      .status.approved { background: var(--ready-bg); color: var(--ready); }
-      .status.rejected { background: var(--none-bg); color: var(--none); }
-      .status.info { background: #f2f4f7; color: #667085; }
-      .detail { position: relative; min-width: 0; padding: 22px 24px 0; overflow-y: auto; max-height: 720px; }
+      .queue-list { max-height: 680px; overflow-y: auto; }
+      .queue-item { display: flex; align-items: flex-start; gap: 10px; width: 100%; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; background: transparent; padding: 12px 14px; text-align: left; color: var(--ink); font: inherit; cursor: pointer; }
+      .queue-item:hover { background: #fff; }
+      .queue-item.on { background: #fff; border-left-color: var(--ink); }
+      .dot { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%; background: #d0d5dd; color: transparent; display: grid; place-items: center; font-size: 10px; font-weight: 800; }
+      .dot.approved { background: var(--ready); color: #fff; }
+      .dot.rejected { background: var(--none); color: #fff; }
+      .dot.context { background: #b54708; color: #fff; }
+      .queue-title, .queue-value { display: block; }
+      .queue-title { font-size: 13px; font-weight: 650; line-height: 1.35; }
+      .queue-kind { display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; font-weight: 650; }
+      .queue-value { margin-top: 4px; color: #344054; font-size: 12px; line-height: 1.4; }
+      .detail { min-width: 0; padding: 20px 24px 16px; overflow-y: auto; max-height: 760px; }
       .detail-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
       .topic { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
       .decision { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -.02em; margin: 6px 0 12px; }
       .badge.partial { background: var(--path-bg); color: var(--path); }
-      .change-strip { display: grid; grid-template-columns: auto 24px auto 1fr; align-items: end; gap: 12px; margin: 0 0 4px; }
-      .change-strip .arrow { color: var(--muted); padding-bottom: 2px; }
-      .change-strip span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-      .change-strip strong { display: block; margin-top: 2px; font-size: 16px; font-weight: 650; }
-      .change-strip .proposed strong { color: var(--accent); }
-      .change-strip .link-button { justify-self: end; font-size: 12px; }
-      .insight { margin: 0; font-size: 14px; line-height: 1.55; }
+      .change-strip { display: grid; grid-template-columns: 1fr 28px 1fr auto; align-items: stretch; gap: 10px; margin: 0 0 8px; }
+      .change-strip .cell { padding: 10px 12px; border-radius: 8px; background: #f3f2ef; }
+      .change-strip .proposed { background: #e7f6ee; }
+      .change-strip .arrow { display: grid; place-items: center; color: var(--muted); }
+      .change-strip span { display: block; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+      .change-strip strong { display: block; margin-top: 4px; font-size: 16px; font-weight: 650; line-height: 1.3; }
+      .change-strip .proposed strong { color: #146c43; }
+      .change-strip .link-button { align-self: end; font-size: 12px; }
+      .insight { margin: 0; max-width: 68ch; font-size: 14px; line-height: 1.5; color: #344054; }
       .assumption { margin: 8px 0 0; font-size: 13px; color: #475467; }
       .section { padding-top: 16px; margin-top: 16px; border-top: 1px solid var(--line); }
       .section-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
@@ -160,13 +160,17 @@
       .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 4px; }
       .action { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 8px; padding: 8px 13px; font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; }
       .action.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .action.rate-accurate { background: #e7f6ee; border-color: #18794e; color: #146c43; }
+      .action.rate-correction { background: #fff4e8; border-color: #b54708; color: #b54708; }
+      .action.rate-context { background: #fff1f0; border-color: #b42318; color: #b42318; }
       .action.rate-accurate.selected { background: var(--ready); border-color: var(--ready); color: #fff; }
       .action.rate-correction.selected { background: #b54708; border-color: #b54708; color: #fff; }
       .action.rate-context.selected { background: var(--none); border-color: var(--none); color: #fff; }
       .edit-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
       .edit-box[hidden] { display: none; }
       .edit-box select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font: inherit; }
-      .quality-review { position: sticky; z-index: 3; bottom: 0; margin: 20px -24px 0; padding: 14px 24px 16px; border-top: 1px solid var(--line); background: #fff; }
+      .quality-review { margin: 8px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); background: #fff; }
+      kbd { margin-left: 6px; padding: 0 4px; border: 1px solid currentColor; border-radius: 4px; font: inherit; font-size: 10px; font-weight: 700; opacity: .65; }
       .qr-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
       .qr-head .section-title { margin: 0; }
       .reviewer { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
@@ -179,11 +183,12 @@
       .reason-list { margin: 7px 0; padding-left: 20px; }
       .reason-list li { margin: 5px 0; }
       .evidence { margin-top: 4px; }
+      mark { background: #fff3bf; color: inherit; font-weight: 750; padding: 0 2px; border-radius: 2px; }
       .bubble { display: grid; grid-template-columns: 34px 1fr; gap: 8px; margin: 8px 0; }
       .avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #f2f4f7; color: #475467; font-size: 10px; font-weight: 800; }
       .bubble.them .avatar { background: var(--accent-bg); color: var(--accent); }
       .speech { background: #f9fafb; border-radius: 3px 11px 11px 11px; padding: 8px 10px; }
-      .speech.key { box-shadow: inset 3px 0 var(--accent); background: var(--accent-bg); }
+      .speech.key { background: #fbfaf6; }
       .role { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 999px; background: #f2f4f7; color: #475467; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
       .bubble.them .role { background: #fff; color: var(--accent); }
       .speaker { font-size: 11px; font-weight: 750; margin-bottom: 2px; }
@@ -292,6 +297,7 @@
       let runId = 0;
       let active = 0;
       let selectedReviewId = null;
+      let reviewList = [];
       let reviewFilter = "all";
       let categoryFilter = "all";
       const reviewDecisions = JSON.parse(localStorage.getItem("prospect-quality-reviews") || "{}");
@@ -417,8 +423,8 @@
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
         if (state.result === "accurate") return ["Accurate", "approved"];
         if (state.result === "correction") return ["Needs correction", "rejected"];
-        if (state.result === "context") return ["Missing context", ""];
-        return ["Unreviewed", "info"];
+        if (state.result === "context") return ["Missing context", "context"];
+        return ["Pending", "info"];
       }
 
       function initials(name) {
@@ -432,13 +438,37 @@
         return h ? `${h}h ${min}m ${s}s` : `${min}m ${s}s`;
       }
 
+      function gongAt(url, raw) {
+        const [m, s] = String(raw || "0:00").split(":").map(Number);
+        const secs = (m || 0) * 60 + (s || 0);
+        if (!url || !secs) return url || "#";
+        const join = url.includes("?") ? "&" : "?";
+        return `${url}${join}t=${secs}`;
+      }
+
+      function markPhrase(text) {
+        const raw = String(text || "");
+        const stop = new Set("a an the to of and or for on in is it we us our they them that this with from by as at be are was were have has had do did just like right course so very really because but if then than into about what when where who how its".split(" "));
+        const bits = raw.split(/\s*(?:,|;|\bbecause\b|\bbut\b)\s*/i).map((part) => part.replace(/^[\s.…]+|[\s.…]+$/g, "")).filter((part) => part.length > 12);
+        const score = (part) => part.match(/[A-Za-z0-9']+/g)?.reduce((sum, word) => {
+          if (/\d/.test(word)) return sum + 4;
+          if (!stop.has(word.toLowerCase()) && word.length > 5) return sum + 2;
+          return sum;
+        }, 0) || 0;
+        const best = bits.sort((a, b) => score(b) - score(a))[0];
+        const needle = best ? best.replace(/[?.!]+$/g, "") : "";
+        const at = needle ? raw.toLowerCase().indexOf(needle.toLowerCase()) : -1;
+        if (at < 0) return esc(raw);
+        return `${esc(raw.slice(0, at))}<mark>${esc(raw.slice(at, at + needle.length))}</mark>${esc(raw.slice(at + needle.length))}`;
+      }
+
       function evidence(s, id) {
         if (!s) return `<div class="meta">No transcript excerpt attached.</div>`;
         const key = Math.max(0, s.lines.findIndex((line) => line.key));
         const start = Math.max(0, key - 1);
         const end = Math.min(s.lines.length, key + 2);
         const bubble = (line) => `<div class="bubble ${line.prospect ? "them" : "us"}"><div class="avatar">${esc(initials(line.who))}</div>
-          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}<span class="role">${line.prospect ? "Prospect" : "Entrata"}</span><a class="stamp" href="${esc(s.callUrl)}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${esc(line.text)}</p></div></div>`;
+          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}<span class="role">${line.prospect ? "Prospect" : "Entrata"}</span><a class="stamp" href="${esc(gongAt(s.callUrl, line.t))}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${line.key ? markPhrase(line.text) : esc(line.text)}</p></div></div>`;
         const snippet = s.lines.slice(start, end).map(bubble).join("");
         const full = s.lines.map(bubble).join("");
         const remaining = s.lines.length - (end - start);
@@ -469,15 +499,15 @@
           return kindMatch && (categoryFilter === "all" || x.category === categoryFilter);
         });
         if (!filtered.some((x) => x.id === selectedReviewId)) selectedReviewId = filtered[0]?.id;
+        reviewList = filtered;
         $("queue-list").innerHTML = filtered.length ? filtered.map((item) => {
           const [status, cls] = statusFor(item);
           const state = reviewDecisions[`${current.id}-${item.id}`] || {};
           const queueValue = item.kind === "change" && state.value ? `${item.data.catalogDefault} → ${state.value}` : item.value;
-          const kindLabel = { change: "Proposed configuration", confirm: "Confirmation", ruled: "No change", gap: "Product gap" }[item.kind] || item.kind;
+          const mark = cls === "approved" ? "✓" : cls === "rejected" || cls === "context" ? "!" : "";
           return `<button type="button" class="queue-item ${selectedReviewId === item.id ? "on" : ""}" data-review-id="${esc(item.id)}">
-            <span class="queue-kind">${esc(kindLabel)} · ${esc(item.category)}</span>
-            <div class="queue-top"><div class="queue-title">${esc(item.title)}</div><span class="status ${cls}">${state.result ? "✓ " : ""}${esc(status)}</span></div>
-            <div class="queue-value">${esc(queueValue)}</div><div class="queue-summary">${esc(item.summary)}</div></button>`;
+            <span class="dot ${cls}" title="${esc(status)}">${mark}</span>
+            <span><span class="queue-kind">${esc(item.category)}</span><span class="queue-title">${esc(item.title)}</span><span class="queue-value">${esc(queueValue)}</span></span></button>`;
         }).join("") : `<div class="empty-detail">No items in this filter.</div>`;
         const selected = items.find((x) => x.id === selectedReviewId);
         $("review-detail").innerHTML = selected ? detailFor(selected) : `<div class="empty-detail">Choose a review item.</div>`;
@@ -489,10 +519,10 @@
 
       function qualityPanel(item) {
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
-        const option = (result, label, cls = "") => `<button type="button" class="action ${cls} ${state.result === result ? "selected" : ""}" data-quality="${result}">${label}</button>`;
+        const option = (result, label, key, cls = "") => `<button type="button" class="action ${cls} ${state.result === result ? "selected" : ""}" data-quality="${result}">${label}<kbd>${key}</kbd></button>`;
         return `<div class="quality-review">
           <div class="qr-head"><div class="section-title">Your quality check</div><label class="reviewer">Reviewer <input id="reviewer-name" value="${esc(state.reviewer || reviewerName)}" placeholder="Your name"></label></div>
-          <div class="quality-actions">${option("accurate", "Accurate", "rate-accurate")}${option("correction", "Needs correction", "rate-correction")}${option("context", "Missing context", "rate-context")}</div>
+          <div class="quality-actions">${option("accurate", "Accurate", "A", "rate-accurate")}${option("correction", "Needs correction", "C", "rate-correction")}${option("context", "Missing context", "M", "rate-context")}</div>
           <textarea id="review-notes" aria-label="Reviewer note" placeholder="Optional note: wrong setting, wrong value, speaker lacked authority, conflicting call…">${esc(state.notes || "")}</textarea>
           <div class="qr-foot"><button type="button" class="link-button" data-copy-review>Copy review packet</button><span class="export-note">Saved in this browser until you submit.</span></div>
         </div>`;
@@ -506,7 +536,7 @@
           const choice = state.value || r.proposed;
           return `<div class="detail-head"><div class="topic">${esc(item.category)} · Proposed configuration</div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} match</span></div>
             <div class="decision">${esc(r.setting)}</div>
-            <div class="change-strip"><div><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div><button class="link-button" data-edit>Correct value</button></div>
+            <div class="change-strip"><div class="cell"><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="cell proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div><button class="link-button" data-edit>Correct value</button></div>
             <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
             <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(r.meaning)}</p>${r.assumption ? `<p class="assumption"><strong>Assumption:</strong> ${esc(r.assumption)}</p>` : ""}</div>
             <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
@@ -519,7 +549,7 @@
         if (item.kind === "confirm") {
           const q = item.data;
           return `<div class="detail-head"><div class="topic">${esc(item.category)} · Confirmation</div><span class="badge partial">Needs answer</span></div><div class="decision">${esc(q.question)}</div>
-            <div class="change-strip"><div class="proposed"><span>Default if unanswered</span><strong>${esc(q.default)}</strong></div></div>
+            <div class="change-strip"><div class="cell proposed"><span>Default if unanswered</span><strong>${esc(q.default)}</strong></div></div>
             <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(q.why)}</p></div>
             <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>
             ${q.path ? `<details class="section more-detail"><summary>Closest setting</summary><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></details>` : ""}${qualityPanel(item)}`;
@@ -543,6 +573,18 @@
       function reviewPacket(item) {
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
         return `Prospect: ${current.name}\nItem: ${item.title}\nAI outcome: ${item.value}\nAI explanation: ${item.summary}\nQuality rating: ${state.result || "Unreviewed"}\nReviewer: ${state.reviewer || reviewerName || "Not entered"}\nReviewer notes: ${state.notes || "None"}\n\nEvidence:\n${evidenceText(item)}`;
+      }
+
+      function applyQuality(result, items) {
+        if (!current || !selectedReviewId) return;
+        const key = `${current.id}-${selectedReviewId}`;
+        reviewDecisions[key] = { ...(reviewDecisions[key] || {}), result, reviewer: $("reviewer-name")?.value || reviewerName, notes: $("review-notes")?.value || "" };
+        saveReviews();
+        const idx = reviewList.findIndex((item) => item.id === selectedReviewId);
+        const later = reviewList.slice(idx + 1);
+        const next = later.find((item) => !reviewDecisions[`${current.id}-${item.id}`]?.result) || later[0];
+        if (next) selectedReviewId = next.id;
+        renderReviewWorkspace(items);
       }
 
       function saveReviews() {
@@ -632,12 +674,7 @@
           await navigator.clipboard.writeText(evidenceText(item));
           button.textContent = "Copied";
         }));
-        document.querySelectorAll("[data-quality]").forEach((button) => button.addEventListener("click", () => {
-          const key = `${current.id}-${selectedReviewId}`;
-          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), result: button.dataset.quality, reviewer: $("reviewer-name")?.value || reviewerName, notes: $("review-notes")?.value || "" };
-          saveReviews();
-          renderReviewWorkspace(items);
-        }));
+        document.querySelectorAll("[data-quality]").forEach((button) => button.addEventListener("click", () => applyQuality(button.dataset.quality, items)));
         $("reviewer-name")?.addEventListener("change", (event) => {
           reviewerName = event.target.value.trim();
           localStorage.setItem("prospect-reviewer-name", reviewerName);
@@ -718,6 +755,15 @@
         });
         document.addEventListener("click", (e) => {
           if (!e.target.closest(".combo")) closeList();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (!current?.reviewed || e.metaKey || e.ctrlKey || e.altKey) return;
+          const tag = document.activeElement?.tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+          const result = { a: "accurate", c: "correction", m: "context" }[e.key.toLowerCase()];
+          if (!result) return;
+          e.preventDefault();
+          applyQuality(result, reviewItems(current.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] }));
         });
       }
 
