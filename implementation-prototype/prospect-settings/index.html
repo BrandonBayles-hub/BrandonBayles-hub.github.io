@@ -99,6 +99,32 @@
       .q strong, .gap strong { display: block; margin-bottom: 3px; }
       .call { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
       .call a { color: var(--accent); font-weight: 650; text-decoration: none; }
+      .card { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin: 10px 0; background: #fff; font-size: 13.5px; line-height: 1.55; }
+      .card p { margin: 6px 0; }
+      .card.rejected { background: #faf8f6; }
+      .card-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 8px; }
+      .topic { font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+      .decision { font-size: 16px; margin-top: 3px; }
+      .badge.partial { background: var(--path-bg); color: var(--path); }
+      .chain { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+      .num { width: 24px; height: 24px; border-radius: 50%; background: #f2ece7; font-size: 12px; font-weight: 750; display: grid; place-items: center; }
+      .ct { font-weight: 700; margin-bottom: 4px; }
+      .chain ol { margin: 4px 0; padding-left: 18px; }
+      .path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: #4a403b; background: #faf8f6; border-radius: 8px; padding: 6px 8px; margin: 4px 0; }
+      .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+      .opt { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+      .opt.pick { border-color: var(--ready); background: var(--ready-bg); }
+      .rej { margin: 4px 0; }
+      .default { font-weight: 650; margin: 4px 0; }
+      .raw { margin: 6px 0; border-left: 3px solid var(--line); padding-left: 10px; }
+      .raw summary { cursor: pointer; font-weight: 650; font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
+      .raw summary a { color: var(--accent); }
+      .line { display: grid; grid-template-columns: 44px 150px 1fr; gap: 8px; padding: 3px 0; font-size: 13px; }
+      .line .t { color: var(--muted); font-variant-numeric: tabular-nums; }
+      .line .who { color: var(--muted); font-size: 12px; }
+      .line.them .txt { color: var(--ink); }
+      .line.us .txt { color: #7a706a; }
+      .line.key { background: #fff5d6; border-radius: 6px; }
       footer { color: var(--muted); font-size: 12px; line-height: 1.6; }
       @media (max-width: 900px) {
         header { flex-direction: column; }
@@ -261,23 +287,45 @@
       function render(c) {
         const facts = [c.units ? `${fmt(c.units)} units` : null, c.properties ? `${fmt(c.properties)} properties` : null, c.city, `${c.calls.length} call${c.calls.length === 1 ? "" : "s"}`].filter(Boolean).join(" · ");
         const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
-        const plan = c.plan || { rows: [], questions: [], gaps: [], notes: [] };
+        const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
+        const transcript = (s, open = true) => s ? `
+          <details class="raw" ${open ? "open" : ""}>
+            <summary>What they said · ${esc(s.at)} · <a href="${esc(s.callUrl)}" target="_blank" rel="noopener">open call</a></summary>
+            ${s.lines.map((l) => `<div class="line ${l.prospect ? "them" : "us"} ${l.key ? "key" : ""}">
+              <span class="t">${esc(l.t)}</span><span class="who">${esc(l.who)}${l.prospect ? "" : " (Entrata)"}</span><span class="txt">${esc(l.text)}</span>
+            </div>`).join("")}
+          </details>` : "";
+        const step = (n, title, body) => `<div class="chain"><div class="num">${n}</div><div><div class="ct">${title}</div>${body}</div></div>`;
         const rows = plan.rows.length
-          ? plan.rows.map((r) => `<tr>
-              <td><div><strong>${esc(r.setting)}</strong></div><div class="meta">${esc(r.level)}</div></td>
-              <td class="path">${esc(r.path)}</td>
-              <td><strong>${esc(r.value)}</strong></td>
-              <td>${esc(r.why)}<div class="quote">“${esc(r.quote)}”</div><div class="meta">${esc(r.speaker)} · <a href="${esc(r.callUrl)}" target="_blank" rel="noopener">${esc(r.date)}</a></div></td>
-              <td><span class="badge">${esc(r.status)}</span></td>
-            </tr>`).join("")
-          : `<tr><td colspan="5">No setting override. Everything they did not decide stays on the factory default.</td></tr>`;
+          ? plan.rows.map((r) => `<div class="card">
+              <div class="card-head"><div><div class="topic">${esc(r.topic)}</div><div class="decision">Set <strong>${esc(r.setting)}</strong> to <strong>${esc(r.proposed)}</strong></div></div>
+                <span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} match</span></div>
+              ${step(1, "What they said", transcript(r.said))}
+              ${step(2, "What it means", `<p>${esc(r.meaning)}</p>`)}
+              ${step(3, "The setting", `<div class="path">${esc(r.path)}</div>
+                <p>${esc(r.does)}</p>
+                <div class="opts">${r.options.map((o) => `<div class="opt ${o.value === r.proposed ? "pick" : ""}"><strong>${esc(o.value)}</strong>${o.value === r.proposed ? " · our pick" : ""}<div>${esc(o.effect)}</div></div>`).join("")}</div>
+                <div class="meta">Default: ${esc(r.catalogDefault)} · Checked in code: ${esc(r.codeRef)}</div>`)}
+              ${step(4, `Why ${esc(r.proposed)}`, `<ol>${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>`)}
+              ${step(5, "What this does not cover", `<p>${esc(r.notCovered)}</p>`)}
+              ${step(6, "Considered and rejected", r.rejected.map((x) => `<div class="rej"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join(""))}
+            </div>`).join("")
+          : `<div class="baseline">No setting changes. The calls did not give enough to pick a value, so everything stays on the factory default.</div>`;
+        const rejectedSettings = (plan.rejectedSettings || []).map((x) => `<div class="card rejected"><div class="topic">Looked like a match, but is not</div>
+            <div class="decision"><strong>${esc(x.setting)}</strong></div><p>${esc(x.why)}</p><div class="meta">Checked in code: ${esc(x.codeRef)}</div></div>`).join("");
         const questions = plan.questions.length
-          ? plan.questions.map((q, i) => `<div class="q"><strong>${i + 1}. ${esc(q.question)}</strong>Default: ${esc(q.default)}<div class="meta">${esc(q.why)}</div></div>`).join("")
+          ? plan.questions.map((q, i) => `<div class="card">
+              <div class="decision"><strong>${i + 1}. ${esc(q.question)}</strong></div>
+              <div class="default">Default if no answer: ${esc(q.default)}</div>
+              <p>${esc(q.why)}</p>
+              ${q.setting ? `<div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div>` : ""}
+              ${transcript(q.said)}
+            </div>`).join("")
           : `<div class="meta">No confirmation questions.</div>`;
         const gaps = plan.gaps.length
-          ? plan.gaps.map((g) => `<div class="gap">${esc(g)}</div>`).join("")
+          ? plan.gaps.map((g) => `<div class="card"><p>${esc(g.text)}</p>${transcript(g.said, false)}</div>`).join("")
           : `<div class="meta">No product gaps from this review.</div>`;
-        const notes = (plan.notes || []).map((n) => `<div class="note">${esc(n)}</div>`).join("");
+        const notes = plan.summary ? `<div class="note">${esc(plan.summary)}</div>` : "";
         const calls = c.calls.map((call) => `<div class="call"><a href="${esc(call.url)}" target="_blank" rel="noopener">${esc(call.title || "Gong call")}</a><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min</div></div>`).join("");
         const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
         $("result").innerHTML = `
@@ -287,11 +335,9 @@
           ${waiting}
           <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
           ${notes}
-          <h3>Configuration plan</h3>
-          <div style="overflow-x:auto"><table>
-            <thead><tr><th>Setting</th><th>Path</th><th>Value</th><th>Why</th><th>Status</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table></div>
+          <h3>Settings to change</h3>
+          ${rows}
+          ${rejectedSettings}
           <h3>Confirm before implementation</h3>
           ${questions}
           <h3>Not a setting</h3>
