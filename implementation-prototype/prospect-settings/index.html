@@ -99,6 +99,9 @@
       .q strong, .gap strong { display: block; margin-bottom: 3px; }
       .call { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
       .call a { color: var(--accent); font-weight: 650; text-decoration: none; }
+      .call-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 14px; margin: 8px 0; border: 1px solid var(--line); border-radius: 10px; background: #faf8f6; }
+      .call-card strong { display: block; margin-bottom: 3px; }
+      .call-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
       .review-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 10px; }
       .review-bar h3 { margin: 0; }
       .review-bar .meta { text-align: right; }
@@ -177,6 +180,8 @@
         .kpis { grid-template-columns: repeat(2, 1fr); }
         .review-shell { grid-template-columns: 1fr; }
         .guide-steps { grid-template-columns: 1fr; }
+        .call-card { grid-template-columns: 1fr; }
+        .call-actions { justify-content: flex-start; }
         .queue { border-right: 0; border-bottom: 1px solid var(--line); }
         .queue-list { max-height: 260px; }
         .detail { max-height: none; }
@@ -260,6 +265,7 @@
       const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
       const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       const TYPE_NAME = { prospecting: "Prospecting", other: "Other", demo: "Demo", discovery: "Discovery", sync: "Sync", pricing: "Pricing", implementation: "Implementation", inbound: "Inbound", training: "Training", support: "Support" };
+      const FEEDBACK_REPO = "Entrata-Collab/entrata-rfp-engine";
       const short = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
 
       let DATA = null;
@@ -346,13 +352,16 @@
         const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
         const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
         const notes = plan.summary ? `<div class="note">${esc(plan.summary)}</div>` : "";
-        const calls = c.calls.map((call) => `<div class="call"><a href="${esc(call.url)}" target="_blank" rel="noopener">${esc(call.title || "Gong call")}</a><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min</div></div>`).join("");
+        const calls = c.calls.map((call) => `<div class="call-card"><div><strong>${esc(call.title || "Gong call")}</strong><div class="meta">${esc(call.date)} · ${esc(call.minutes)} min · Call ID ${esc(call.callId)}</div></div><div class="call-actions"><a class="action" href="${esc(call.url)}" target="_blank" rel="noopener">Open call in Gong</a></div></div>`).join("");
         const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
         $("result").innerHTML = `
           <div class="co-name">${esc(c.name)}</div>
           <div class="meta">${esc(facts)}</div>
           <div class="chips">${opps}</div>
           ${waiting}
+          <h3>Call details</h3>
+          <div class="meta">Use the call title and highlighted timestamp below to find the cited moment in Gong.</div>
+          ${calls || `<div class="meta">No calls on file.</div>`}
           <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
           ${notes}
           ${c.reviewed ? `<div class="review-guide"><strong>Quality review — about 2 minutes per item</strong><div class="guide-steps">
@@ -360,10 +369,9 @@
             <div class="guide-step"><strong>2. Check evidence and scope.</strong><br>Verify the quote, occupancy type, implementation package, and contracted product.</div>
             <div class="guide-step"><strong>3. Rate the result.</strong><br>Mark accurate, needs correction, or missing context.</div>
           </div></div>
-          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action" id="export-feedback">Download feedback CSV</button><div class="meta" id="review-progress"></div></div></div>
+          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action approve" id="submit-feedback">Submit shared feedback</button> <button type="button" class="action" id="export-feedback">Download backup CSV</button><div class="meta" id="review-progress"></div></div></div>
           <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
-          <h3>Calls</h3>
-          ${calls || `<div class="meta">No calls on file.</div>`}`;
+          `;
         $("result").classList.add("on");
         if (c.reviewed) initReview(c, plan);
       }
@@ -416,7 +424,7 @@
         const full = s.lines.map(bubble).join("");
         const remaining = s.lines.length - (end - start);
         const source = [s.callTitle, s.callDate].filter(Boolean).join(" · ");
-        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open source call</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
+        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open call in Gong</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
       }
 
       function initReview(c, plan) {
@@ -528,6 +536,50 @@
         URL.revokeObjectURL(link.href);
       }
 
+      function feedbackPayload(items) {
+        const reviews = items.map((item) => {
+          const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+          return {
+            itemId: item.id,
+            kind: item.kind,
+            title: item.title,
+            result: state.result || "",
+            reviewer: state.reviewer || reviewerName,
+            notes: state.notes || "",
+            correctedValue: state.value || "",
+          };
+        }).filter((review) => review.result);
+        return {
+          schemaVersion: 1,
+          prospectId: current.id,
+          prospectName: current.name,
+          submittedAt: new Date().toISOString(),
+          reviewer: reviewerName || reviews[0]?.reviewer || "",
+          reviews,
+        };
+      }
+
+      function submitSharedFeedback(items) {
+        const payload = feedbackPayload(items);
+        if (!payload.reviews.length) {
+          alert("Rate at least one item before submitting.");
+          return;
+        }
+        if (!payload.reviewer) {
+          alert("Enter your name before submitting.");
+          return;
+        }
+        const counts = payload.reviews.reduce((acc, review) => {
+          acc[review.result] = (acc[review.result] || 0) + 1;
+          return acc;
+        }, {});
+        const summary = `Reviewed ${payload.reviews.length} items: ${counts.accurate || 0} accurate, ${counts.correction || 0} need correction, ${counts.context || 0} need more context.`;
+        const body = `## AI quality review submission\n\n**Prospect:** ${payload.prospectName}\n**Reviewer:** ${payload.reviewer}\n**Summary:** ${summary}\n\nThis structured feedback was submitted from the quality-review workspace. An automated workflow will validate it and open a draft change for Brandon to review.\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
+        const title = `AI quality feedback: ${payload.prospectName} — ${payload.reviewer}`;
+        const url = `https://github.com/${FEEDBACK_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+        window.open(url, "_blank", "noopener");
+      }
+
       function bindReviewEvents(items) {
         document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => {
           reviewFilter = button.dataset.filter;
@@ -584,6 +636,7 @@
           renderReviewWorkspace(items);
         });
         $("export-feedback")?.addEventListener("click", () => downloadFeedback(items));
+        $("submit-feedback")?.addEventListener("click", () => submitSharedFeedback(items));
       }
 
       async function boot() {
