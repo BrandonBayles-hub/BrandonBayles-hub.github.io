@@ -139,9 +139,22 @@
       .action { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 13px; font: inherit; font-size: 12px; font-weight: 730; cursor: pointer; }
       .action.approve { background: var(--ready); border-color: var(--ready); color: #fff; }
       .action.reject { color: var(--none); }
+      .action.context { color: var(--path); }
+      .action.selected { box-shadow: 0 0 0 2px currentColor inset; }
       .edit-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
       .edit-box[hidden] { display: none; }
       .edit-box select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font: inherit; }
+      .review-guide { margin: 14px 0; padding: 14px; border: 1px solid #cfe0ea; border-radius: 12px; background: #f3f8fb; }
+      .guide-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+      .guide-step { color: #44545e; font-size: 12px; line-height: 1.45; }
+      .guide-step strong { color: var(--ink); }
+      .quality-review { margin-top: 18px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fbfaf9; }
+      .quality-review label { display: block; font-size: 11px; font-weight: 750; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 5px; }
+      .quality-review input, .quality-review textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; color: var(--ink); font: inherit; font-size: 12px; }
+      .quality-review textarea { min-height: 82px; resize: vertical; line-height: 1.45; }
+      .quality-actions { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0; }
+      .export-note { color: var(--muted); font-size: 11px; line-height: 1.45; margin-top: 8px; }
+      .source-meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
       .reason-list { margin: 7px 0; padding-left: 20px; }
       .reason-list li { margin: 5px 0; }
       .evidence { margin-top: 9px; }
@@ -163,6 +176,7 @@
         header { flex-direction: column; }
         .kpis { grid-template-columns: repeat(2, 1fr); }
         .review-shell { grid-template-columns: 1fr; }
+        .guide-steps { grid-template-columns: 1fr; }
         .queue { border-right: 0; border-bottom: 1px solid var(--line); }
         .queue-list { max-height: 260px; }
         .detail { max-height: none; }
@@ -177,8 +191,8 @@
           <div class="eyebrow">RFP to Implementation · Professional Services</div>
           <h1>First property configuration</h1>
           <p class="lede">
-            Pick a prospect. Settings they never decided stay on Entrata's factory default.
-            A row appears only when their own words support a setting and a value.
+            Validate whether the AI translated prospect evidence into the right setting outcome.
+            Review the cited excerpt first; open the source call only when more context is needed.
             Nothing is written into Entrata.
           </p>
         </div>
@@ -205,7 +219,7 @@
       <div class="notice">
         <strong>Internal only.</strong> Company names come from the Gong mirror.
         Three plans were reviewed against the full transcript and the settings catalog.
-        The other prospects are listed so you can see who is waiting. They have no suggested settings yet.
+        This pilot shows only the evidence window needed for each decision; it does not publish full prospect transcripts.
       </div>
 
       <section class="panel">
@@ -255,7 +269,8 @@
       let selectedReviewId = null;
       let reviewFilter = "all";
       let categoryFilter = "all";
-      const reviewDecisions = {};
+      const reviewDecisions = JSON.parse(localStorage.getItem("prospect-quality-reviews") || "{}");
+      let reviewerName = localStorage.getItem("prospect-reviewer-name") || "";
 
       function setStep(text, sub, pct) {
         $("step").textContent = text;
@@ -340,7 +355,12 @@
           ${waiting}
           <div class="baseline"><strong>Baseline.</strong> ${esc(DATA.baseline.rule)} Catalog settings if they said nothing: ${fmt(DATA.baseline.factoryIfSilent)}.</div>
           ${notes}
-          ${c.reviewed ? `<div class="review-bar"><h3>Review queue</h3><div class="meta">Review only. Nothing is written into Entrata.</div></div>
+          ${c.reviewed ? `<div class="review-guide"><strong>Quality review — about 2 minutes per item</strong><div class="guide-steps">
+            <div class="guide-step"><strong>1. Read the AI decision.</strong><br>Is the setting outcome clear and actionable?</div>
+            <div class="guide-step"><strong>2. Check evidence and scope.</strong><br>Verify the quote, occupancy type, implementation package, and contracted product.</div>
+            <div class="guide-step"><strong>3. Rate the result.</strong><br>Mark accurate, needs correction, or missing context.</div>
+          </div></div>
+          <div class="review-bar"><h3>AI quality review queue</h3><div><button type="button" class="action" id="export-feedback">Download feedback CSV</button><div class="meta" id="review-progress"></div></div></div>
           <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
           <h3>Calls</h3>
           ${calls || `<div class="meta">No calls on file.</div>`}`;
@@ -367,9 +387,11 @@
       }
 
       function statusFor(item) {
-        if (item.kind !== "change") return item.kind === "confirm" ? ["Needs input", ""] : item.kind === "ruled" ? ["Ruled out", "info"] : ["Product gap", "info"];
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
-        return state.status === "approved" ? ["Approved", "approved"] : state.status === "rejected" ? ["Rejected", "rejected"] : state.value ? ["Edited", "info"] : ["Pending", ""];
+        if (state.result === "accurate") return ["Accurate", "approved"];
+        if (state.result === "correction") return ["Needs correction", "rejected"];
+        if (state.result === "context") return ["Missing context", ""];
+        return ["Unreviewed", "info"];
       }
 
       function initials(name) {
@@ -393,7 +415,8 @@
         const snippet = s.lines.slice(start, end).map(bubble).join("");
         const full = s.lines.map(bubble).join("");
         const remaining = s.lines.length - (end - start);
-        return `<div class="evidence"><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand full conversation (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
+        const source = [s.callTitle, s.callDate].filter(Boolean).join(" · ");
+        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open source call</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
       }
 
       function initReview(c, plan) {
@@ -429,7 +452,21 @@
         }).join("") : `<div class="empty-detail">No items in this filter.</div>`;
         const selected = items.find((x) => x.id === selectedReviewId);
         $("review-detail").innerHTML = selected ? detailFor(selected) : `<div class="empty-detail">Choose a review item.</div>`;
+        const reviewed = items.filter((item) => reviewDecisions[`${current.id}-${item.id}`]?.result).length;
+        if ($("review-progress")) $("review-progress").textContent = `${reviewed} of ${items.length} quality checks completed`;
         bindReviewEvents(items);
+      }
+
+      function qualityPanel(item) {
+        const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+        const option = (result, label, cls = "") => `<button type="button" class="action ${cls} ${state.result === result ? "selected" : ""}" data-quality="${result}">${label}</button>`;
+        return `<div class="quality-review"><div class="section-title">Your quality check</div>
+          <label for="reviewer-name">Reviewer</label><input id="reviewer-name" value="${esc(state.reviewer || reviewerName)}" placeholder="Your name">
+          <label>Is the AI output supported by this evidence?</label><div class="quality-actions">${option("accurate", "Accurate", "approve")}${option("correction", "Needs correction", "reject")}${option("context", "Missing context", "context")}</div>
+          <label for="review-notes">What should change or what is missing?</label><textarea id="review-notes" placeholder="Be specific: wrong setting, wrong value, speaker lacked authority, conflicting call, vertical-specific context…">${esc(state.notes || "")}</textarea>
+          <div class="actions"><button type="button" class="action" data-copy-review>Copy review packet</button></div>
+          <div class="export-note">Saved in this browser. Download the CSV to combine feedback from different reviewers; shared server-side comments are not enabled in this static pilot.</div>
+        </div>`;
       }
 
       function detailFor(item) {
@@ -441,25 +478,54 @@
           return `<div class="detail-head"><div><div class="topic">${esc(item.category)} · Proposed setting change</div><div class="decision">Set “${esc(r.setting)}” to ${esc(choice)}</div></div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} evidence match</span></div>
             <div class="change-strip"><div><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div></div>
             <div class="insight"><strong>AI insight:</strong> ${esc(r.meaning)}</div>
-            <div class="actions"><button class="action approve" data-decision="approved">Approve</button><button class="action reject" data-decision="rejected">Reject</button><button class="action" data-edit>Edit value</button>${state.status || state.value ? `<span class="status ${state.status === "approved" ? "approved" : state.status === "rejected" ? "rejected" : "info"}">${esc(state.status || "Edited")}</span>` : ""}</div>
+            <div class="actions"><button class="action" data-edit>Correct proposed value</button></div>
             <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
             <div class="section"><div class="section-title">Setting path and impact</div><div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div></div>
             <div class="section"><div class="section-title">Why this value</div><ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>
             <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
-            <div class="section"><div class="section-title">Limits and alternatives</div><div class="support"><strong>Not covered:</strong> ${esc(r.notCovered)}</div>${r.rejected.map((x) => `<div class="support"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join("")}</div>`;
+            <div class="section"><div class="section-title">Limits and alternatives</div><div class="support"><strong>Not covered:</strong> ${esc(r.notCovered)}</div>${r.rejected.map((x) => `<div class="support"><strong>${esc(x.setting)}</strong> — ${esc(x.why)}</div>`).join("")}</div>${qualityPanel(item)}`;
         }
         if (item.kind === "confirm") {
           const q = item.data;
           return `<div class="topic">${esc(item.category)} · Confirmation needed</div><div class="decision">${esc(q.question)}</div>
             <div class="insight"><strong>Default if unanswered:</strong> ${esc(q.default)}</div><p>${esc(q.why)}</p>
             ${q.path ? `<div class="section"><div class="section-title">Closest setting</div><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></div>` : ""}
-            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>`;
+            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>${qualityPanel(item)}`;
         }
         if (item.kind === "ruled") {
           const r = item.data;
-          return `<div class="topic">${esc(item.category)} · No change</div><div class="decision">${esc(r.setting)}</div><div class="insight"><strong>Why it was ruled out:</strong> ${esc(r.why)}</div><div class="meta">Checked in code: ${esc(r.codeRef)}</div>`;
+          return `<div class="topic">${esc(item.category)} · No change</div><div class="decision">${esc(r.setting)}</div><div class="insight"><strong>Why it was ruled out:</strong> ${esc(r.why)}</div><div class="meta">Checked in code: ${esc(r.codeRef)}</div>${qualityPanel(item)}`;
         }
-        return `<div class="topic">Product gap · Not a setting</div><div class="decision">${esc(item.data.text)}</div><div class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</div><div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>`;
+        return `<div class="topic">Product gap · Not a setting</div><div class="decision">${esc(item.data.text)}</div><div class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</div><div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>${qualityPanel(item)}`;
+      }
+
+      function evidenceText(item) {
+        const said = item.data.said;
+        if (!said) return "No transcript excerpt attached.";
+        return said.lines.map((line) => `[${humanTime(line.t)}] ${line.who}: ${line.text}`).join("\n");
+      }
+
+      function reviewPacket(item) {
+        const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+        return `Prospect: ${current.name}\nItem: ${item.title}\nAI outcome: ${item.value}\nAI explanation: ${item.summary}\nQuality rating: ${state.result || "Unreviewed"}\nReviewer: ${state.reviewer || reviewerName || "Not entered"}\nReviewer notes: ${state.notes || "None"}\n\nEvidence:\n${evidenceText(item)}`;
+      }
+
+      function saveReviews() {
+        localStorage.setItem("prospect-quality-reviews", JSON.stringify(reviewDecisions));
+      }
+
+      function downloadFeedback(items) {
+        const rows = [["Prospect", "Item", "Type", "AI outcome", "Quality rating", "Reviewer", "Notes"]];
+        items.forEach((item) => {
+          const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+          rows.push([current.name, item.title, item.kind, item.value, state.result || "", state.reviewer || reviewerName, state.notes || ""]);
+        });
+        const csv = rows.map((row) => row.map((value) => `"${String(value || "").replace(/"/g, '""')}"`).join(",")).join("\n");
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+        link.download = `${current.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-ai-quality-review.csv`;
+        link.click();
+        URL.revokeObjectURL(link.href);
       }
 
       function bindReviewEvents(items) {
@@ -480,18 +546,44 @@
           const snippet = $(`snippet-${button.dataset.expand}`);
           more.hidden = !more.hidden;
           snippet.hidden = !more.hidden;
-          button.textContent = more.hidden ? `Expand full conversation (+${Math.max(0, more.children.length - snippet.children.length)} turns)` : "Collapse conversation";
+          button.textContent = more.hidden ? `Expand source window (+${Math.max(0, more.children.length - snippet.children.length)} turns)` : "Collapse source window";
         }));
-        document.querySelectorAll("[data-decision]").forEach((button) => button.addEventListener("click", () => {
+        document.querySelectorAll("[data-copy-excerpt]").forEach((button) => button.addEventListener("click", async () => {
+          const item = items.find((x) => x.id === button.dataset.copyExcerpt);
+          await navigator.clipboard.writeText(evidenceText(item));
+          button.textContent = "Copied";
+        }));
+        document.querySelectorAll("[data-quality]").forEach((button) => button.addEventListener("click", () => {
           const key = `${current.id}-${selectedReviewId}`;
-          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), status: button.dataset.decision };
+          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), result: button.dataset.quality, reviewer: $("reviewer-name")?.value || reviewerName, notes: $("review-notes")?.value || "" };
+          saveReviews();
           renderReviewWorkspace(items);
         }));
+        $("reviewer-name")?.addEventListener("change", (event) => {
+          reviewerName = event.target.value.trim();
+          localStorage.setItem("prospect-reviewer-name", reviewerName);
+          const key = `${current.id}-${selectedReviewId}`;
+          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), reviewer: reviewerName };
+          saveReviews();
+        });
+        $("review-notes")?.addEventListener("change", (event) => {
+          const key = `${current.id}-${selectedReviewId}`;
+          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), notes: event.target.value, reviewer: $("reviewer-name")?.value || reviewerName };
+          saveReviews();
+        });
+        document.querySelector("[data-copy-review]")?.addEventListener("click", async (event) => {
+          const item = items.find((x) => x.id === selectedReviewId);
+          await navigator.clipboard.writeText(reviewPacket(item));
+          event.target.textContent = "Copied";
+        });
         document.querySelector("[data-edit]")?.addEventListener("click", () => { $("edit-box").hidden = false; });
         document.querySelector("[data-save-edit]")?.addEventListener("click", () => {
-          reviewDecisions[`${current.id}-${selectedReviewId}`] = { value: $("edit-value").value };
+          const key = `${current.id}-${selectedReviewId}`;
+          reviewDecisions[key] = { ...(reviewDecisions[key] || {}), value: $("edit-value").value, result: "correction", reviewer: $("reviewer-name")?.value || reviewerName, notes: $("review-notes")?.value || "" };
+          saveReviews();
           renderReviewWorkspace(items);
         });
+        $("export-feedback")?.addEventListener("click", () => downloadFeedback(items));
       }
 
       async function boot() {
