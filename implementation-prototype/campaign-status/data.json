@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T02:58:49.856772+00:00",
+  "generatedAt": "2026-10-15T03:24:42.311637+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -94,23 +94,24 @@
   "excludedCount": 41,
   "summary": {
     "VERIFIED": 2018,
-    "FAILED": 46,
+    "FAILED": 45,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
     "SERVICE_NOT_FOUND": 4,
-    "IN_PROGRESS": 2
+    "IN_PROGRESS": 2,
+    "LOOKUP_ERROR": 1
   },
   "failureActionSummary": {
     "Entrata \u2014 template/copy": 11,
     "Client \u2014 website": 19,
     "Entrata \u2014 website publishing": 1,
-    "Unknown \u2014 needs triage": 15
+    "Unknown \u2014 needs triage": 14
   },
   "confidenceBucketSummary": {
     "fix_confident": 0,
     "fix_will_still_fail": 11,
     "client_blocked": 20,
-    "needs_triage": 15
+    "needs_triage": 14
   },
   "confidenceBucketLabels": {
     "fix_confident": "Fix now, high confidence",
@@ -132,9 +133,9 @@
   },
   "brandWebsiteRollup": [],
   "templateAVerdict": {
-    "failedUsingTemplateA": 34,
+    "failedUsingTemplateA": 33,
     "knownWebsiteOrUrlPrimary": 19,
-    "needsUrlTriage": 14,
+    "needsUrlTriage": 13,
     "contentErrorRows": 9
   },
   "scanErrors": [],
@@ -4172,12 +4173,12 @@
       "dateUpdated": "2026-09-14T17:23:32Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -6096,12 +6097,12 @@
       "dateUpdated": "2026-05-21T16:32:43Z",
       "errors": [
         {
-          "code": 30917,
-          "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
-        },
-        {
           "code": 30886,
           "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30917,
+          "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
         }
       ],
       "usesTemplateA": false,
@@ -8908,6 +8909,25 @@
       "cid": "17373",
       "property": "Property 1150145",
       "propertyId": "1150145",
+      "serviceNameMatch": "Entrata_17373_1150145_24463",
+      "paigeStatus": "OXP Submitted",
+      "sourceDisposition": "client_level_expansion",
+      "cohortOrigins": [
+        "OXP submitted client list"
+      ],
+      "notOnOriginalMigration": true,
+      "serviceName": "Entrata_17373_1150145_24463",
+      "serviceCreated": "2023-05-30T19:46:39Z",
+      "serviceSid": "MGc7f23413686b5e4b374a157d7cd5815e",
+      "duplicateServiceCount": 1,
+      "liveStatus": "NO_CAMPAIGN",
+      "submitted": false
+    },
+    {
+      "company": "Catalyst Housing Group",
+      "cid": "17373",
+      "property": "Property 1150145",
+      "propertyId": "1150145",
       "serviceNameMatch": "Entrata_17373_1150145",
       "paigeStatus": "OXP Submitted",
       "sourceDisposition": "client_level_expansion",
@@ -8929,25 +8949,6 @@
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
-    },
-    {
-      "company": "Catalyst Housing Group",
-      "cid": "17373",
-      "property": "Property 1150145",
-      "propertyId": "1150145",
-      "serviceNameMatch": "Entrata_17373_1150145_24463",
-      "paigeStatus": "OXP Submitted",
-      "sourceDisposition": "client_level_expansion",
-      "cohortOrigins": [
-        "OXP submitted client list"
-      ],
-      "notOnOriginalMigration": true,
-      "serviceName": "Entrata_17373_1150145_24463",
-      "serviceCreated": "2023-05-30T19:46:39Z",
-      "serviceSid": "MGc7f23413686b5e4b374a157d7cd5815e",
-      "duplicateServiceCount": 1,
-      "liveStatus": "NO_CAMPAIGN",
-      "submitted": false
     },
     {
       "company": "Catalyst Housing Group",
@@ -13846,12 +13847,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -31101,12 +31102,12 @@
       "dateUpdated": "2026-09-15T17:14:04Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -44255,12 +44256,12 @@
       "dateUpdated": "2026-09-14T16:46:34Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -44376,12 +44377,12 @@
       "dateUpdated": "2026-09-14T16:47:09Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -54009,29 +54010,8 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": true,
-      "serviceName": "Entrata_101990_100150773",
-      "serviceCreated": "2026-09-15T18:14:24Z",
-      "serviceSid": "MGd1bb695c24b9866a9b20831546cf3ec7",
-      "duplicateServiceCount": 1,
-      "submitted": true,
-      "liveStatus": "FAILED",
-      "tcrCampaignId": null,
-      "dateCreated": "2026-09-15T18:14:24Z",
-      "dateUpdated": "2026-09-15T18:14:24Z",
-      "errors": [
-        {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        }
-      ],
-      "usesTemplateA": true,
-      "actionCategory": "Unknown \u2014 needs triage",
-      "actionOwner": "Entrata",
-      "actionItem": "Compare the submitted website with the registered business; correct the mismatch.",
-      "actionDetail": "The reviewer checked https://chelseacollection.prospectportal.com against the legal business registered for messaging and could not validate that they belong together. Entrata must open the submitted site, compare its business name and domain with the registered legal company, and check the exact website stored in the business profile. If the submitted URL is wrong, replace it with the correct public property URL; if the business profile is wrong, correct that profile through the approved support path. The rejection does not identify which value is wrong, so do not guess. After the values match and the site is public, resubmit for carrier review.",
-      "confidenceBucket": "needs_triage",
-      "confidenceBucketLabel": "Needs triage",
-      "confidenceBucketDetail": "The rejection does not prove whether the registered value, submitted URL, or public site is wrong. Compare all three before assigning or resubmitting."
+      "liveStatus": "LOOKUP_ERROR",
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     {
       "company": "Westover Companies",
