@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T09:56:58.741214+00:00",
+  "generatedAt": "2026-10-16T10:16:00.353538+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -93,10 +93,11 @@
   "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 2018,
+    "VERIFIED": 2015,
     "FAILED": 46,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
+    "LOOKUP_ERROR": 3,
     "SERVICE_NOT_FOUND": 4,
     "IN_PROGRESS": 2
   },
@@ -13854,12 +13855,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
@@ -31109,12 +31110,12 @@
       "dateUpdated": "2026-09-15T17:14:04Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -32416,20 +32417,8 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "serviceName": "Entrata_18735_1198128",
-      "serviceCreated": "2026-09-11T20:16:21Z",
-      "serviceSid": "MG792fb123efa85f2b882adf905f721aa6",
-      "duplicateServiceCount": 1,
-      "submitted": true,
-      "liveStatus": "VERIFIED",
-      "tcrCampaignId": "CWDQPV4",
-      "dateCreated": "2026-09-11T20:16:22Z",
-      "dateUpdated": "2026-09-11T20:16:22Z",
-      "errors": [],
-      "usesTemplateA": true,
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "liveStatus": "LOOKUP_ERROR",
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     {
       "company": "Morgan",
@@ -33388,20 +33377,8 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "serviceName": "Entrata_18735_100041129",
-      "serviceCreated": "2026-09-11T20:16:45Z",
-      "serviceSid": "MGacefedf50416aa24625ff4f0334f9fad",
-      "duplicateServiceCount": 1,
-      "submitted": true,
-      "liveStatus": "VERIFIED",
-      "tcrCampaignId": "CUJGPU4",
-      "dateCreated": "2026-09-11T20:16:45Z",
-      "dateUpdated": "2026-09-11T20:16:45Z",
-      "errors": [],
-      "usesTemplateA": true,
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "liveStatus": "LOOKUP_ERROR",
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     {
       "company": "Morgan",
@@ -45027,12 +45004,12 @@
       "dateUpdated": "2026-09-15T17:49:54Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -45094,12 +45071,12 @@
       "dateUpdated": "2026-09-15T17:50:37Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -49763,12 +49740,12 @@
       "dateUpdated": "2026-09-15T18:00:18Z",
       "errors": [
         {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
@@ -49996,12 +49973,12 @@
           "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         },
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -51807,20 +51784,8 @@
         "Original property cohort"
       ],
       "notOnOriginalMigration": false,
-      "serviceName": "Entrata_14624_100122263",
-      "serviceCreated": "2026-09-02T21:19:34Z",
-      "serviceSid": "MGb6b44af099c6c417854f7a1738184a62",
-      "duplicateServiceCount": 1,
-      "submitted": true,
-      "liveStatus": "VERIFIED",
-      "tcrCampaignId": "C6GU6V1",
-      "dateCreated": "2026-09-02T21:19:35Z",
-      "dateUpdated": "2026-09-02T21:19:35Z",
-      "errors": [],
-      "usesTemplateA": true,
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "liveStatus": "LOOKUP_ERROR",
+      "error": "Remote end closed connection without response"
     },
     {
       "company": "Trantor Management",
