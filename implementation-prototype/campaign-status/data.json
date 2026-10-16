@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T18:26:24.274309+00:00",
+  "generatedAt": "2026-10-16T18:47:30.046374+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -97,8 +97,8 @@
     "FAILED": 46,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
-    "SERVICE_NOT_FOUND": 4,
-    "IN_PROGRESS": 2
+    "IN_PROGRESS": 3,
+    "SERVICE_NOT_FOUND": 3
   },
   "failureActionSummary": {
     "Entrata \u2014 template/copy": 11,
@@ -8916,6 +8916,25 @@
       "cid": "17373",
       "property": "Property 1150145",
       "propertyId": "1150145",
+      "serviceNameMatch": "Entrata_17373_1150145_24463",
+      "paigeStatus": "OXP Submitted",
+      "sourceDisposition": "client_level_expansion",
+      "cohortOrigins": [
+        "OXP submitted client list"
+      ],
+      "notOnOriginalMigration": true,
+      "serviceName": "Entrata_17373_1150145_24463",
+      "serviceCreated": "2023-05-30T19:46:39Z",
+      "serviceSid": "MGc7f23413686b5e4b374a157d7cd5815e",
+      "duplicateServiceCount": 1,
+      "liveStatus": "NO_CAMPAIGN",
+      "submitted": false
+    },
+    {
+      "company": "Catalyst Housing Group",
+      "cid": "17373",
+      "property": "Property 1150145",
+      "propertyId": "1150145",
       "serviceNameMatch": "Entrata_17373_1150145",
       "paigeStatus": "OXP Submitted",
       "sourceDisposition": "client_level_expansion",
@@ -8937,25 +8956,6 @@
       "confidenceBucket": "fix_will_still_fail",
       "confidenceBucketLabel": "Fix now, but will still fail",
       "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
-    },
-    {
-      "company": "Catalyst Housing Group",
-      "cid": "17373",
-      "property": "Property 1150145",
-      "propertyId": "1150145",
-      "serviceNameMatch": "Entrata_17373_1150145_24463",
-      "paigeStatus": "OXP Submitted",
-      "sourceDisposition": "client_level_expansion",
-      "cohortOrigins": [
-        "OXP submitted client list"
-      ],
-      "notOnOriginalMigration": true,
-      "serviceName": "Entrata_17373_1150145_24463",
-      "serviceCreated": "2023-05-30T19:46:39Z",
-      "serviceSid": "MGc7f23413686b5e4b374a157d7cd5815e",
-      "duplicateServiceCount": 1,
-      "liveStatus": "NO_CAMPAIGN",
-      "submitted": false
     },
     {
       "company": "Catalyst Housing Group",
@@ -10438,12 +10438,12 @@
       "dateUpdated": "2026-09-14T15:33:10Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -13854,12 +13854,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -24769,12 +24769,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -31109,12 +31109,12 @@
       "dateUpdated": "2026-09-15T17:14:04Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -33465,11 +33465,28 @@
       "paigeStatus": "Pending",
       "sourceDisposition": "unmatched",
       "cohortOrigins": [
-        "Original property cohort"
+        "Original property cohort",
+        "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "SERVICE_NOT_FOUND",
-      "submitted": false
+      "serviceName": "Entrata_18735_100179535",
+      "serviceCreated": "2026-10-16T18:32:04Z",
+      "serviceSid": "MGfd641677e88b300227a0f3d28d6f3a9f",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "IN_PROGRESS",
+      "tcrCampaignId": null,
+      "dateCreated": "2026-10-16T18:32:04Z",
+      "dateUpdated": "2026-10-16T18:32:04Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "actionCategory": "Twilio/Carrier \u2014 waiting",
+      "actionOwner": "Twilio/Carrier",
+      "actionItem": "Nothing to do \u2014 carrier review is still in progress.",
+      "actionDetail": "No correction is requested. The registration has been submitted and is waiting for the mobile carriers' reviewer. Do not resubmit or edit it while review is open.",
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Mountain States Property Management",
@@ -44263,12 +44280,12 @@
       "dateUpdated": "2026-09-14T16:46:34Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -45027,12 +45044,12 @@
       "dateUpdated": "2026-09-15T17:49:54Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -45094,12 +45111,12 @@
       "dateUpdated": "2026-09-15T17:50:37Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -49763,12 +49780,12 @@
       "dateUpdated": "2026-09-15T18:00:18Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30882,
           "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -49992,16 +50009,16 @@
       "dateUpdated": "2026-09-15T18:00:40Z",
       "errors": [
         {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
           "code": 30882,
           "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         },
         {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
