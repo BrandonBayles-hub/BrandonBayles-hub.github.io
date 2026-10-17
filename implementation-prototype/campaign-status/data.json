@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T05:20:57.419026+00:00",
+  "generatedAt": "2026-10-17T05:33:29.227478+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -93,12 +93,11 @@
   "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 2017,
+    "VERIFIED": 2018,
     "IN_PROGRESS": 4,
     "FAILED": 45,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
-    "LOOKUP_ERROR": 1,
     "SERVICE_NOT_FOUND": 3
   },
   "failureActionSummary": {
@@ -4240,12 +4239,12 @@
       "dateUpdated": "2026-09-14T17:23:32Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -10498,12 +10497,12 @@
       "dateUpdated": "2026-09-14T15:33:10Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -13914,12 +13913,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
@@ -24829,12 +24828,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -27135,8 +27134,20 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "LOOKUP_ERROR",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "serviceName": "Entrata_19530_100091212",
+      "serviceCreated": "2026-09-14T16:07:41Z",
+      "serviceSid": "MG1fa6d7311105f88df6b9671e209ee865",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CSOJZID",
+      "dateCreated": "2026-09-14T16:07:41Z",
+      "dateUpdated": "2026-09-14T16:07:41Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Liberty Asset Group",
@@ -44328,12 +44339,12 @@
       "dateUpdated": "2026-09-14T16:46:34Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -44449,12 +44460,12 @@
       "dateUpdated": "2026-09-14T16:47:09Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
