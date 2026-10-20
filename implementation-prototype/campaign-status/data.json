@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T13:17:45.016197+00:00",
+  "generatedAt": "2026-10-20T13:26:06.044094+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -138,7 +138,7 @@
     "contentErrorRows": 9
   },
   "scanErrors": [],
-  "outsideCohortCount": 26,
+  "outsideCohortCount": 27,
   "outsideCohort": [
     {
       "company": "Advanced Asset Management LLC",
@@ -339,6 +339,14 @@
       "propertyId": "100185249",
       "liveStatus": "VERIFIED",
       "dateCreated": "2026-10-05T16:05:53Z"
+    },
+    {
+      "company": "Paradigm Management Company",
+      "cid": "17698",
+      "property": "Property 100086355",
+      "propertyId": "100086355",
+      "liveStatus": "IN_PROGRESS",
+      "dateCreated": "2026-10-20T13:25:24Z"
     },
     {
       "company": "Southhampton Management",
@@ -10502,12 +10510,12 @@
       "dateUpdated": "2026-09-14T15:33:10Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -24833,12 +24841,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -50073,16 +50081,16 @@
       "dateUpdated": "2026-09-15T18:00:40Z",
       "errors": [
         {
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
+        },
+        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
