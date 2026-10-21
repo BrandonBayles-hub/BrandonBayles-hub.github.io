@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T03:20:19.248691+00:00",
+  "generatedAt": "2026-10-21T03:27:25.596076+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -93,10 +93,9 @@
   "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 2015,
+    "VERIFIED": 2019,
     "FAILED": 46,
     "NO_CAMPAIGN": 13,
-    "LOOKUP_ERROR": 4,
     "NO_SERVICE": 1,
     "SERVICE_NOT_FOUND": 3,
     "IN_PROGRESS": 2
@@ -4253,12 +4252,12 @@
       "dateUpdated": "2026-09-14T17:23:32Z",
       "errors": [
         {
-          "code": 30896,
-          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30896,
+          "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         }
       ],
       "usesTemplateA": true,
@@ -6177,12 +6176,12 @@
       "dateUpdated": "2026-05-21T16:32:43Z",
       "errors": [
         {
-          "code": 30917,
-          "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
-        },
-        {
           "code": 30886,
           "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
+        },
+        {
+          "code": 30917,
+          "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
         }
       ],
       "usesTemplateA": false,
@@ -10473,8 +10472,20 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "LOOKUP_ERROR",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "serviceName": "Entrata_102126_100183310",
+      "serviceCreated": "2026-09-11T22:21:10Z",
+      "serviceSid": "MGabf65cf9d234bae9216a0d3bc9b96221",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C2G37P4",
+      "dateCreated": "2026-09-11T22:21:11Z",
+      "dateUpdated": "2026-09-11T22:21:11Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Colgate McCallum Advisors Inc.",
@@ -12373,8 +12384,20 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "LOOKUP_ERROR",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "serviceName": "Entrata_100288_100021886",
+      "serviceCreated": "2026-09-14T15:37:10Z",
+      "serviceSid": "MGc43ad888b8dd11f9033c7f5c86b5a572",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CXXWPGQ",
+      "dateCreated": "2026-09-14T15:37:10Z",
+      "dateUpdated": "2026-09-14T15:37:10Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Evolve Living, LLC",
@@ -13903,12 +13926,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
@@ -16605,8 +16628,20 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "LOOKUP_ERROR",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "serviceName": "Entrata_101084_100070196",
+      "serviceCreated": "2026-09-11T22:09:39Z",
+      "serviceSid": "MGa95f18d9ba257841b094645c554b319e",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "CJBAYNO",
+      "dateCreated": "2026-09-11T22:09:39Z",
+      "dateUpdated": "2026-09-11T22:09:39Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Ginkgo Residential",
@@ -26158,8 +26193,20 @@
         "OXP submitted client list"
       ],
       "notOnOriginalMigration": false,
-      "liveStatus": "LOOKUP_ERROR",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "serviceName": "Entrata_19530_1311129",
+      "serviceCreated": "2026-09-14T16:11:43Z",
+      "serviceSid": "MG5b3dcdbf1868b59b6cfc2202f95770d3",
+      "duplicateServiceCount": 1,
+      "submitted": true,
+      "liveStatus": "VERIFIED",
+      "tcrCampaignId": "C5FBRD4",
+      "dateCreated": "2026-09-14T16:11:44Z",
+      "dateUpdated": "2026-09-14T16:11:44Z",
+      "errors": [],
+      "usesTemplateA": true,
+      "confidenceBucket": "fix_will_still_fail",
+      "confidenceBucketLabel": "Fix now, but will still fail",
+      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
     },
     {
       "company": "Liberty Asset Group",
@@ -31134,12 +31181,12 @@
       "dateUpdated": "2026-09-15T17:14:04Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30907,
           "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -49801,12 +49848,12 @@
       "dateUpdated": "2026-09-15T18:00:18Z",
       "errors": [
         {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
