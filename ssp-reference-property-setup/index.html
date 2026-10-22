@@ -332,10 +332,9 @@ function renderSheet(rows, cols, prefix) {
 }
 function openPreview(id) {
   const p = PROPS.find(x => x.id === id);
-  $("mTitle").textContent = p.name + " (" + p.type + ")";
+  $("mTitle").textContent = "";
   $("mBody").innerHTML = `
     <h2 class="title">Selected Products</h2>
-    <p class="help">Need to edit your product selection? Contact your Sales Representative.</p>
     <h3 class="sec">Bundles</h3>
     ${renderSheet(BUNDLES, 5, "b")}
     <div class="rule"></div>
