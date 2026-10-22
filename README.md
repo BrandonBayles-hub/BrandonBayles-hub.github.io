@@ -8,6 +8,7 @@ that is how the campaign tracker went 404 on 2026-09-29.**
 |---|---|---|
 | `implementation-prototype/academy/` | `scripts/export-academy.mjs` in `entrata-product/implementation-prototype` (manual copy) | Slim Max Academy export |
 | `implementation-prototype/campaign-status/` | GitHub Actions `update-campaign-status.yml` in `entrata-product/implementation-prototype` (every 15 min, deploy key) | A2P campaign tracker for Paige. Do not hand-edit; the bot overwrites it. |
+| `ssp-reference-property-setup/` | Hand-published from `prototypes/ssp-reference-property-setup/index.html` | Client Admin reference property mock. Static HTML. |
 
 Publishing rule: clone, add or replace **only your own folder**, commit, push. Keep
 `.nojekyll` at the root so `_next/` assets are served.
