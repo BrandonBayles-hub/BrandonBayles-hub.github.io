@@ -10,6 +10,10 @@
   .ca-top { height: 36px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; border-bottom: 1px solid #e5e5e5; }
   .ca-logo { color: #e10600; font-size: 20px; font-weight: bold; }
   .ca-top-right { display: flex; align-items: center; gap: 16px; font-size: 11px; }
+  .role-toggle { display: inline-flex; border: 1px solid #bbb; border-radius: 3px; overflow: hidden; }
+  .role-toggle button { background: #fff; border: 0; border-right: 1px solid #bbb; font: inherit; font-size: 11px; padding: 3px 8px; cursor: pointer; color: #333; white-space: nowrap; }
+  .role-toggle button:last-child { border-right: 0; }
+  .role-toggle button.on { background: #2f93e0; color: #fff; }
   .ca-top-right input { width: 140px; height: 20px; border: 1px solid #bbb; padding: 0 6px; font-size: 11px; }
   .ca-nav { background: #e10600; height: 20px; display: flex; align-items: stretch; }
   .ca-nav span { color: #fff; font-size: 11px; font-weight: bold; padding: 2px 7px 0; }
@@ -109,7 +113,13 @@
 <body>
 <div class="ca-top">
   <div class="ca-logo">ClientAdmin</div>
-  <div class="ca-top-right"><span>Quick Menu ▾</span><span>bbayles ▾</span><input placeholder="Quick Search" /></div>
+  <div class="ca-top-right">
+    <div class="role-toggle" id="role">
+      <button type="button" data-role="sales">View as Sales Rep</button>
+      <button type="button" data-role="desk" class="on">View as Deal Desk</button>
+    </div>
+    <span>Quick Menu ▾</span><span>bbayles ▾</span><input placeholder="Quick Search" />
+  </div>
 </div>
 <div class="ca-nav">
   <span>Dashboard</span><span class="on">Clients</span><span>Tasks</span><span>Sales</span><span>Support</span><span>Merchant</span><span>Development</span><span>Accounting</span><span>Utilities</span><span>Reports</span><span>Entrata Academy</span>
@@ -133,7 +143,6 @@
         <a>Go to Add Properties workflow
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f93e0" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M19 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>
         </a>
-        <a id="role">View as sales rep</a>
       </div>
     </div>
 
@@ -350,10 +359,12 @@ document.addEventListener("click", e => {
 $("mClose").onclick = () => $("overlay").classList.remove("open");
 $("overlay").onclick = e => { if (e.target.id === "overlay") $("overlay").classList.remove("open"); };
 $("search").oninput = render;
-$("role").onclick = () => {
-  document.body.classList.toggle("sales");
-  $("role").textContent = document.body.classList.contains("sales") ? "View as Deal Desk" : "View as sales rep";
-};
+document.querySelectorAll("#role button").forEach(btn => {
+  btn.onclick = () => {
+    document.body.classList.toggle("sales", btn.dataset.role === "sales");
+    document.querySelectorAll("#role button").forEach(b => b.classList.toggle("on", b === btn));
+  };
+});
 $("save").onclick = () => { if (!$("save").classList.contains("ready")) return; original.clear(); selected.forEach(id => original.add(id)); render(); };
 render();
 </script>
