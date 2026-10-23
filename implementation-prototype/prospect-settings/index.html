@@ -740,7 +740,7 @@
         $("f-stage").innerHTML += DATA.stages.map((s) => `<option>${esc(s)}</option>`).join("");
         $("f-region").innerHTML += DATA.regions.map((s) => `<option>${esc(s)}</option>`).join("");
         ["f-name", "f-stage", "f-region", "f-date", "f-plan"].forEach((id) => $(id).addEventListener(id === "f-name" ? "input" : "change", renderCompanies));
-        $("f-plan").checked = true;
+        $("f-plan").checked = false;
         renderCompanies();
         const pick = new URLSearchParams(location.search).get("company");
         if (pick) {
