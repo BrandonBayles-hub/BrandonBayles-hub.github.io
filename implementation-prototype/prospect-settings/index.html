@@ -340,6 +340,11 @@
       const FEEDBACK_REPO = "Entrata-Collab/entrata-rfp-engine";
       const short = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
       const EMPTY_PLAN = { settings: [], questions: [], functionality: [], ruledOut: [] };
+      const REVIEW_NOTE = {
+        queued: "Review in progress. The settings review for this company has not been written yet. It is in the queue and will appear here automatically. Nothing below comes from its calls yet.",
+        failed: "The review for this company failed and is waiting for a retry. Nothing below comes from its calls yet.",
+        notranscript: "No review: Gong has no usable transcript for any of this company's calls (no speech recorded). Its calls are listed below.",
+      };
 
       let DATA = null;
       let current = null;
@@ -448,7 +453,7 @@
         $("loader").classList.add("on");
         setStep(`Opening ${c.name}`, `${c.callCount} call${c.callCount === 1 ? "" : "s"} in Gong`, 40);
         await sleep(200); if (mine !== runId) return;
-        setStep(c.planInfo ? "Reading the plan" : "No plan yet", c.planInfo ? `Built from ${c.planInfo.callsUsed} calls` : "Factory defaults stand", 85);
+        setStep(c.planInfo ? "Reading the review" : "Review not ready", c.planInfo ? `Built from ${c.planInfo.callsUsed} calls` : "Nothing has been read from these calls yet", 85);
         if (c.planInfo && !c.plan) {
           try {
             const r = await fetch(`plans/${encodeURIComponent(c.id)}.json?v=${encodeURIComponent(DATA.generatedAt)}`);
@@ -474,7 +479,7 @@
         const plan = c.plan || EMPTY_PLAN;
         const usedIds = new Set((plan.callsUsed || []).map((x) => x.id));
         const notUsed = c.calls.filter((x) => !usedIds.has(x.id));
-        const waiting = c.plan ? "" : `<div class="note">No plan has been generated for this company yet. Factory defaults stand. Its calls are listed below.</div>`;
+        const waiting = c.plan ? "" : `<div class="note">${REVIEW_NOTE[c.review] || REVIEW_NOTE.queued}</div>`;
         $("result").innerHTML = `
           <div class="prospect-strip">
             <div class="strip-main"><span class="co-name">${esc(c.name)}</span>${stageBadge(c.stage)}<span class="meta">${esc(facts)}</span></div>
