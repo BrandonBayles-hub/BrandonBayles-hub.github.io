@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T17:45:17.785548+00:00",
+  "generatedAt": "2026-10-23T17:57:07.055295+00:00",
   "sourceWorkbook": "Campaign Reistration Draft + Eli+ OXP Reconciliation",
   "sourceTab": "campaign_submission_candidates_revised_colleen_v5_with_prospect_portal",
   "sourceGid": "1226632250",
@@ -13,7 +13,7 @@
   "oxpNotOnOriginalMigrationCount": 55,
   "oxpMappedClientCount": 104,
   "remediationAddedPropertyCount": 45,
-  "oxpAddedPropertyCount": 1462,
+  "oxpAddedPropertyCount": 1461,
   "unmappedClients": [
     {
       "company": "Aspire Residential",
@@ -93,12 +93,12 @@
   "duplicateSubaccounts": [],
   "excludedCount": 41,
   "summary": {
-    "VERIFIED": 2021,
+    "VERIFIED": 2020,
     "IN_PROGRESS": 6,
     "FAILED": 40,
     "NO_CAMPAIGN": 13,
     "NO_SERVICE": 1,
-    "SERVICE_NOT_FOUND": 3
+    "SERVICE_NOT_FOUND": 4
   },
   "failureActionSummary": {
     "Entrata \u2014 template/copy": 8,
@@ -6179,12 +6179,12 @@
       "dateUpdated": "2026-05-21T16:32:43Z",
       "errors": [
         {
-          "code": 30886,
-          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
-        },
-        {
           "code": 30917,
           "description": "The campaign submission has been reviewed and rejected because the multiple opt-in workflow description is incomplete or unclear."
+        },
+        {
+          "code": 30886,
+          "description": "The campaign submission has been reviewed and it was rejected because of invalid campaign description."
         }
       ],
       "usesTemplateA": false,
@@ -13911,12 +13911,12 @@
       "dateUpdated": "2026-09-28T21:33:06Z",
       "errors": [
         {
-          "code": 30907,
-          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
-        },
-        {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30907,
+          "description": "The campaign submission has been reviewed and rejected because the provided website URL does not match the Brand and Campaign registered."
         }
       ],
       "usesTemplateA": true,
@@ -24826,12 +24826,12 @@
       "dateUpdated": "2026-09-14T16:02:55Z",
       "errors": [
         {
-          "code": 30908,
-          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
+        },
+        {
+          "code": 30908,
+          "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
         }
       ],
       "usesTemplateA": true,
@@ -33585,27 +33585,18 @@
       "cid": "101115",
       "property": "Property 100076622",
       "propertyId": "100076622",
-      "serviceNameMatch": "Entrata_101115_100076622",
-      "paigeStatus": "OXP Submitted",
-      "sourceDisposition": "client_level_expansion",
+      "paigeStatus": "Approved",
+      "sourceDisposition": "frozen_missing_in_twilio",
       "cohortOrigins": [
-        "OXP submitted client list"
+        "Original property cohort"
       ],
       "notOnOriginalMigration": false,
       "serviceName": "Entrata_101115_100076622",
-      "serviceCreated": "2025-06-16T22:26:24Z",
-      "serviceSid": "MG417450c0e85310fabc7451786e92a2e0",
-      "duplicateServiceCount": 1,
-      "submitted": true,
-      "liveStatus": "VERIFIED",
-      "tcrCampaignId": "CP41VE0",
-      "dateCreated": "2025-06-16T22:26:25Z",
-      "dateUpdated": "2026-03-26T17:46:43Z",
+      "serviceSid": null,
+      "submitted": false,
+      "liveStatus": "SERVICE_NOT_FOUND",
       "errors": [],
-      "usesTemplateA": false,
-      "confidenceBucket": "fix_will_still_fail",
-      "confidenceBucketLabel": "Fix now, but will still fail",
-      "confidenceBucketDetail": "Entrata can correct rejected submission text, but the live target did not pass the full HTTPS + Privacy + Terms + claimed opt-in-control verification. Fixing copy alone is unsafe."
+      "error": "Messaging service no longer exists in Twilio"
     },
     {
       "company": "Mountain States Property Management",
@@ -50047,16 +50038,16 @@
       "dateUpdated": "2026-09-15T18:00:40Z",
       "errors": [
         {
-          "code": 30882,
-          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
-        },
-        {
           "code": 30896,
           "description": "The campaign submission has been reviewed and it was rejected because of provided Opt-in information."
         },
         {
           "code": 30908,
           "description": "The campaign submission has been reviewed and rejected because a compliant privacy policy can not be verified."
+        },
+        {
+          "code": 30882,
+          "description": "The campaign submission has been reviewed and it was rejected due to Terms and Conditions issues."
         }
       ],
       "usesTemplateA": true,
