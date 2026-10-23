@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Prospect configuration plans</title>
+    <title>First property configuration plans</title>
     <style>
       :root {
         color-scheme: light;
@@ -211,6 +211,46 @@
         .detail { max-height: none; }
         .line { grid-template-columns: 1fr; }
       }
+    
+      .kpis { grid-template-columns: repeat(5, 1fr); }
+      .bar-row.clickable { cursor: pointer; border-radius: 6px; padding: 2px 4px; margin: 2px -4px; }
+      .bar-row.clickable:hover { background: #fff; }
+      .bar-row.on { background: var(--accent-bg); }
+      .bar-row.on .bar-fill { background: var(--accent); }
+      .filter-bar { display: grid; grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(130px, 1fr)); gap: 10px; margin-top: 12px; align-items: end; }
+      .filter-bar label { display: flex; flex-direction: column; gap: 4px; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+      .filter-bar select, .filter-bar input[type=search] { font: inherit; font-size: 14px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; text-transform: none; letter-spacing: 0; font-weight: 400; }
+      .filter-bar .check { flex-direction: row; align-items: center; gap: 6px; padding-bottom: 10px; text-transform: none; font-size: 13px; color: var(--ink); font-weight: 600; letter-spacing: 0; }
+      .active-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+      .active-filters button { font: inherit; font-size: 12px; font-weight: 650; border: 1px solid var(--accent); color: var(--accent); background: var(--accent-bg); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+      .co-table { margin-top: 12px; max-height: 360px; overflow: auto; border: 1px solid var(--line); border-radius: 12px; }
+      .co-table table th { position: sticky; top: 0; z-index: 1; }
+      .co-table tr.row { cursor: pointer; }
+      .co-table tr.row:hover td { background: var(--accent-bg); }
+      .co-table tr.row.on td { background: #e8e6fb; }
+      .stage { display: inline-block; font-size: 11px; font-weight: 750; padding: 3px 9px; border-radius: 999px; white-space: nowrap; background: #f2f4f7; color: #344054; }
+      .stage.prospect { background: #eef0fe; color: #3730a3; }
+      .stage.sales { background: #fff1e6; color: #9a3412; }
+      .stage.client { background: var(--ready-bg); color: var(--ready); }
+      .stage.closed { background: #f2f4f7; color: #667085; }
+      .conf { display: inline-block; font-size: 11px; font-weight: 750; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+      .conf.high { background: var(--ready-bg); color: var(--ready); }
+      .conf.medium { background: var(--path-bg); color: var(--path); }
+      .conf.low { background: var(--none-bg); color: var(--none); }
+      .confirm-box { margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; background: #fff8e6; border: 1px solid #f3d58b; font-size: 13.5px; line-height: 1.5; color: #5c4108; }
+      .calls-used { margin-top: 14px; }
+      .calls-used summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--accent); }
+      .calls-used table { margin-top: 8px; }
+      .calls-used td a { color: var(--accent); font-weight: 650; text-decoration: none; }
+      .passage { border: 1px solid var(--line); border-radius: 12px; margin: 10px 0; overflow: hidden; }
+      .passage-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; padding: 9px 12px; background: #faf8f6; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+      .passage-head strong { font-size: 13px; }
+      .passage-head a, .passage-head button { color: var(--accent); font: inherit; font-size: 12px; font-weight: 700; text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
+      .passage-body { padding: 4px 12px 8px; max-height: 460px; overflow-y: auto; }
+      .related { margin-top: 8px; font-size: 13px; color: #475467; }
+      .quality-review textarea { min-height: 120px !important; font-size: 13.5px !important; }
+      .queue-item .conf { margin-left: 6px; }
+      @media (max-width: 1100px) { .filter-bar { grid-template-columns: 1fr 1fr; } }
     </style>
   </head>
   <body>
@@ -220,8 +260,8 @@
           <div class="eyebrow">RFP to Implementation · Professional Services</div>
           <h1>First property configuration</h1>
           <p class="lede">
-            Validate whether the AI translated prospect evidence into the right setting outcome.
-            Review the cited excerpt first; open the source call only when more context is needed.
+            Check whether the AI read each company's calls correctly and picked the right settings.
+            Every plan is built from all of the company's Gong calls. Evidence shows the whole discussion of each topic, with a link to that moment in Gong.
             Nothing is written into Entrata.
           </p>
         </div>
@@ -229,36 +269,44 @@
           <strong id="fresh-title">Loading…</strong>
           <span id="fresh-gen"></span>
           <span id="fresh-call"></span>
+          <span>Refreshes daily from Gong.</span>
         </div>
       </header>
 
       <section class="kpis">
-        <div class="kpi"><div class="n" id="k-prospect">–</div><div class="l">Prospect calls</div></div>
-        <div class="kpi"><div class="n" id="k-companies">–</div><div class="l">Prospects</div></div>
-        <div class="kpi"><div class="n" id="k-read">–</div><div class="l">Calls read</div></div>
-        <div class="kpi ready"><div class="n" id="k-reviewed">–</div><div class="l">Plans reviewed</div></div>
+        <div class="kpi"><div class="n" id="k-calls">–</div><div class="l">Calls in Gong</div></div>
+        <div class="kpi"><div class="n" id="k-companies">–</div><div class="l">Companies with calls</div></div>
+        <div class="kpi ready"><div class="n" id="k-plans">–</div><div class="l">Companies with a plan</div></div>
+        <div class="kpi"><div class="n" id="k-settings">–</div><div class="l">Settings proposed</div></div>
         <div class="kpi"><div class="n" id="k-written">0</div><div class="l">Settings written</div></div>
       </section>
 
-      <h2>How prospect calls break down</h2>
+      <h2>Calls by type</h2>
+      <div class="meta">Click a type to show only companies with that kind of call.</div>
       <div class="bars" id="bars"></div>
       <div class="axis"><span></span><span><i>0</i><i id="axis-mid">–</i><i id="axis-max">–</i></span><span></span></div>
       <p class="caption" id="chart-caption"></p>
 
       <div class="notice">
-        <strong>Internal only.</strong> Company names come from the Gong mirror.
-        Three plans were reviewed against the full transcript and the settings catalog.
-        This pilot shows only the evidence window needed for each decision; it does not publish full prospect transcripts.
+        <strong>Internal only.</strong> Companies, stages and calls come straight from Gong and its Salesforce link.
+        Only the passages cited as evidence are shown here; full transcripts stay in Gong.
       </div>
 
       <section class="panel">
-        <h2>Prospect</h2>
-        <div class="meta">Search and choose in the same box. Nothing is selected until you pick one.</div>
-        <div class="combo">
-          <input id="search" type="search" placeholder="Search a prospect" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="list" />
-          <div class="list" id="list" hidden></div>
+        <h2>Company</h2>
+        <div class="filter-bar">
+          <label>Name<input id="f-name" type="search" placeholder="Search a company or alias" autocomplete="off" /></label>
+          <label>Stage<select id="f-stage"><option value="">All stages</option></select></label>
+          <label>Region<select id="f-region"><option value="">All regions</option></select></label>
+          <label>Last call<select id="f-date">
+            <option value="">Any time</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option>
+            <option value="180">Last 6 months</option><option value="365">Last 12 months</option>
+          </select></label>
+          <label class="check"><input id="f-plan" type="checkbox" /> Has a plan</label>
         </div>
+        <div class="active-filters" id="active-filters"></div>
         <div class="hint" id="match-count"></div>
+        <div class="co-table"><table><thead><tr><th>Company</th><th>Stage</th><th>Region</th><th>Calls</th><th>Last call</th><th>Plan</th></tr></thead><tbody id="co-rows"></tbody></table></div>
 
         <div class="loader" id="loader">
           <svg class="cube" viewBox="0 0 80 80" aria-hidden="true">
@@ -277,9 +325,8 @@
       </section>
 
       <footer>
-        Factory default fills every setting the prospect did not decide.
-        Another client's agreed values are not copied over.
-        Source calls are linked from each reviewed plan.
+        Factory default fills every setting the calls did not decide.
+        Another client's agreed values are never copied over.
       </footer>
     </div>
 
@@ -288,19 +335,19 @@
       const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
       const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
       const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-      const TYPE_NAME = { prospecting: "Prospecting", other: "Other", demo: "Demo", discovery: "Discovery", sync: "Sync", pricing: "Pricing", implementation: "Implementation", inbound: "Inbound", training: "Training", support: "Support" };
       const FEEDBACK_REPO = "Entrata-Collab/entrata-rfp-engine";
       const short = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
+      const EMPTY_PLAN = { settings: [], questions: [], functionality: [], ruledOut: [] };
 
       let DATA = null;
       let current = null;
       let runId = 0;
-      let active = 0;
       let selectedReviewId = null;
       let reviewList = [];
       let reviewFilter = "all";
       let categoryFilter = "all";
-      const reviewDecisions = JSON.parse(localStorage.getItem("prospect-quality-reviews") || "{}");
+      let typeFilter = "";
+      const reviewDecisions = JSON.parse(localStorage.getItem("prospect-quality-reviews-v2") || "{}");
       let reviewerName = new URLSearchParams(location.search).get("reviewer") || localStorage.getItem("prospect-reviewer-name") || "";
       if (reviewerName) localStorage.setItem("prospect-reviewer-name", reviewerName);
 
@@ -310,112 +357,154 @@
         $("bar").style.width = pct + "%";
       }
 
-      function matches(q) {
-        q = q.trim().toLowerCase();
-        if (!q) return DATA.companies;
-        const rank = (c) => {
-          const n = (c.name || "").toLowerCase();
-          if (n.startsWith(q)) return 0;
-          if (n.includes(q)) return 1;
-          return [c.city, ...(c.opportunities || []).map((o) => o.name)].some((v) => (v || "").toLowerCase().includes(q)) ? 2 : -1;
-        };
-        return DATA.companies.map((c) => [rank(c), c]).filter(([r]) => r >= 0).sort((a, b) => a[0] - b[0] || (a[1].name || "").localeCompare(b[1].name)).map(([, c]) => c);
+      function stageClass(stage) {
+        const s = (stage || "").toLowerCase();
+        if (s.includes("active sales")) return "sales";
+        if (s.includes("implement")) return "client";
+        if (s.startsWith("prospect")) return "prospect";
+        if (s.startsWith("client") || s.startsWith("contracted")) return "client";
+        return "closed";
+      }
+      const stageBadge = (stage) => `<span class="stage ${stageClass(stage)}">${esc(stage || "Unknown")}</span>`;
+
+      function daysAgo(date) {
+        if (!date) return Infinity;
+        return (Date.now() - new Date(date + "T12:00:00").getTime()) / 864e5;
       }
 
-      function renderList(list) {
-        const box = $("list");
-        active = 0;
-        $("match-count").textContent = list.length === DATA.companies.length
-          ? `${DATA.companies.length} prospects. Reviewed plans are marked.`
-          : `${list.length} match${list.length === 1 ? "" : "es"}`;
-        if (!list.length) {
-          box.innerHTML = `<button type="button" disabled>No prospect matches</button>`;
-          return;
-        }
-        box.innerHTML = list.slice(0, 40).map((c, i) => `
-          <button type="button" data-id="${esc(c.id)}" class="${i === 0 ? "active" : ""}">
-            <span>${esc(c.name)}<div class="sub">${esc([c.city, c.lastCall].filter(Boolean).join(" · "))}</div></span>
-            ${c.reviewed ? `<span class="pill">Reviewed</span>` : ""}
-          </button>`).join("");
-        box.querySelectorAll("button[data-id]").forEach((b) => b.addEventListener("mousedown", (e) => {
-          e.preventDefault();
-          choose(b.dataset.id);
+      function filtered() {
+        const q = $("f-name").value.trim().toLowerCase();
+        const stage = $("f-stage").value, reg = $("f-region").value, days = Number($("f-date").value || 0), plan = $("f-plan").checked;
+        const rank = (c) => {
+          if (!q) return 1;
+          const names = [c.name, ...(c.aliases || [])].map((n) => (n || "").toLowerCase());
+          if (names.some((n) => n.startsWith(q))) return 0;
+          if (names.some((n) => n.includes(q))) return 1;
+          return (c.city || "").toLowerCase().includes(q) ? 2 : -1;
+        };
+        return DATA.companies
+          .filter((c) => (!stage || c.stage === stage) && (!reg || c.region === reg) && (!days || daysAgo(c.lastCall) <= days)
+            && (!plan || c.planInfo) && (!typeFilter || (c.callTypes || {})[typeFilter]))
+          .map((c) => [rank(c), c]).filter(([r]) => r >= 0)
+          .sort((a, b) => a[0] - b[0] || (!!b[1].planInfo - !!a[1].planInfo) || (b[1].lastCall || "").localeCompare(a[1].lastCall || ""))
+          .map(([, c]) => c);
+      }
+
+      function renderCompanies() {
+        const list = filtered();
+        $("match-count").textContent = `${fmt(list.length)} of ${fmt(DATA.companies.length)} companies${list.length > 200 ? " · showing the first 200" : ""}`;
+        $("co-rows").innerHTML = list.slice(0, 200).map((c) => `<tr class="row ${current?.id === c.id ? "on" : ""}" data-id="${esc(c.id)}">
+          <td><strong>${esc(c.name)}</strong>${c.aliases?.length ? `<div class="meta">Also: ${esc(c.aliases.join(", "))}</div>` : ""}</td>
+          <td>${stageBadge(c.stage)}</td><td>${esc([c.state, c.region].filter(Boolean).join(" · "))}</td>
+          <td>${fmt(c.callCount)}${typeFilter ? ` <span class="meta">(${fmt(c.callTypes[typeFilter])} ${esc(typeFilter.toLowerCase())})</span>` : ""}</td>
+          <td>${esc(c.lastCall)}</td><td>${c.planInfo ? `<span class="pill">${fmt(c.planInfo.settings)} settings</span>` : ""}</td></tr>`).join("")
+          || `<tr><td colspan="6" class="meta">No company matches these filters.</td></tr>`;
+        document.querySelectorAll("#co-rows tr[data-id]").forEach((tr) => tr.addEventListener("click", () => choose(tr.dataset.id)));
+        const chips = [];
+        if (typeFilter) chips.push(["type", `Call type: ${typeFilter}`]);
+        if ($("f-stage").value) chips.push(["stage", `Stage: ${$("f-stage").value}`]);
+        if ($("f-region").value) chips.push(["region", `Region: ${$("f-region").value}`]);
+        if ($("f-date").value) chips.push(["date", $("f-date").selectedOptions[0].textContent]);
+        if ($("f-plan").checked) chips.push(["plan", "Has a plan"]);
+        $("active-filters").innerHTML = chips.map(([k, t]) => `<button type="button" data-clear="${k}">${esc(t)} ×</button>`).join("");
+        document.querySelectorAll("[data-clear]").forEach((b) => b.addEventListener("click", () => {
+          const k = b.dataset.clear;
+          if (k === "type") typeFilter = "";
+          if (k === "stage") $("f-stage").value = "";
+          if (k === "region") $("f-region").value = "";
+          if (k === "date") $("f-date").value = "";
+          if (k === "plan") $("f-plan").checked = false;
+          renderBars(); renderCompanies();
         }));
       }
 
-      function openList() {
-        $("list").hidden = false;
-        $("search").setAttribute("aria-expanded", "true");
-        renderList(matches($("search").value));
-      }
-
-      function closeList() {
-        $("list").hidden = true;
-        $("search").setAttribute("aria-expanded", "false");
+      function renderBars() {
+        const types = DATA.callTypes || [];
+        const max = Math.max(...types.map((x) => x.count), 1);
+        $("bars").innerHTML = types.map((x) => `
+          <div class="bar-row clickable ${typeFilter === x.type ? "on" : ""}" data-type="${esc(x.type)}" role="button" tabindex="0" title="Show companies with ${esc(x.type.toLowerCase())} calls">
+            <div class="bar-name">${esc(x.type)}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${Math.max(1, (x.count / max) * 100)}%"></div></div>
+            <div class="bar-n">${short(x.count)}</div>
+          </div>`).join("");
+        $("axis-mid").textContent = short(Math.round(max / 2));
+        $("axis-max").textContent = short(max);
+        document.querySelectorAll("[data-type]").forEach((row) => {
+          const go = () => { typeFilter = typeFilter === row.dataset.type ? "" : row.dataset.type; renderBars(); renderCompanies(); };
+          row.addEventListener("click", go);
+          row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+        });
       }
 
       async function choose(id) {
         const c = DATA.companies.find((x) => x.id === id);
         if (!c) return;
         current = c;
-        $("search").value = c.name;
-        closeList();
+        renderCompanies();
         const mine = ++runId;
         $("result").classList.remove("on");
         $("loader").classList.add("on");
-        setStep(`Opening ${c.name}`, `${c.calls.length} call${c.calls.length === 1 ? "" : "s"} on file`, 30);
-        await sleep(280); if (mine !== runId) return;
-        setStep(c.reviewed ? "Reading the reviewed plan" : "No reviewed overrides", "Factory defaults stand where they were silent", 70);
-        await sleep(240); if (mine !== runId) return;
-        setStep("Done", "", 100);
-        await sleep(120); if (mine !== runId) return;
+        setStep(`Opening ${c.name}`, `${c.callCount} call${c.callCount === 1 ? "" : "s"} in Gong`, 40);
+        await sleep(200); if (mine !== runId) return;
+        setStep(c.planInfo ? "Reading the plan" : "No plan yet", c.planInfo ? `Built from ${c.planInfo.callsUsed} calls` : "Factory defaults stand", 85);
+        if (c.planInfo && !c.plan) {
+          try {
+            const r = await fetch(`plans/${encodeURIComponent(c.id)}.json?v=${encodeURIComponent(DATA.generatedAt)}`);
+            if (!r.ok) throw new Error(r.status);
+            c.plan = await r.json();
+          } catch (err) { setStep("Could not load the plan", "Reload the page and try again", 85); return; }
+        }
+        await sleep(160); if (mine !== runId) return;
         $("loader").classList.remove("on");
         render(c);
+        $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function callsTable(calls, label) {
+        if (!calls.length) return "";
+        return `<details class="calls-used"><summary>${esc(label)} (${calls.length})</summary><table><thead><tr><th>Date</th><th>Call</th><th>Type</th><th>Length</th><th></th></tr></thead><tbody>
+          ${[...calls].sort((a, b) => (b.date || "").localeCompare(a.date || "")).map((x) => `<tr><td>${esc(x.date)}</td><td>${esc(x.title || "Gong call")}</td><td>${esc(x.type || "")}</td><td>${esc(x.minutes)} min</td><td><a href="${esc(x.url)}" target="_blank" rel="noopener">Open in Gong ↗</a></td></tr>`).join("")}
+        </tbody></table></details>`;
       }
 
       function render(c) {
-        const facts = [c.units ? `${fmt(c.units)} units` : null, c.properties ? `${fmt(c.properties)} properties` : null, c.city, `${c.calls.length} call${c.calls.length === 1 ? "" : "s"}`].filter(Boolean).join(" · ");
-        const opps = (c.opportunities || []).map((o) => `<span class="chip">${esc(o.type || "Opportunity")} · ${esc(o.stage || "Open")}</span>`).join("");
-        const plan = c.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] };
-        const callLinks = c.calls.map((call) => `<a class="strip-link" href="${esc(call.url)}" target="_blank" rel="noopener" title="${esc(call.title || "Gong call")} · ${esc(call.date)} · ${esc(call.minutes)} min">Open call in Gong ↗</a>`).join("");
-        const callMeta = c.calls.map((call) => `${esc(call.title || "Gong call")} · ${esc(call.date)} · ${esc(call.minutes)} min`).join("<br>");
-        const waiting = c.reviewed ? "" : `<div class="note">This prospect has not been reviewed. No settings are suggested. Factory defaults stand.</div>`;
+        const facts = [c.units ? `${fmt(c.units)} units` : null, c.properties ? `${fmt(c.properties)} properties` : null, [c.city, c.state].filter(Boolean).join(", "), c.region, `${c.callCount} call${c.callCount === 1 ? "" : "s"}`, c.firstCall ? `${c.firstCall} to ${c.lastCall}` : null].filter(Boolean).join(" · ");
+        const plan = c.plan || EMPTY_PLAN;
+        const usedIds = new Set((plan.callsUsed || []).map((x) => x.id));
+        const notUsed = c.calls.filter((x) => !usedIds.has(x.id));
+        const waiting = c.plan ? "" : `<div class="note">No plan has been generated for this company yet. Factory defaults stand. Its calls are listed below.</div>`;
         $("result").innerHTML = `
           <div class="prospect-strip">
-            <div class="strip-main"><span class="co-name">${esc(c.name)}</span><span class="meta">${esc(facts)}</span>${opps}</div>
-            <div class="strip-actions">${callLinks}</div>
+            <div class="strip-main"><span class="co-name">${esc(c.name)}</span>${stageBadge(c.stage)}<span class="meta">${esc(facts)}</span></div>
           </div>
+          ${c.aliases?.length ? `<div class="meta">Merged from: ${esc([c.name, ...c.aliases].join(", "))}</div>` : ""}
           ${waiting}
-          ${c.reviewed ? `<details class="how-to"><summary>How to review · about 2 minutes per item</summary>
-            <ol><li><strong>Read the AI decision</strong> — is the setting outcome clear and actionable?</li>
-            <li><strong>Check evidence and scope</strong> — quote, occupancy type, implementation package, contracted product.</li>
-            <li><strong>Rate it</strong> — Accurate, Needs correction, or Missing context.</li></ol>
-            ${plan.summary ? `<p>${esc(plan.summary)}</p>` : ""}
+          ${c.plan ? `<p class="insight" style="margin-top:12px">${esc(plan.summary)}</p>` : ""}
+          ${callsTable(plan.callsUsed || [], "Calls the AI read for this plan")}
+          ${callsTable(c.plan ? notUsed : c.calls, c.plan ? "Calls without a transcript (not read)" : "Calls in Gong")}
+          ${c.plan ? `<details class="how-to"><summary>How to review · about 2 minutes per item</summary>
+            <ol><li><strong>Read the AI decision</strong> — is it the right setting, and the right value?</li>
+            <li><strong>Read the passage</strong> — the whole discussion is shown; open Gong at the exact moment if you need more.</li>
+            <li><strong>Rate it</strong> — Accurate, Needs correction, or Missing context — and say why.</li></ol>
             <p>${esc(DATA.baseline.rule)}</p>
-            <p class="meta">${callMeta}</p>
           </details>
           <div class="review-bar"><div class="review-count"><strong>Review queue</strong><span class="meta" id="review-progress"></span><div class="review-progress-track" aria-hidden="true"><div class="review-progress-fill" id="review-progress-fill"></div></div></div><div><button type="button" class="action" id="export-feedback">Download CSV</button> <button type="button" class="action primary" id="submit-feedback">Submit shared feedback</button></div></div>
-          <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}
-          `;
+          <div class="review-shell"><aside class="queue"><div class="queue-tools" id="queue-tools"></div><div class="queue-list" id="queue-list"></div></aside><main class="detail" id="review-detail"></main></div>` : ""}`;
         $("result").classList.add("on");
-        if (c.reviewed) initReview(c, plan);
+        if (c.plan) initReview(plan);
       }
 
       function categoryFor(path) {
-        if (!path) return "Other";
-        const text = path.toLowerCase();
-        if (text.includes("financial") || text.includes("payment")) return "Financial / Payments";
-        if (text.includes("floor plan") || text.includes("unit availability")) return "Leasing / Availability";
-        if (text.includes("maintenance")) return "Maintenance";
-        return "Other";
+        const parts = String(path || "").split(">>").map((x) => x.trim()).filter(Boolean);
+        return parts[1] && parts[1] !== "Properties" ? parts[1] : (parts[3] || parts[1] || "Other");
       }
 
       function reviewItems(plan) {
         return [
-          ...plan.rows.map((data, i) => ({ id: `change-${i}`, kind: "change", category: categoryFor(data.path), title: data.setting, value: `${data.catalogDefault} → ${data.proposed}`, summary: data.meaning, data })),
-          ...plan.questions.map((data, i) => ({ id: `confirm-${i}`, kind: "confirm", category: categoryFor(data.path), title: data.question, value: "Confirmation needed", summary: data.why, data })),
-          ...(plan.rejectedSettings || []).map((data, i) => ({ id: `ruled-${i}`, kind: "ruled", category: categoryFor(data.path), title: data.setting, value: "No change", summary: data.why, data })),
-          ...plan.gaps.map((data, i) => ({ id: `gap-${i}`, kind: "gap", category: "Product gap", title: data.text, value: "Not a setting", summary: "The transcript describes a workflow or reporting need, not a configurable setting.", data })),
+          ...(plan.settings || []).map((data, i) => ({ id: `setting-${i}`, kind: "change", category: categoryFor(data.path), title: data.setting, value: `${data.catalogDefault} → ${data.proposed}`, data })),
+          ...(plan.questions || []).map((data, i) => ({ id: `confirm-${i}`, kind: "confirm", category: categoryFor(data.path), title: data.question, value: `Default: ${data.default}`, data })),
+          ...(plan.functionality || []).map((data, i) => ({ id: `func-${i}`, kind: "func", category: data.product || "General functionality", title: data.need, value: "General functionality, not a setting", data })),
+          ...(plan.ruledOut || []).map((data, i) => ({ id: `ruled-${i}`, kind: "ruled", category: categoryFor(data.path), title: data.setting, value: "No change", data })),
         ];
       }
 
@@ -438,47 +527,24 @@
         return h ? `${h}h ${min}m ${s}s` : `${min}m ${s}s`;
       }
 
-      function gongAt(url, raw) {
-        const [m, s] = String(raw || "0:00").split(":").map(Number);
-        const secs = (m || 0) * 60 + (s || 0);
-        if (!url || !secs) return url || "#";
-        const join = url.includes("?") ? "&" : "?";
-        return `${url}${join}t=${secs}`;
+      const gongAt = (url, secs) => (secs ? `${url}&t=${secs}` : url);
+      const sideLabel = (side) => (side === "C" ? "Client" : side === "E" ? "Entrata" : "Speaker");
+
+      function passages(list, id) {
+        if (!list?.length) return `<div class="meta">No passage attached.</div>`;
+        return list.map((p, n) => `<div class="passage">
+          <div class="passage-head"><span><strong>${esc(p.callTitle || "Gong call")}</strong> · ${esc(p.callDate || "")} · from ${esc(humanTime(p.at))} · ${p.turns.length} turns</span>
+            <span><button type="button" data-copy-passage="${esc(id)}:${n}">Copy passage</button> · <a href="${esc(gongAt(p.callUrl, p.turns[0]?.secs))}" target="_blank" rel="noopener">Open in Gong at ${esc(humanTime(p.at))} ↗</a></span></div>
+          <div class="passage-body">${p.turns.map((line) => `<div class="bubble ${line.side === "C" ? "them" : "us"}"><div class="avatar">${esc(initials(line.who))}</div>
+            <div class="speech"><div class="speaker">${esc(line.who)}<span class="role">${sideLabel(line.side)}</span><a class="stamp" href="${esc(gongAt(p.callUrl, line.secs))}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${esc(line.text)}</p></div></div>`).join("")}</div>
+        </div>`).join("");
       }
 
-      function markPhrase(text) {
-        const raw = String(text || "");
-        const stop = new Set("a an the to of and or for on in is it we us our they them that this with from by as at be are was were have has had do did just like right course so very really because but if then than into about what when where who how its".split(" "));
-        const bits = raw.split(/\s*(?:,|;|\bbecause\b|\bbut\b)\s*/i).map((part) => part.replace(/^[\s.…]+|[\s.…]+$/g, "")).filter((part) => part.length > 12);
-        const score = (part) => part.match(/[A-Za-z0-9']+/g)?.reduce((sum, word) => {
-          if (/\d/.test(word)) return sum + 4;
-          if (!stop.has(word.toLowerCase()) && word.length > 5) return sum + 2;
-          return sum;
-        }, 0) || 0;
-        const best = bits.sort((a, b) => score(b) - score(a))[0];
-        const needle = best ? best.replace(/[?.!]+$/g, "") : "";
-        const at = needle ? raw.toLowerCase().indexOf(needle.toLowerCase()) : -1;
-        if (at < 0) return esc(raw);
-        return `${esc(raw.slice(0, at))}<mark>${esc(raw.slice(at, at + needle.length))}</mark>${esc(raw.slice(at + needle.length))}`;
-      }
+      const passageText = (p) => `${p.callTitle} · ${p.callDate}\n${p.callUrl}\n\n` + p.turns.map((l) => `[${humanTime(l.t)}] ${l.who} (${sideLabel(l.side)}): ${l.text}`).join("\n");
 
-      function evidence(s, id) {
-        if (!s) return `<div class="meta">No transcript excerpt attached.</div>`;
-        const key = Math.max(0, s.lines.findIndex((line) => line.key));
-        const start = Math.max(0, key - 1);
-        const end = Math.min(s.lines.length, key + 2);
-        const bubble = (line) => `<div class="bubble ${line.prospect ? "them" : "us"}"><div class="avatar">${esc(initials(line.who))}</div>
-          <div class="speech ${line.key ? "key" : ""}"><div class="speaker">${esc(line.who)}<span class="role">${line.prospect ? "Prospect" : "Entrata"}</span><a class="stamp" href="${esc(gongAt(s.callUrl, line.t))}" target="_blank" rel="noopener">${esc(humanTime(line.t))}</a></div><p>${line.key ? markPhrase(line.text) : esc(line.text)}</p></div></div>`;
-        const snippet = s.lines.slice(start, end).map(bubble).join("");
-        const full = s.lines.map(bubble).join("");
-        const remaining = s.lines.length - (end - start);
-        const source = [s.callTitle, s.callDate].filter(Boolean).join(" · ");
-        return `<div class="evidence"><div class="source-meta"><div class="meta">${esc(source || "Source call")} · excerpt starts ${esc(humanTime(s.at))}</div><div><button class="expand" type="button" data-copy-excerpt="${esc(id)}">Copy excerpt</button> · <a class="expand" href="${esc(s.callUrl)}" target="_blank" rel="noopener">Open call in Gong</a></div></div><div id="snippet-${esc(id)}">${snippet}</div>${remaining > 0 ? `<button class="expand" type="button" data-expand="${esc(id)}">Expand source window (+${remaining} turns)</button><div class="more-evidence" id="more-${esc(id)}" hidden>${full}</div>` : ""}</div>`;
-      }
-
-      function initReview(c, plan) {
+      function initReview(plan) {
         const items = reviewItems(plan);
-        selectedReviewId = items.some((x) => x.id === selectedReviewId) ? selectedReviewId : items[0]?.id;
+        selectedReviewId = items[0]?.id;
         reviewFilter = "all";
         categoryFilter = "all";
         renderReviewWorkspace(items);
@@ -487,33 +553,32 @@
       function renderReviewWorkspace(items) {
         const kinds = [
           ["all", "All", items.length],
-          ["change", "Changes", items.filter((x) => x.kind === "change").length],
+          ["change", "Settings", items.filter((x) => x.kind === "change").length],
           ["confirm", "Confirm", items.filter((x) => x.kind === "confirm").length],
-          ["analysis", "No change", items.filter((x) => ["ruled", "gap"].includes(x.kind)).length],
+          ["func", "General functionality", items.filter((x) => x.kind === "func").length],
+          ["ruled", "No change", items.filter((x) => x.kind === "ruled").length],
         ];
-        const categories = [...new Set(items.map((x) => x.category))];
+        const categories = [...new Set(items.map((x) => x.category))].sort();
         $("queue-tools").innerHTML = `<div class="filters">${kinds.map(([id, label, count]) => `<button type="button" class="filter ${reviewFilter === id ? "on" : ""}" data-filter="${id}">${label} ${count}</button>`).join("")}</div>
           <select class="category-filter" id="category-filter" aria-label="Filter by category"><option value="all">All categories</option>${categories.map((x) => `<option value="${esc(x)}" ${categoryFilter === x ? "selected" : ""}>${esc(x)}</option>`).join("")}</select>`;
-        const filtered = items.filter((x) => {
-          const kindMatch = reviewFilter === "all" || x.kind === reviewFilter || (reviewFilter === "analysis" && ["ruled", "gap"].includes(x.kind));
-          return kindMatch && (categoryFilter === "all" || x.category === categoryFilter);
-        });
-        if (!filtered.some((x) => x.id === selectedReviewId)) selectedReviewId = filtered[0]?.id;
-        reviewList = filtered;
-        $("queue-list").innerHTML = filtered.length ? filtered.map((item) => {
+        const list = items.filter((x) => (reviewFilter === "all" || x.kind === reviewFilter) && (categoryFilter === "all" || x.category === categoryFilter));
+        if (!list.some((x) => x.id === selectedReviewId)) selectedReviewId = list[0]?.id;
+        reviewList = list;
+        $("queue-list").innerHTML = list.length ? list.map((item) => {
           const [status, cls] = statusFor(item);
           const state = reviewDecisions[`${current.id}-${item.id}`] || {};
           const queueValue = item.kind === "change" && state.value ? `${item.data.catalogDefault} → ${state.value}` : item.value;
           const mark = cls === "approved" ? "✓" : cls === "rejected" || cls === "context" ? "!" : "";
+          const conf = item.kind === "change" ? `<span class="conf ${esc(item.data.confidence)}">${esc(item.data.confidence)}</span>` : "";
           return `<button type="button" class="queue-item ${selectedReviewId === item.id ? "on" : ""}" data-review-id="${esc(item.id)}">
             <span class="dot ${cls}" title="${esc(status)}">${mark}</span>
-            <span><span class="queue-kind">${esc(item.category)}</span><span class="queue-title">${esc(item.title)}</span><span class="queue-value">${esc(queueValue)}</span></span></button>`;
+            <span><span class="queue-kind">${esc(item.category)}${conf}</span><span class="queue-title">${esc(item.title)}</span><span class="queue-value">${esc(queueValue)}</span></span></button>`;
         }).join("") : `<div class="empty-detail">No items in this filter.</div>`;
         const selected = items.find((x) => x.id === selectedReviewId);
         $("review-detail").innerHTML = selected ? detailFor(selected) : `<div class="empty-detail">Choose a review item.</div>`;
         const reviewed = items.filter((item) => reviewDecisions[`${current.id}-${item.id}`]?.result).length;
-        if ($("review-progress")) $("review-progress").textContent = `${reviewed} of ${items.length} quality checks completed`;
-        if ($("review-progress-fill")) $("review-progress-fill").style.width = `${items.length ? (reviewed / items.length) * 100 : 0}%`;
+        $("review-progress").textContent = `${reviewed} of ${items.length} quality checks completed`;
+        $("review-progress-fill").style.width = `${items.length ? (reviewed / items.length) * 100 : 0}%`;
         bindReviewEvents(items);
       }
 
@@ -523,56 +588,51 @@
         return `<div class="quality-review">
           <div class="qr-head"><div class="section-title">Your quality check</div><label class="reviewer">Reviewer <input id="reviewer-name" value="${esc(state.reviewer || reviewerName)}" placeholder="Your name"></label></div>
           <div class="quality-actions">${option("accurate", "Accurate", "A", "rate-accurate")}${option("correction", "Needs correction", "C", "rate-correction")}${option("context", "Missing context", "M", "rate-context")}</div>
-          <textarea id="review-notes" aria-label="Reviewer note" placeholder="Optional note: wrong setting, wrong value, speaker lacked authority, conflicting call…">${esc(state.notes || "")}</textarea>
-          <div class="qr-foot"><button type="button" class="link-button" data-copy-review>Copy review packet</button><span class="export-note">Saved in this browser until you submit.</span></div>
+          <textarea id="review-notes" aria-label="Reviewer feedback" placeholder="What is right or wrong here? e.g. wrong setting, wrong value, they meant storage-unit fees, speaker was Entrata not the client, a later call changed this…">${esc(state.notes || "")}</textarea>
+          <div class="qr-foot"><button type="button" class="link-button" data-copy-review>Copy this item with my feedback</button><span class="export-note">Saved in this browser until you submit.</span></div>
         </div>`;
       }
 
       function detailFor(item) {
+        const d = item.data;
         if (item.kind === "change") {
-          const r = item.data;
-          const key = `${current.id}-${item.id}`;
-          const state = reviewDecisions[key] || {};
-          const choice = state.value || r.proposed;
-          return `<div class="detail-head"><div class="topic">${esc(item.category)} · Proposed configuration</div><span class="badge ${r.match === "Partial" ? "partial" : ""}">${esc(r.match)} match</span></div>
-            <div class="decision">${esc(r.setting)}</div>
-            <div class="change-strip"><div class="cell"><span>Factory default</span><strong>${esc(r.catalogDefault)}</strong></div><div class="arrow">→</div><div class="cell proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div><button class="link-button" data-edit>Correct value</button></div>
-            <div class="edit-box" id="edit-box" hidden><select id="edit-value">${r.options.map((o) => `<option ${o.value === choice ? "selected" : ""}>${esc(o.value)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
-            <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(r.meaning)}</p>${r.assumption ? `<p class="assumption"><strong>Assumption:</strong> ${esc(r.assumption)}</p>` : ""}</div>
-            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(r.said, item.id)}</div>
-            <details class="section more-detail"><summary>Setting path, reasoning, and alternatives</summary>
-              <div class="path">${esc(r.path)}</div><p>${esc(r.does)}</p><div class="meta">Checked in code: ${esc(r.codeRef)}</div>
-              <ol class="reason-list">${r.reasoning.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
-              <p><strong>Not covered:</strong> ${esc(r.notCovered)}</p>${r.rejected.map((x) => `<p><strong>Rejected — ${esc(x.setting)}:</strong> ${esc(x.why)}</p>`).join("")}
+          const state = reviewDecisions[`${current.id}-${item.id}`] || {};
+          const choice = state.value || d.proposed;
+          const opts = [...new Set([d.proposed, ...d.options.map((o) => o.value)])];
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · ${esc(d.topic || "Setting")}</div><span class="conf ${esc(d.confidence)}">${esc(d.confidence)} confidence</span></div>
+            <div class="decision">${esc(d.setting)}</div>
+            <div class="change-strip"><div class="cell"><span>Factory default</span><strong>${esc(d.catalogDefault)}</strong></div><div class="arrow">→</div><div class="cell proposed"><span>Proposed value</span><strong>${esc(choice)}</strong></div><button class="link-button" data-edit>Correct value</button></div>
+            <div class="edit-box" id="edit-box" hidden><select id="edit-value">${opts.map((o) => `<option ${o === choice ? "selected" : ""}>${esc(o)}</option>`).join("")}</select><button class="action" data-save-edit>Save value</button></div>
+            ${d.confirmText ? `<div class="confirm-box">${esc(d.confirmText)}</div>` : ""}
+            <div class="section"><div class="section-title">What the client needs</div><p class="insight">${esc(d.meaning)}</p>${d.assumption ? `<p class="assumption"><strong>Assumption:</strong> ${esc(d.assumption)}</p>` : ""}
+              ${d.related?.length ? `<div class="related"><strong>Works with:</strong> ${esc(d.related.join(" · "))}</div>` : ""}</div>
+            <div class="section"><div class="section-title">Evidence from the calls (${d.passages.length})</div>${passages(d.passages, item.id)}</div>
+            <details class="section more-detail"><summary>Setting path, reasoning, and options</summary>
+              <div class="path">${esc(d.path)}</div>
+              <ol class="reason-list">${(d.reasoning || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+              ${(d.options || []).map((o) => `<p><strong>${esc(o.value)}:</strong> ${esc(o.effect)}</p>`).join("")}
             </details>${qualityPanel(item)}`;
         }
         if (item.kind === "confirm") {
-          const q = item.data;
-          return `<div class="detail-head"><div class="topic">${esc(item.category)} · Confirmation</div><span class="badge partial">Needs answer</span></div><div class="decision">${esc(q.question)}</div>
-            <div class="change-strip"><div class="cell proposed"><span>Default if unanswered</span><strong>${esc(q.default)}</strong></div></div>
-            <div class="section"><div class="section-title">AI insight</div><p class="insight">${esc(q.why)}</p></div>
-            <div class="section"><div class="section-title">Transcript evidence</div>${evidence(q.said, item.id)}</div>
-            ${q.path ? `<details class="section more-detail"><summary>Closest setting</summary><div class="path">${esc(q.path)}</div><div class="meta">Checked in code: ${esc(q.codeRef)}</div></details>` : ""}${qualityPanel(item)}`;
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · Confirm with client</div><span class="badge partial">Needs answer</span></div><div class="decision">${esc(d.question)}</div>
+            <div class="change-strip"><div class="cell proposed"><span>Default if unanswered</span><strong>${esc(d.default)}</strong></div></div>
+            <div class="section"><div class="section-title">Why it is open</div><p class="insight">${esc(d.why)}</p>${d.path ? `<div class="path">${esc(d.path)}</div>` : ""}</div>
+            <div class="section"><div class="section-title">Evidence from the calls (${d.passages.length})</div>${passages(d.passages, item.id)}</div>${qualityPanel(item)}`;
         }
-        if (item.kind === "ruled") {
-          const r = item.data;
-          return `<div class="detail-head"><div class="topic">${esc(item.category)} · No change</div></div><div class="decision">${esc(r.setting)}</div>
-            <div class="section"><div class="section-title">Why it was ruled out</div><p class="insight">${esc(r.why)}</p><div class="path">Checked in code: ${esc(r.codeRef)}</div></div>${qualityPanel(item)}`;
+        if (item.kind === "func") {
+          return `<div class="detail-head"><div class="topic">${esc(item.category)} · General functionality</div><span class="badge partial">Not a setting</span></div><div class="decision">${esc(d.need)}</div>
+            <div class="section"><div class="section-title">Why this is not a setting</div><p class="insight">${esc(d.why)}</p></div>
+            <div class="section"><div class="section-title">Evidence from the calls (${d.passages.length})</div>${passages(d.passages, item.id)}</div>${qualityPanel(item)}`;
         }
-        return `<div class="detail-head"><div class="topic">Product gap · Not a setting</div></div><div class="decision">${esc(item.data.text)}</div>
-          <div class="section"><div class="section-title">AI insight</div><p class="insight">This needs workflow or product follow-up. It should not be forced into a setting value.</p></div>
-          <div class="section"><div class="section-title">Transcript evidence</div>${evidence(item.data.said, item.id)}</div>${qualityPanel(item)}`;
-      }
-
-      function evidenceText(item) {
-        const said = item.data.said;
-        if (!said) return "No transcript excerpt attached.";
-        return said.lines.map((line) => `[${humanTime(line.t)}] ${line.who}: ${line.text}`).join("\n");
+        return `<div class="detail-head"><div class="topic">${esc(item.category)} · No change</div></div><div class="decision">${esc(d.setting)}</div>
+          <div class="section"><div class="section-title">Why it stays at the default</div><p class="insight">${esc(d.why)}</p><div class="path">${esc(d.path)}</div></div>${qualityPanel(item)}`;
       }
 
       function reviewPacket(item) {
         const state = reviewDecisions[`${current.id}-${item.id}`] || {};
-        return `Prospect: ${current.name}\nItem: ${item.title}\nAI outcome: ${item.value}\nAI explanation: ${item.summary}\nQuality rating: ${state.result || "Unreviewed"}\nReviewer: ${state.reviewer || reviewerName || "Not entered"}\nReviewer notes: ${state.notes || "None"}\n\nEvidence:\n${evidenceText(item)}`;
+        const d = item.data;
+        const ev = (d.passages || []).map(passageText).join("\n\n---\n\n");
+        return `Company: ${current.name}\nItem: ${item.title}\nAI outcome: ${item.value}${d.confidence ? ` (${d.confidence} confidence)` : ""}\n${d.confirmText ? d.confirmText + "\n" : ""}Rating: ${state.result || "Unrated"}\nReviewer: ${state.reviewer || reviewerName || "Not entered"}\nFeedback: ${state.notes || "None"}\n\nEvidence:\n${ev || "None"}`;
       }
 
       function applyQuality(result, items) {
@@ -588,14 +648,14 @@
       }
 
       function saveReviews() {
-        localStorage.setItem("prospect-quality-reviews", JSON.stringify(reviewDecisions));
+        localStorage.setItem("prospect-quality-reviews-v2", JSON.stringify(reviewDecisions));
       }
 
       function downloadFeedback(items) {
-        const rows = [["Prospect", "Item", "Type", "AI outcome", "Quality rating", "Reviewer", "Notes"]];
+        const rows = [["Company", "Item", "Type", "AI outcome", "Confidence", "Rating", "Reviewer", "Feedback", "Corrected value"]];
         items.forEach((item) => {
           const state = reviewDecisions[`${current.id}-${item.id}`] || {};
-          rows.push([current.name, item.title, item.kind, item.value, state.result || "", state.reviewer || reviewerName, state.notes || ""]);
+          rows.push([current.name, item.title, item.kind, item.value, item.data.confidence || "", state.result || "", state.reviewer || reviewerName, state.notes || "", state.value || ""]);
         });
         const csv = rows.map((row) => row.map((value) => `"${String(value || "").replace(/"/g, '""')}"`).join(",")).join("\n");
         const link = document.createElement("a");
@@ -605,73 +665,30 @@
         URL.revokeObjectURL(link.href);
       }
 
-      function feedbackPayload(items) {
+      function submitSharedFeedback(items) {
         const reviews = items.map((item) => {
           const state = reviewDecisions[`${current.id}-${item.id}`] || {};
-          return {
-            itemId: item.id,
-            kind: item.kind,
-            title: item.title,
-            result: state.result || "",
-            reviewer: state.reviewer || reviewerName,
-            notes: state.notes || "",
-            correctedValue: state.value || "",
-          };
-        }).filter((review) => review.result);
-        return {
-          schemaVersion: 1,
-          prospectId: current.id,
-          prospectName: current.name,
-          submittedAt: new Date().toISOString(),
-          reviewer: reviewerName || reviews[0]?.reviewer || "",
-          reviews,
-        };
-      }
-
-      function submitSharedFeedback(items) {
-        const payload = feedbackPayload(items);
-        if (!payload.reviews.length) {
-          alert("Rate at least one item before submitting.");
-          return;
-        }
-        if (!payload.reviewer) {
-          alert("Enter your name before submitting.");
-          return;
-        }
-        const counts = payload.reviews.reduce((acc, review) => {
-          acc[review.result] = (acc[review.result] || 0) + 1;
-          return acc;
-        }, {});
-        const summary = `Reviewed ${payload.reviews.length} items: ${counts.accurate || 0} accurate, ${counts.correction || 0} need correction, ${counts.context || 0} need more context.`;
-        const body = `## AI quality review submission\n\n**Prospect:** ${payload.prospectName}\n**Reviewer:** ${payload.reviewer}\n**Summary:** ${summary}\n\nThis structured feedback was submitted from the quality-review workspace for Brandon's review and ingestion.\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
-        const title = `AI quality feedback: ${payload.prospectName} — ${payload.reviewer}`;
-        const url = `https://github.com/${FEEDBACK_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-        window.open(url, "_blank", "noopener");
+          return { itemId: item.id, kind: item.kind, title: item.title, result: state.result || "", reviewer: state.reviewer || reviewerName, notes: state.notes || "", correctedValue: state.value || "" };
+        }).filter((r) => r.result);
+        if (!reviews.length) { alert("Rate at least one item before submitting."); return; }
+        const reviewer = reviewerName || reviews[0]?.reviewer || "";
+        if (!reviewer) { alert("Enter your name before submitting."); return; }
+        const payload = { schemaVersion: 2, companyId: current.id, companyName: current.name, submittedAt: new Date().toISOString(), reviewer, reviews };
+        const counts = reviews.reduce((acc, r) => ((acc[r.result] = (acc[r.result] || 0) + 1), acc), {});
+        const summary = `Reviewed ${reviews.length} items: ${counts.accurate || 0} accurate, ${counts.correction || 0} need correction, ${counts.context || 0} need more context.`;
+        const body = `## AI quality review submission\n\n**Company:** ${payload.companyName}\n**Reviewer:** ${reviewer}\n**Summary:** ${summary}\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\``;
+        const title = `AI quality feedback: ${payload.companyName} — ${reviewer}`;
+        window.open(`https://github.com/${FEEDBACK_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`, "_blank", "noopener");
       }
 
       function bindReviewEvents(items) {
-        document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => {
-          reviewFilter = button.dataset.filter;
-          renderReviewWorkspace(items);
-        }));
-        $("category-filter")?.addEventListener("change", (event) => {
-          categoryFilter = event.target.value;
-          renderReviewWorkspace(items);
-        });
-        document.querySelectorAll("[data-review-id]").forEach((button) => button.addEventListener("click", () => {
-          selectedReviewId = button.dataset.reviewId;
-          renderReviewWorkspace(items);
-        }));
-        document.querySelectorAll("[data-expand]").forEach((button) => button.addEventListener("click", () => {
-          const more = $(`more-${button.dataset.expand}`);
-          const snippet = $(`snippet-${button.dataset.expand}`);
-          more.hidden = !more.hidden;
-          snippet.hidden = !more.hidden;
-          button.textContent = more.hidden ? `Expand source window (+${Math.max(0, more.children.length - snippet.children.length)} turns)` : "Collapse source window";
-        }));
-        document.querySelectorAll("[data-copy-excerpt]").forEach((button) => button.addEventListener("click", async () => {
-          const item = items.find((x) => x.id === button.dataset.copyExcerpt);
-          await navigator.clipboard.writeText(evidenceText(item));
+        document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => { reviewFilter = button.dataset.filter; renderReviewWorkspace(items); }));
+        $("category-filter")?.addEventListener("change", (event) => { categoryFilter = event.target.value; renderReviewWorkspace(items); });
+        document.querySelectorAll("[data-review-id]").forEach((button) => button.addEventListener("click", () => { selectedReviewId = button.dataset.reviewId; renderReviewWorkspace(items); }));
+        document.querySelectorAll("[data-copy-passage]").forEach((button) => button.addEventListener("click", async () => {
+          const [id, n] = button.dataset.copyPassage.split(":");
+          const item = items.find((x) => x.id === id);
+          await navigator.clipboard.writeText(passageText(item.data.passages[Number(n)]));
           button.textContent = "Copied";
         }));
         document.querySelectorAll("[data-quality]").forEach((button) => button.addEventListener("click", () => applyQuality(button.dataset.quality, items)));
@@ -688,8 +705,7 @@
           saveReviews();
         });
         document.querySelector("[data-copy-review]")?.addEventListener("click", async (event) => {
-          const item = items.find((x) => x.id === selectedReviewId);
-          await navigator.clipboard.writeText(reviewPacket(item));
+          await navigator.clipboard.writeText(reviewPacket(items.find((x) => x.id === selectedReviewId)));
           event.target.textContent = "Copied";
         });
         document.querySelector("[data-edit]")?.addEventListener("click", () => { $("edit-box").hidden = false; });
@@ -707,63 +723,36 @@
         const res = await fetch(`data.json?ts=${Date.now()}`, { cache: "no-store" });
         DATA = await res.json();
         const t = DATA.totals;
-        $("k-prospect").textContent = fmt(t.prospectCalls);
+        $("k-calls").textContent = fmt(t.calls);
         $("k-companies").textContent = fmt(t.companies);
-        $("k-read").textContent = fmt(t.callsUsed);
-        $("k-reviewed").textContent = fmt(t.reviewed);
+        $("k-plans").textContent = fmt(t.withPlans);
+        $("k-settings").textContent = fmt(t.settingsProposed);
         $("k-written").textContent = fmt(t.written);
-        const types = DATA.callTypes || [];
-        const max = Math.max(...types.map((x) => x.count), 1);
-        $("bars").innerHTML = types.map((x) => `
-          <div class="bar-row">
-            <div class="bar-name">${esc(TYPE_NAME[x.type] || x.type)}</div>
-            <div class="bar-track"><div class="bar-fill" style="width:${Math.max(1, (x.count / max) * 100)}%"></div></div>
-            <div class="bar-n">${short(x.count)}</div>
-          </div>`).join("");
-        $("axis-mid").textContent = short(Math.round(max / 2));
-        $("axis-max").textContent = short(max);
-        $("chart-caption").textContent = `Gong mirror, company status = Prospect, newest call ${DATA.latestCallInMirror || "unknown"}.`;
+        renderBars();
+        $("chart-caption").textContent = `All ${fmt(t.calls)} Gong calls, typed by title. Newest call ${DATA.newestCall}.`;
         const gen = new Date(DATA.generatedAt);
-        $("fresh-title").textContent = "Data is current";
-        $("fresh-gen").textContent = `Built ${gen.toLocaleString()}`;
-        $("fresh-call").textContent = `Newest call in the mirror: ${DATA.latestCallInMirror || "unknown"}`;
-        $("match-count").textContent = `${DATA.companies.length} prospects. Reviewed plans are marked.`;
-
-        const input = $("search");
-        input.addEventListener("focus", openList);
-        input.addEventListener("input", openList);
-        input.addEventListener("keydown", (e) => {
-          const buttons = [...$("list").querySelectorAll("button[data-id]")];
-          if (e.key === "ArrowDown") {
-            e.preventDefault();
-            if ($("list").hidden) openList();
-            active = Math.min(buttons.length - 1, active + 1);
-          } else if (e.key === "ArrowUp") {
-            e.preventDefault();
-            active = Math.max(0, active - 1);
-          } else if (e.key === "Enter") {
-            e.preventDefault();
-            const btn = buttons[active];
-            if (btn) choose(btn.dataset.id);
-            return;
-          } else if (e.key === "Escape") {
-            closeList();
-            return;
-          } else return;
-          buttons.forEach((b, i) => b.classList.toggle("active", i === active));
-          buttons[active]?.scrollIntoView({ block: "nearest" });
-        });
-        document.addEventListener("click", (e) => {
-          if (!e.target.closest(".combo")) closeList();
-        });
+        const age = (Date.now() - gen.getTime()) / 36e5;
+        $("fresh-title").textContent = age < 36 ? "Data is current" : `Data is ${Math.round(age / 24)} days old`;
+        $("fresh-gen").textContent = `Pulled from Gong ${gen.toLocaleString()}`;
+        $("fresh-call").textContent = `Newest call: ${DATA.newestCall}`;
+        $("f-stage").innerHTML += DATA.stages.map((s) => `<option>${esc(s)}</option>`).join("");
+        $("f-region").innerHTML += DATA.regions.map((s) => `<option>${esc(s)}</option>`).join("");
+        ["f-name", "f-stage", "f-region", "f-date", "f-plan"].forEach((id) => $(id).addEventListener(id === "f-name" ? "input" : "change", renderCompanies));
+        $("f-plan").checked = true;
+        renderCompanies();
+        const pick = new URLSearchParams(location.search).get("company");
+        if (pick) {
+          const c = DATA.companies.find((x) => x.id === pick || x.name.toLowerCase() === pick.toLowerCase());
+          if (c) choose(c.id);
+        }
         document.addEventListener("keydown", (e) => {
-          if (!current?.reviewed || e.metaKey || e.ctrlKey || e.altKey) return;
+          if (!current?.plan || e.metaKey || e.ctrlKey || e.altKey) return;
           const tag = document.activeElement?.tagName;
           if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
           const result = { a: "accurate", c: "correction", m: "context" }[e.key.toLowerCase()];
           if (!result) return;
           e.preventDefault();
-          applyQuality(result, reviewItems(current.plan || { rows: [], questions: [], gaps: [], rejectedSettings: [] }));
+          applyQuality(result, reviewItems(current.plan));
         });
       }
 
